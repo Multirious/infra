@@ -1,0 +1,89 @@
+top:
+{
+  flake.modules.homeManager.shell =
+    {
+      config,
+      lib,
+      ...
+    }:
+    {
+      options = {
+        shell = {
+          unix.login = lib.mkOption {
+            type = lib.types.lines;
+          };
+          sh.login = lib.mkOption {
+            type = lib.types.lines;
+          };
+          bash.login = lib.mkOption {
+            type = lib.types.lines;
+          };
+          zsh.login = lib.mkOption {
+            type = lib.types.lines;
+          };
+        };
+      };
+      config = {
+        home.file.".config/shell/unix/login".text =
+          # sh
+          ''
+            export HOME="${config.home.homeDirectory}"
+
+            export EDITOR=hx
+            export VISUAL=$EDITOR
+
+            export LANG="en_US.UTF-8"
+            export LC_LANG="en_US.UTF-8"
+            export LC_ALL="en_US.UTF-8"
+
+            export XDG_CONFIG_HOME="$HOME/.config"
+            export XDG_STATE_HOME="$HOME/.local/state"
+            export XDG_DATA_HOME="$HOME/.local/share"
+            export XDG_CACHE_HOME="$HOME/.cache"
+
+            export XDG_DESKTOP_DIR="$HOME/desktop"
+            export XDG_DOCUMENTS_DIR="$HOME/documents"
+            export XDG_DOWNLOAD_DIR="$HOME/downloads"
+            export XDG_MUSIC_DIR="$HOME/music"
+            export XDG_PICTURES_DIR="$HOME/pictures"
+            export XDG_PUBLICSHARE_DIR="$HOME/public"
+            export XDG_TEMPLATES_DIR="$HOME/templates"
+            export XDG_VIDEOS_DIR="$HOME/videos"
+
+            if has-command less; then
+              [ -d "$XDG_STATE_HOME/less" ] || mkdir -p "$XDG_STATE_HOME/less"
+              export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+              [ -f "$HOME/.lesshst" ] && rm "$HOME/.lesshst"
+            fi
+
+            if [ -d "$HOME/.cargo/bin" ]; then
+              export PATH="$HOME/.cargo/bin:$PATH"
+            fi
+
+            if has-command wget; then
+              [ -d "$XDG_CONFIG_HOME/wget" ] || mkdir -p "$XDG_CONFIG_HOME/wget"
+              alias wget="wget --hsts-file $XDG_CONFIG_HOME/wget/hsts"
+            fi
+
+            try-source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
+            export PATH="$HOME/.local/bin:$PATH"
+          '';
+        home.file.".config/shell/sh/login".text =
+          # sh
+          ''
+            . ~/.config/shell/unix/login
+          '';
+        home.file.".config/shell/bash/login".text =
+          # bash
+          ''
+            . ~/.config/shell/unix/login
+          '';
+        home.file.".config/shell/zsh/login".text =
+          # zsh
+          ''
+            . ~/.config/shell/unix/login
+          '';
+      };
+    };
+}
