@@ -14,20 +14,22 @@ top: {
         pkgs.wofi
       ];
 
-      home.file.".config/wofi/config".text = ''
-        show=drun
-        allow_images=true
-        allow_markup=true
-        hide_scroll=true
-        matching=fuzzy
-        insensitive=true
-        prompt=search
+      home.file.".config/wofi/config".text =
+        # env
+        ''
+          show=drun
+          allow_images=true
+          allow_markup=true
+          hide_scroll=true
+          matching=fuzzy
+          insensitive=true
+          prompt=search
 
-        no_actions=true
-        image_size=25
-        single_click=true
-        filter_rate=50
-      '';
+          no_actions=true
+          image_size=25
+          single_click=true
+          filter_rate=50
+        '';
 
       home.file.".config/wofi/style.css".text =
         # css
