@@ -15,7 +15,7 @@ top: {
       ];
 
       home.file.".config/wofi/config".text =
-        # env
+        # ini
         ''
           show=drun
           allow_images=true
