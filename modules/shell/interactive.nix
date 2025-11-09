@@ -58,14 +58,11 @@ top:
               alias gd='git diff'
 
               alias dev='tmux_develop'
-              alias ses='tmux_fzf_sessions'
 
               alias shx='sudo --preserve-env=EDITOR,TERM,TERMINFO,TERMINFO_DIRS,XDG_CONFIG_DIRS,XDG_DATA_DIRS,XDG_CONFIG_HOME,XDG_RUNTIME_DIR,WAYLAND_DISPLAY,DISPLAY,DBUS_SESSION_BUS_ADDRESS hx'
-              alias hxdf='hx "$HOME/dotfiles/" && dswitch'
-              alias hxnc='shx /etc/nixos'
 
-              alias dswitch='~/dotfiles/switch'
-              alias hswitch='home-manager switch'
+              alias hxi='hx ~/infra'
+              alias hswitch='home-manager switch --flake ~/infra'
 
               alias switchaud='~/system-scripts/switch-audio-device'
 
