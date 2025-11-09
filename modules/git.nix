@@ -27,25 +27,22 @@ top: {
           # git-config
           ''
             [init]
-            	defaultBranch = main
+                defaultBranch = main
             [core]
-            	editor = hx
-            	autocrlf = false
+                editor = hx
+                autocrlf = false
             [user]
-            	name = Multirious
-            	email = multirious@outlook.com
-            	signingkey = /home/peach/.ssh/id_ed25519.pub
+                name = Multirious
+                email = multirious@outlook.com
+                signingkey = /home/peach/.ssh/id_ed25519.pub
             [pull]
-            	rebase = true
+                rebase = true
             [gpg]
-            	format = ssh
+                format = ssh
             [diff]
-            	algorithm = patience
+                algorithm = patience
             [commit]
-            	gpgsign = true
-
-            [includeIf "gitdir:~/university/"]
-            	path = /home/peach/university/.gitconfig-university
+                gpgsign = true
           '';
       };
     };
