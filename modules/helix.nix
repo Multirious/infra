@@ -264,23 +264,6 @@ top: {
               { glob = ".yashrc" },
               { glob = ".yash_profile" },
               { glob = ".hushlogin" },
-
-              { glob = "bash/env" },
-              { glob = "bash/interactive" },
-              { glob = "bash/login" },
-              { glob = "bash/logout" },
-              { glob = "sh/env" },
-              { glob = "sh/login" },
-              { glob = "sh/interactive" },
-              { glob = "shell/env" },
-              { glob = "shell/env_functions" },
-              { glob = "shell/interactive" },
-              { glob = "shell/login" },
-              { glob = "shell/logout" },
-              { glob = "zsh/env" },
-              { glob = "zsh/interactive" },
-              { glob = "zsh/login" },
-              { glob = "zsh/logout" },
             ]
 
             [[language]]

@@ -1,0 +1,5 @@
+[[language]]
+name = "hyprlang"
+file-types = [
+  { glob = "modules/hyprland/hyprland.conf" }
+]
