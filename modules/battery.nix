@@ -26,8 +26,8 @@ top: {
       };
       config = {
         services.tlp.settings = {
-          "START_CHARGE_THRESH_${cfg.label}" = 50;
-          "STOP_CHARGE_THRESH_${cfg.label}" = 60;
+          "START_CHARGE_THRESH_${cfg.label}" = cfg.startChargeThreshold;
+          "STOP_CHARGE_THRESH_${cfg.label}" = cfg.stopChargeThreshold;
         };
 
         systemd.user.timers."battery-alert" = {
