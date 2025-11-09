@@ -48,14 +48,16 @@ top:
 
               alias ga='git add'
               alias gaa='git add .'
+              alias gap='git add -p'
               alias gcm='git commit -m'
               alias gc='git commit'
               alias gs='git status'
-              alias gl='git log -20 --pretty=oneline --abbrev-commit --reverse'
+              alias gl='git log -20 --pretty=oneline --abbrev-commit'
               alias gll='git log'
               alias gph='git push'
               alias gpu='git pull'
               alias gd='git diff'
+              alias gdc='git diff --cached'
 
               alias dev='tmux_develop'
 
