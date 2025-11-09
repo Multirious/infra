@@ -6,5 +6,6 @@ top: {
       targets.genericLinux.enable = true;
       nixpkgs.config.allowUnfree = true;
       home.stateVersion = "24.05";
+      news.display = "silent";
     };
 }
