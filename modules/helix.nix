@@ -149,14 +149,6 @@ top: {
             [language-server.arduino-language-server]
             command = "arduino-language-server"
 
-            [language-server.ra-multiplex]
-            command = "ra-multiplex"
-            args = ["client", "--server-path", "/home/peach/.cargo/bin/rust-analyzer"]
-
-            [language-server.ra-multiplex.config]
-            cargo.extraEnv.CARGO_TARGET_DIR = "/home/peach/cargo_builds" 
-            checkOnSave.command = "clippy" 
-
             [language-server.nixd]
             command = "nixd"
 
