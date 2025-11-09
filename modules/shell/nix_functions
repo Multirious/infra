@@ -12,10 +12,9 @@ nix-view () {
 
 nix-full-update () {
   sudo nix-collect-garbage
-  sudo nix flake update --flake /etc/nixos
+  nix flake update --flake ~/infra
   sudo nixos-rebuild boot
-  nix flake update --flake ~/dotfiles/home-manager
-  home-manager switch
+  home-manager switch --flake ~/infra
   sudo nix-collect-garbage
   reboot
 }
