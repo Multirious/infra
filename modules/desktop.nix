@@ -28,9 +28,6 @@ top: {
 
           pkgs.xclicker
 
-          pkgs.fyi
-          pkgs.libnotify
-
           (pkgs.flameshot.override { enableWlrSupport = true; })
         ];
       services.syncthing.enable = true;
