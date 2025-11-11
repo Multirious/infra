@@ -54,5 +54,6 @@
         inputs.flake-parts.flakeModules.modules
         (inputs.import-tree ./modules)
       ];
+      systems = [ "x86_64-linux" ];
     };
 }
