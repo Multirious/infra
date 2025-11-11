@@ -9,8 +9,8 @@ top: {
           wine = pkgs.wineWowPackages.stableFull;
         in
         [
+          top.config.flake.packages."${pkgs.system}".openutau
           pkgs.reaper
-          pkgs.openutau
           (pkgs.yabridge.override { inherit wine; })
           (pkgs.yabridgectl.override { inherit wine; })
           wine
