@@ -1,5 +1,4 @@
-top:
-{
+top: {
   flake.modules.homeManager.shell =
     { lib, ... }:
     {
