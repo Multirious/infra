@@ -24,8 +24,7 @@ top: {
           text-color=#222222
           font=monospace 11
           border-radius=10
-          border-size=2
-          border-color=#FFA500
+          border-size=0
           default-timeout=30000
           anchor=bottom-right
         '';
