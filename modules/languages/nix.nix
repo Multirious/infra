@@ -13,6 +13,7 @@ top: {
           language-servers = [ "nixd" ]
           block-comment-tokens = { start = "/*", end = "*/" }
           formatter = { command = "nixfmt" }
+          auto-format = true
         '';
     };
 }
