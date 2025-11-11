@@ -20,7 +20,7 @@ top: {
             ref = "refs/heads/nixpkgs-unstable";
             rev = "7d7ba194bf834a5194dadfa8f9debcfabaa718bb";
           }) {
-            inherit (pkgs) system;
+            inherit (pkgs.stdenv.hostPlatform) system;
           }).tor-browser;
         in
         [
