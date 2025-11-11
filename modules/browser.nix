@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.browser
-  ];
+  configurations.homeManager.peach.use = m: [ m.browser ];
 
   flake.modules.homeManager.browser =
     { config, pkgs, ... }:

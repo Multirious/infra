@@ -1,5 +1,3 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.shell
-  ];
+  configurations.homeManager.peach.use = m: [ m.shell ];
 }

@@ -1,7 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.bluetooth
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.bluetooth ];
 
   flake.modules.nixos.bluetooth =
     { ... }:

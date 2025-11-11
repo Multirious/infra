@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.games
-  ];
+  configurations.homeManager.peach.use = m: [ m.games ];
 
   flake.modules.homeManager.games =
     { config, pkgs, ... }:

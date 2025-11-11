@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.sixel
-  ];
+  configurations.homeManager.peach.use = m: [ m.sixel ];
 
   flake.modules.homeManager.sixel =
     { pkgs, ... }:

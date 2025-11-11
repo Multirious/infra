@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.recording
-  ];
+  configurations.homeManager.peach.use = m: [ m.recording ];
 
   flake.modules.homeManager.recording =
     { pkgs, ... }:

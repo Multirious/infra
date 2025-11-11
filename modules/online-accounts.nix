@@ -1,7 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.online-accounts
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.online-accounts ];
 
   flake.modules.nixos.online-accounts =
     { pkgs, ... }:

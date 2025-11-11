@@ -1,11 +1,6 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.sway
-  ];
-
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.sway
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.sway ];
+  configurations.homeManager.peach.use = m: [ m.sway ];
 
   flake.modules.nixos.sway =
     { pkgs, ... }:

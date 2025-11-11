@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.imageEditing
-  ];
+  configurations.homeManager.peach.use = m: [ m.imageEditing ];
 
   flake.modules.homeManager.imageEditing =
     { pkgs, ... }:

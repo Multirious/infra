@@ -1,7 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.keyboard
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.keyboard ];
 
   flake.modules.nixos.keyboard =
     { ... }:

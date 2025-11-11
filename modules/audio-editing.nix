@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.audioEditing
-  ];
+  configurations.homeManager.peach.use = m: [ m.audioEditing ];
 
   flake.modules.homeManager.audioEditing =
     { pkgs, ... }:

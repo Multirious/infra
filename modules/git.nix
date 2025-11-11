@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.git
-  ];
+  configurations.homeManager.peach.use = m: [ m.git ];
 
   flake.modules.homeManager.git =
     {

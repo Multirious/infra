@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.user-dirs
-  ];
+  configurations.homeManager.peach.use = m: [ m.user-dirs ];
 
   flake.modules.homeManager.user-dirs =
     { ... }:

@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.tmux
-  ];
+  configurations.homeManager.peach.use = m: [ m.tmux ];
 
   flake.modules.homeManager.tmux =
     {

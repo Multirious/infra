@@ -1,11 +1,6 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.nix
-  ];
-
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.nix
-  ];
+  configurations.homeManager.peach.use = m: [ m.nix ];
+  configurations.nixos.peach-asus.use = m: [ m.nix ];
 
   flake.modules.homeManager.nix =
     { pkgs, ... }:

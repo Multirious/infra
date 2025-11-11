@@ -1,7 +1,5 @@
 top: {
-  flake.modules.homeManager.hyprland.imports = [
-    top.config.flake.modules.homeManager.waybar
-  ];
+  flake.modules.homeManager.hyuse = m: [ m.waybar ];
 
   flake.modules.homeManager.sway.imports = [
     top.config.flake.modules.homeManager.waybar

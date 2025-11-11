@@ -1,11 +1,6 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.hyprland
-  ];
-
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.hyprland
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.hyprland ];
+  configurations.homeManager.peach.use = m: [ m.hyprland ];
 
   flake.modules.homeManager.hyprland =
     { pkgs, ... }:

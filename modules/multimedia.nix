@@ -1,11 +1,6 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.multimedia
-  ];
-
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.multimedia
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.multimedia ];
+  configurations.homeManager.peach.use = m: [ m.multimedia ];
 
   flake.modules.homeManager.multimedia =
     { pkgs, ... }:

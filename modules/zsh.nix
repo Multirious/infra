@@ -1,7 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.zsh
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.zsh ];
 
   flake.modules.nixos.zsh =
     { config, pkgs, ... }:

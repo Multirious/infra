@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.passwordManager
-  ];
+  configurations.homeManager.peach.use = m: [ m.passwordManager ];
 
   flake.modules.homeManager.passwordManager =
     { pkgs, ... }:

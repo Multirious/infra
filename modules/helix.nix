@@ -1,7 +1,5 @@
 top: {
-  configurations.homeManager.peach.module.imports = [
-    top.config.flake.modules.homeManager.helix
-  ];
+  configurations.homeManager.peach.use = m: [ m.helix ];
 
   flake.modules.homeManager.helix =
     {

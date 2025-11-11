@@ -1,7 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.audio
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.audio ];
 
   flake.modules.nixos.audio = {
     services.pipewire.enable = true;

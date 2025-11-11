@@ -1,7 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.printing
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.printing ];
 
   flake.modules.nixos.printing =
     { ... }:

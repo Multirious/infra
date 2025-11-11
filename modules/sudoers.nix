@@ -1,7 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.sudoers
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.sudoers ];
 
   flake.modules.nixos.sudoers =
     { ... }:

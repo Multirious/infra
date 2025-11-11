@@ -1,7 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.fonts
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.fonts ];
 
   flake.modules.nixos.fonts =
     { pkgs, ... }:

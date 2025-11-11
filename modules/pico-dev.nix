@@ -1,7 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.module.imports = [
-    top.config.flake.modules.nixos.picoDev
-  ];
+  configurations.nixos.peach-asus.use = m: [ m.picoDev ];
 
   flake.modules.nixos.picoDev =
     { pkgs, ... }:
