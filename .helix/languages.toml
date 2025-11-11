@@ -3,3 +3,11 @@ name = "hyprlang"
 file-types = [
   { glob = "modules/hyprland/hyprland.conf" }
 ]
+
+[[language]]
+name = "bash"
+file-types = [
+  { glob = "modules/shell/de_functions" },
+  { glob = "modules/shell/tmux_functions" },
+  { glob = "modules/shell/nix_functions" },
+]
