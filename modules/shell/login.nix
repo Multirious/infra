@@ -35,10 +35,10 @@ top: {
             export LC_LANG="en_US.UTF-8"
             export LC_ALL="en_US.UTF-8"
 
-            export XDG_CONFIG_HOME="$HOME/.config"
+            export XDG_CONFIG_HOME="$HOME/.local/config"
             export XDG_STATE_HOME="$HOME/.local/state"
             export XDG_DATA_HOME="$HOME/.local/share"
-            export XDG_CACHE_HOME="$HOME/.cache"
+            export XDG_CACHE_HOME="$HOME/.local/cache"
 
             export XDG_DESKTOP_DIR="$HOME/desktop"
             export XDG_DOCUMENTS_DIR="$HOME/documents"
