@@ -12,7 +12,7 @@ top: {
       };
       systemd.user.services."battery-alert" = {
         script = ''
-          battery_path="/sys/class/power_supply/${config.me.label}"
+          battery_path="/sys/class/power_supply/${config.me.battery.label}"
           ac_path="/sys/class/power_supply/ACAD"
           battery_percentage=$((
             $(cat "$battery_path/charge_now") * 100 / $(cat "$battery_path/charge_full")
@@ -29,12 +29,12 @@ top: {
         };
       };
     };
-    flake.modules.homeManager.desktop =
-      { pkgs, ... }:
-      {
-        home.packages = [
-          pkgs.fyi
-          pkgs.libnotify
-        ];
-      };
+  flake.modules.homeManager.desktop =
+    { pkgs, ... }:
+    {
+      home.packages = [
+        pkgs.fyi
+        pkgs.libnotify
+      ];
+    };
 }
