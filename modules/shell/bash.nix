@@ -5,7 +5,7 @@ top: {
       home.file.".bash_logout".text =
         # bash
         ''
-          . ~/.config/shell/unix/logout
+          . ~/.local/config/shell/unix/logout
         '';
       home.file.".bashrc".text =
         # bash
@@ -22,8 +22,8 @@ top: {
           # however, we assume that #2 is a recovery mode, so we don't want to do much.
           # (also, my google-fu didn't find a way to distinguish them)
 
-          . ~/.config/shell/bash/env
-          . ~/.config/shell/bash/interactive
+          . ~/.local/config/shell/bash/env
+          . ~/.local/config/shell/bash/interactive
         '';
       home.file.".bash_profile".text =
         # bash
@@ -33,8 +33,8 @@ top: {
 
           # We need to do two things here:
 
-          # 1. Ensure ~/.config/bash/env gets run first
-          . ~/.config/shell/bash/env
+          # 1. Ensure ~/.local/config/bash/env gets run first
+          . ~/.local/config/shell/bash/env
 
           # 2. Prevent it from being run later, since we need to use $BASH_ENV for
           # non-login non-interactive shells.
@@ -45,12 +45,12 @@ top: {
           # 3. Join the spanish inquisition. ;)
           # so much for only two things...
 
-          # 4. Run ~/.config/bash/login
-          . ~/.config/shell/bash/login
+          # 4. Run ~/.local/config/bash/login
+          . ~/.local/config/shell/bash/login
 
-          # 5. Run ~/.config/bash/interactive if this is an interactive shell.
+          # 5. Run ~/.local/config/bash/interactive if this is an interactive shell.
           if [ "$PS1" ]; then
-            . ~/.config/shell/bash/interactive
+            . ~/.local/config/shell/bash/interactive
           fi
         '';
     };

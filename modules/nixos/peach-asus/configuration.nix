@@ -14,7 +14,7 @@ top: {
       time.timeZone = "Asia/Bangkok";
 
       security.auditd.enable = true;
-      security.audit.rules = [ "-w /home/peach/.config/dconf/user -p wa" ];
+      security.audit.rules = [ "-w /home/peach/.local/config/dconf/user -p wa" ];
 
       programs.mtr.enable = true;
 

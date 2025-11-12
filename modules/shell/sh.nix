@@ -12,8 +12,8 @@ top: {
           # sequence, which means this file suddenly has to cater for two different
           # shells.
 
-          . ~/.config/unix/sh/env
-          . ~/.config/unix/sh/login
+          . ~/.local/config/unix/sh/env
+          . ~/.local/config/unix/sh/login
         '';
     };
 }

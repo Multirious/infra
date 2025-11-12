@@ -14,7 +14,7 @@ top: {
         pkgs.wofi
       ];
 
-      home.file.".config/wofi/config".text =
+      home.file.".local/config/wofi/config".text =
         # ini
         ''
           show=drun
@@ -31,7 +31,7 @@ top: {
           filter_rate=50
         '';
 
-      home.file.".config/wofi/style.css".text =
+      home.file.".local/config/wofi/style.css".text =
         # css
         ''
           * {

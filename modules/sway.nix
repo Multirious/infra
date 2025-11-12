@@ -16,7 +16,7 @@ top: {
   flake.modules.homeManager.sway =
     { ... }:
     {
-      home.file.".config/sway/config".text =
+      home.file.".local/config/sway/config".text =
         # sway
         ''
           # IO ================================================================

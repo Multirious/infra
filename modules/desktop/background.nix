@@ -5,7 +5,7 @@ top: {
       home.packages = [
         pkgs.hyprpaper
       ];
-      home.file.".config/hypr/hyprpaper.conf".text =
+      home.file.".local/config/hypr/hyprpaper.conf".text =
         # hyprlang
         ''
           preload = /home/peach/.local/share/backgrounds/desert_lake.jpg

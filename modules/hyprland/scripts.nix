@@ -2,7 +2,7 @@ top: {
   flake.modules.homeManager.hyprland =
     { ... }:
     {
-      home.file.".config/hypr/scripts/rename-workspace-menu" = {
+      home.file.".local/config/hypr/scripts/rename-workspace-menu" = {
         executable = true;
         text =
           # bash
@@ -20,7 +20,7 @@ top: {
             hyprctl dispatch renameworkspace "$current_workspace" "$choosen"
           '';
       };
-      home.file.".config/hypr/scripts/close-current-special-workspace" = {
+      home.file.".local/config/hypr/scripts/close-current-special-workspace" = {
         executable = true;
         text =
           # bash

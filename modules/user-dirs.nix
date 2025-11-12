@@ -1,10 +1,10 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.user-dirs ];
+  # configurations.homeManager.peach.use = m: [ m.user-dirs ];
 
   flake.modules.homeManager.user-dirs =
     { ... }:
     {
-      home.file.".config/user-dirs.dirs".text =
+      home.file.".local/config/user-dirs.dirs".text =
         ''
           XDG_DESKTOP_DIR="$HOME/desktop"
           XDG_DOCUMENTS_DIR="$HOME/documents"

@@ -19,18 +19,18 @@ top: {
         };
       };
       config = {
-        home.file.".config/shell/unix/logout".text =
+        home.file.".local/config/shell/unix/logout".text =
           # sh
           '''';
-        home.file.".config/shell/bash/logout".text =
+        home.file.".local/config/shell/bash/logout".text =
           # bash
           ''
-            . ~/.config/shell/unix/logout
+            . ~/.local/config/shell/unix/logout
           '';
-        home.file.".config/shell/zsh/logout".text =
+        home.file.".local/config/shell/zsh/logout".text =
           # zsh
           ''
-            . ~/.config/shell/unix/logout
+            . ~/.local/config/shell/unix/logout
           '';
       };
     };

@@ -23,7 +23,7 @@ top: {
         };
       };
       config = {
-        home.file.".config/shell/unix/login".text =
+        home.file.".local/config/shell/unix/login".text =
           # sh
           ''
             export HOME="${config.home.homeDirectory}"
@@ -49,6 +49,9 @@ top: {
             export XDG_TEMPLATES_DIR="$HOME/templates"
             export XDG_VIDEOS_DIR="$HOME/videos"
 
+            export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
+            export STARSHIP_CACHE="$XDG_CACHE_HOME/starship"
+
             if has-command less; then
               [ -d "$XDG_STATE_HOME/less" ] || mkdir -p "$XDG_STATE_HOME/less"
               export LESSHISTFILE="$XDG_STATE_HOME/less/history"
@@ -68,20 +71,20 @@ top: {
 
             export PATH="$HOME/.local/bin:$PATH"
           '';
-        home.file.".config/shell/sh/login".text =
+        home.file.".local/config/shell/sh/login".text =
           # sh
           ''
-            . ~/.config/shell/unix/login
+            . ~/.local/config/shell/unix/login
           '';
-        home.file.".config/shell/bash/login".text =
+        home.file.".local/config/shell/bash/login".text =
           # bash
           ''
-            . ~/.config/shell/unix/login
+            . ~/.local/config/shell/unix/login
           '';
-        home.file.".config/shell/zsh/login".text =
+        home.file.".local/config/shell/zsh/login".text =
           # zsh
           ''
-            . ~/.config/shell/unix/login
+            . ~/.local/config/shell/unix/login
           '';
       };
     };

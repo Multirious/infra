@@ -8,7 +8,7 @@ top: {
           # This script is part of an attempt to
           # standardize shell configurations
 
-          . ~/.config/shell/zsh/env
+          . ~/.local/config/shell/zsh/env
         '';
 
       home.file.".zshrc".text =
@@ -17,7 +17,7 @@ top: {
           # This script is part of an attempt to
           # standardize shell configurations
 
-          source ~/.config/shell/zsh/interactive
+          source ~/.local/config/shell/zsh/interactive
         '';
 
       home.file.".zprofile".text =
@@ -26,10 +26,10 @@ top: {
           # This script is part of an attempt to
           # standardize shell configurations
 
-          . ~/.config/shell/zsh/login
+          . ~/.local/config/shell/zsh/login
         '';
 
-      home.file.".config/shell/zsh/completion.zsh".text =
+      home.file.".local/config/shell/zsh/completion.zsh".text =
         # zsh
         ''
           autoload -U compinit
@@ -43,7 +43,7 @@ top: {
           zstyle ':completion:*' menu select
         '';
 
-      home.file.".config/shell/zsh/plugins.zsh".text =
+      home.file.".local/config/shell/zsh/plugins.zsh".text =
         # zsh
         ''
           source <(fzf --zsh)

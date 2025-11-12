@@ -7,7 +7,8 @@ top: {
       home.packages = [
         pkgs.starship
       ];
-      home.file.".config/starship.toml".text =
+
+      home.file.".local/config/starship.toml".text =
         # toml
         ''
           # Get editor completions based on the config schema

@@ -6,7 +6,7 @@ top: {
         pkgs.hypridle
       ];
 
-      home.file.".config/hypr/hypridle.conf".text =
+      home.file.".local/config/hypr/hypridle.conf".text =
         # hyprlang
         ''
           general {

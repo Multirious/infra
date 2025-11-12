@@ -11,9 +11,9 @@ top: {
       home.packages = [
         pkgs.waybar
       ];
-      home.file.".config/waybar/config.jsonc".source = ./waybar/config.jsonc;
-      home.file.".config/waybar/style.css".source = ./waybar/style.css;
-      home.file.".config/waybar/mediaplayer.py".source = ./waybar/mediaplayer.py;
-      home.file.".config/waybar/power_menu.xml".source = ./waybar/power_menu.xml;
+      home.file.".local/config/waybar/config.jsonc".source = ./waybar/config.jsonc;
+      home.file.".local/config/waybar/style.css".source = ./waybar/style.css;
+      home.file.".local/config/waybar/mediaplayer.py".source = ./waybar/mediaplayer.py;
+      home.file.".local/config/waybar/power_menu.xml".source = ./waybar/power_menu.xml;
     };
 }

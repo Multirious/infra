@@ -19,11 +19,11 @@ top: {
         };
       };
       config = {
-        home.file.".config/shell/unix/tmux_functions".source = ./tmux_functions;
-        home.file.".config/shell/unix/nix_functions".source = ./nix_functions;
-        home.file.".config/shell/unix/de_functions".source = ./de_functions;
+        home.file.".local/config/shell/unix/tmux_functions".source = ./tmux_functions;
+        home.file.".local/config/shell/unix/nix_functions".source = ./nix_functions;
+        home.file.".local/config/shell/unix/de_functions".source = ./de_functions;
 
-        home.file.".config/shell/unix/interactive".text =
+        home.file.".local/config/shell/unix/interactive".text =
           # sh
           ''
             # If in a terminal
@@ -72,9 +72,9 @@ top: {
                 alias rswitch='sudo nixos-rebuild boot && reboot'
               fi
 
-              . ~/.config/shell/unix/tmux_functions
-              . ~/.config/shell/unix/nix_functions
-              . ~/.config/shell/unix/de_functions
+              . ~/.local/config/shell/unix/tmux_functions
+              . ~/.local/config/shell/unix/nix_functions
+              . ~/.local/config/shell/unix/de_functions
 
               export PATH="$PATH:~/scripts"
 
@@ -85,7 +85,7 @@ top: {
                 && [ -z "$TMUX" ] \
                 && [[ $XDG_SESSION_TYPE != "tty" ]]
               then
-                tmux -f ~/.config/tmux/tmux.conf new-session -A -s main ; exit
+                tmux -f ~/.local/config/tmux/tmux.conf new-session -A -s main ; exit
               fi
 
               # If colors
@@ -93,17 +93,17 @@ top: {
               # fi
             fi
           '';
-        home.file.".config/shell/sh/interactive".text =
+        home.file.".local/config/shell/sh/interactive".text =
           # sh
           ''
-            . ~/.config/shell/unix/interactive
+            . ~/.local/config/shell/unix/interactive
           '';
-        home.file.".config/shell/bash/interactive".text =
+        home.file.".local/config/shell/bash/interactive".text =
           # bash
           ''
             #!/usr/bin/env bash
 
-            . ~/.config/shell/interactive
+            . ~/.local/config/shell/interactive
 
             [ -d "$XDG_STATE_HOME/bash" ] || mkdir -p "$XDG_STATE_HOME/bash"
             [ -f "$XDG_STATE_HOME/bash/history" ] || touch "$XDG_STATE_HOME/bash/history"
@@ -122,12 +122,12 @@ top: {
               eval "$(zoxide init bash)"
             fi
           '';
-        home.file.".config/shell/zsh/interactive".text =
+        home.file.".local/config/shell/zsh/interactive".text =
           # zsh
           ''
             #!/usr/bin/env zsh
 
-            source ~/.config/shell/unix/interactive
+            source ~/.local/config/shell/unix/interactive
 
             [ -d "$XDG_STATE_HOME/zsh" ] || mkdir -p "$XDG_STATE_HOME/zsh"
             [ -f "$XDG_STATE_HOME/zsh/history" ] || touch "$XDG_STATE_HOME/zsh/history"
@@ -136,7 +136,7 @@ top: {
             export SAVEHIST="2000"
             export HISTSIZE="2000"
 
-            source ~/.config/shell/zsh/completion.zsh
+            source ~/.local/config/shell/zsh/completion.zsh
 
             if has-command starship; then
               eval "$(starship init zsh)"
@@ -146,7 +146,7 @@ top: {
 
             HYPHEN_INSENSITIVE="true"
 
-            source ~/.config/shell/zsh/plugins.zsh
+            source ~/.local/config/shell/zsh/plugins.zsh
 
             # For completions to work, this must be added after compinit is called.
             if has-command zoxide; then

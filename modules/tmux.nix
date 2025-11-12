@@ -272,10 +272,10 @@ top: {
         };
     in
     {
-      home.file.".config/tmux/tmux.conf".source = ./tmux/tmux.conf;
-      home.file.".config/tmux/helix.conf".text = ''
+      home.file.".local/config/tmux/tmux.conf".source = ./tmux/tmux.conf;
+      home.file.".local/config/tmux/helix.conf".text = ''
         ${keyMapper modalKeyMappings}
       '';
-      home.file.".config/tmux/plugins".source = pluginsDrv;
+      home.file.".local/config/tmux/plugins".source = pluginsDrv;
     };
 }
