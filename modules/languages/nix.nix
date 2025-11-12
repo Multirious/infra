@@ -1,7 +1,12 @@
 top: {
   flake.modules.homeManager.helix =
-    { ... }:
+    { pkgs, ... }:
     {
+      home.packages = [
+        pkgs.nixd
+        pkgs.nixfmt-rfc-style
+      ];
+
       me.helix.languages =
         # toml
         ''
@@ -17,4 +22,3 @@ top: {
         '';
     };
 }
-
