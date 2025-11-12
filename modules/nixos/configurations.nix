@@ -41,7 +41,7 @@
           name: configuration:
           let
             inherit (configuration) module use;
-            listOfImports = builtins.map (eachUse: eachUse config.flake.modules.homeManager) use;
+            listOfImports = builtins.map (eachUse: eachUse config.flake.modules.nixos) use;
             imports = lib.flatten listOfImports;
           in
           inputs.nixpkgs.lib.nixosSystem {
