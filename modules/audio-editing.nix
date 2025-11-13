@@ -2,27 +2,52 @@ top: {
   configurations.homeManager.peach.use = m: [ m.audioEditing ];
 
   flake.modules.homeManager.audioEditing =
-    { pkgs, ... }:
     {
-      home.packages =
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
+    {
+      options =
         let
-          wine = pkgs.wineWowPackages.stableFull;
+          filesOption = lib.types.lazyAttrsOf (
+            lib.types.submodule {
+              options = {
+                source = lib.mkOption {
+                  type = lib.types.package;
+                };
+              };
+            }
+          );
         in
-        [
-          top.config.flake.packages."${pkgs.stdenv.hostPlatform.system}".openutau
-          pkgs.reaper
-          (pkgs.yabridge.override { inherit wine; })
-          (pkgs.yabridgectl.override { inherit wine; })
-          wine
-        ];
+        {
+          me.audio.vstFile = lib.mkOption { type = filesOption; };
+          me.audio.vst3File = lib.mkOption { type = filesOption; };
+        };
+      config = {
+        home.packages =
+          let
+            wine = pkgs.wineWowPackages.stableFull;
+          in
+          [
+            top.config.flake.packages."${pkgs.stdenv.hostPlatform.system}".openutau
+            pkgs.reaper
+            (pkgs.yabridge.override { inherit wine; })
+            (pkgs.yabridgectl.override { inherit wine; })
+            wine
+          ];
 
-      home.file.".local/share/vst3/Vital.vst3".source = "${pkgs.vital}/lib/vst3/Vital.vst3";
-      home.file.".local/share/vst/Vital.so".source = "${pkgs.vital}/lib/vst/Vital.so";
-      # home.file.".local/share/vst/libsitala.so".source =
-      #   let
-      #     sitala = top.config.flake.packages."${pkgs.system}".sitala;
-      #   in
-      #   "${sitala}/lib/vst/libsitala.so";
+        xdg.dataFile =
+          (lib.mapAttrs' (path: value: {
+            name = "vst/" + path;
+            value = value;
+          }) config.me.audio.vstFile)
+          // (lib.mapAttrs' (path: value: {
+            name = "vst3/" + path;
+            value = value;
+          }) config.me.audio.vst3File);
+      };
     };
 
   flake.modules.nixos.audioEditing =
