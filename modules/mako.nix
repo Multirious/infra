@@ -17,16 +17,17 @@ top: {
       xdg.configFile."mako/config".text =
         # ini
         ''
+          default-timeout=30000
           max-history=20
           sort=+time
-          outer-margin=0,0,5
-          background-color=#EEEEEE
-          text-color=#222222
-          font=monospace 11
-          border-radius=10
-          border-size=0
-          default-timeout=30000
+
           anchor=bottom-right
+          font=monospace 11
+          text-color=#222222
+          background-color=#EEEEEE
+          border-size=0
+          border-radius=10
+          outer-margin=0,0,5
         '';
     };
 }
