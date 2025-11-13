@@ -1,6 +1,9 @@
 top: {
   flake.modules.homeManager.shell =
-    { lib, ... }:
+    { config, lib, ... }:
+    let
+      inherit (config.xdg) configHome;
+    in
     {
       options = {
         shell = {
@@ -25,12 +28,12 @@ top: {
         xdg.configFile."shell/bash/logout".text =
           # bash
           ''
-            . ~/.local/config/shell/unix/logout
+            . ${configHome}/shell/unix/logout
           '';
         xdg.configFile."shell/zsh/logout".text =
           # zsh
           ''
-            . ~/.local/config/shell/unix/logout
+            . ${configHome}/shell/unix/logout
           '';
       };
     };

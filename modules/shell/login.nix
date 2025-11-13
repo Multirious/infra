@@ -5,6 +5,16 @@ top: {
       lib,
       ...
     }:
+    let
+      inherit (config.xdg)
+        configHome
+        cacheHome
+        stateHome
+        dataHome
+        userDirs
+        ;
+      inherit (config.home) homeDirectory;
+    in
     {
       options = {
         shell = {
@@ -26,7 +36,7 @@ top: {
         xdg.configFile."shell/unix/login".text =
           # sh
           ''
-            export HOME="${config.home.homeDirectory}"
+            export HOME="${homeDirectory}"
 
             export EDITOR=hx
             export VISUAL=$EDITOR
@@ -35,56 +45,56 @@ top: {
             export LC_LANG="en_US.UTF-8"
             export LC_ALL="en_US.UTF-8"
 
-            export XDG_CONFIG_HOME="$HOME/.local/config"
-            export XDG_STATE_HOME="$HOME/.local/state"
-            export XDG_DATA_HOME="$HOME/.local/share"
-            export XDG_CACHE_HOME="$HOME/.local/cache"
+            export XDG_CONFIG_HOME="${configHome}"
+            export XDG_STATE_HOME="${stateHome}"
+            export XDG_DATA_HOME="${dataHome}"
+            export XDG_CACHE_HOME="${cacheHome}"
 
-            export XDG_DESKTOP_DIR="$HOME/desktop"
-            export XDG_DOCUMENTS_DIR="$HOME/documents"
-            export XDG_DOWNLOAD_DIR="$HOME/downloads"
-            export XDG_MUSIC_DIR="$HOME/music"
-            export XDG_PICTURES_DIR="$HOME/pictures"
-            export XDG_PUBLICSHARE_DIR="$HOME/public"
-            export XDG_TEMPLATES_DIR="$HOME/templates"
-            export XDG_VIDEOS_DIR="$HOME/videos"
+            export XDG_DESKTOP_DIR="${userDirs.desktop}"
+            export XDG_DOCUMENTS_DIR="${userDirs.documents}"
+            export XDG_DOWNLOAD_DIR="${userDirs.download}"
+            export XDG_MUSIC_DIR="${userDirs.music}"
+            export XDG_PICTURES_DIR="${userDirs.pictures}"
+            export XDG_PUBLICSHARE_DIR="${userDirs.publicshare}"
+            export XDG_TEMPLATES_DIR="${userDirs.templates}"
+            export XDG_VIDEOS_DIR="${userDirs.videos}"
 
-            export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
-            export STARSHIP_CACHE="$XDG_CACHE_HOME/starship"
+            export STARSHIP_CONFIG="${configHome}/starship.toml"
+            export STARSHIP_CACHE="${cacheHome}/starship"
 
             if has-command less; then
-              [ -d "$XDG_STATE_HOME/less" ] || mkdir -p "$XDG_STATE_HOME/less"
-              export LESSHISTFILE="$XDG_STATE_HOME/less/history"
-              [ -f "$HOME/.lesshst" ] && rm "$HOME/.lesshst"
+              [ -d "${stateHome}/less" ] || mkdir -p "${stateHome}/less"
+              export LESSHISTFILE="${stateHome}/less/history"
+              [ -f "${homeDirectory}/.lesshst" ] && rm "${homeDirectory}/.lesshst"
             fi
 
-            if [ -d "$HOME/.cargo/bin" ]; then
-              export PATH="$HOME/.cargo/bin:$PATH"
+            if [ -d "${homeDirectory}/.cargo/bin" ]; then
+              export PATH="${homeDirectory}/.cargo/bin:$PATH"
             fi
 
             if has-command wget; then
-              [ -d "$XDG_CONFIG_HOME/wget" ] || mkdir -p "$XDG_CONFIG_HOME/wget"
-              alias wget="wget --hsts-file $XDG_CONFIG_HOME/wget/hsts"
+              [ -d "${configHome}/wget" ] || mkdir -p "${configHome}/wget"
+              alias wget="wget --hsts-file ${configHome}/wget/hsts"
             fi
 
-            try-source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+            try-source "${homeDirectory}/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
-            export PATH="$HOME/.local/bin:$PATH"
+            export PATH="${homeDirectory}/.local/bin:$PATH"
           '';
         xdg.configFile."shell/sh/login".text =
           # sh
           ''
-            . ~/.local/config/shell/unix/login
+            . ${configHome}/shell/unix/login
           '';
         xdg.configFile."shell/bash/login".text =
           # bash
           ''
-            . ~/.local/config/shell/unix/login
+            . ${configHome}/shell/unix/login
           '';
         xdg.configFile."shell/zsh/login".text =
           # zsh
           ''
-            . ~/.local/config/shell/unix/login
+            . ${configHome}/shell/unix/login
           '';
       };
     };

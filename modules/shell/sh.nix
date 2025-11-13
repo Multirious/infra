@@ -1,8 +1,12 @@
 top: {
   flake.modules.homeManager.shell =
-    { ... }:
+    { config, ... }:
+    let
+      inherit (config.xdg) configHome;
+    in
     {
       home.file.".profile".text =
+
         # sh
         ''
           # This script is part of an attempt to
@@ -12,8 +16,8 @@ top: {
           # sequence, which means this file suddenly has to cater for two different
           # shells.
 
-          . ~/.local/config/unix/sh/env
-          . ~/.local/config/unix/sh/login
+          . ${configHome}/unix/sh/env
+          . ${configHome}/unix/sh/login
         '';
     };
 }

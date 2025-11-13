@@ -1,6 +1,10 @@
 top: {
   flake.modules.homeManager.shell =
-    { lib, ... }:
+    { config, lib, ... }:
+    let
+      inherit (config.xdg) configHome stateHome;
+      inherit (config.home) homeDirectory;
+    in
     {
       options = {
         shell = {
@@ -62,21 +66,21 @@ top: {
 
               alias shx='sudo --preserve-env=EDITOR,TERM,TERMINFO,TERMINFO_DIRS,XDG_CONFIG_DIRS,XDG_DATA_DIRS,XDG_CONFIG_HOME,XDG_RUNTIME_DIR,WAYLAND_DISPLAY,DISPLAY,DBUS_SESSION_BUS_ADDRESS hx'
 
-              alias hxi='hx ~/infra'
-              alias hswitch='home-manager switch --flake ~/infra'
+              alias hxi='hx ${homeDirectory}/infra'
+              alias hswitch='home-manager switch --flake ${homeDirectory}/infra'
 
-              alias switchaud='~/system-scripts/switch-audio-device'
+              alias switchaud='${homeDirectory}/system-scripts/switch-audio-device'
 
-              if [ -f "/etc/NIXOS" ]; then
+              if [ -f '/etc/NIXOS' ]; then
                 alias switch='sudo nixos-rebuild switch'
                 alias rswitch='sudo nixos-rebuild boot && reboot'
               fi
 
-              . ~/.local/config/shell/unix/tmux_functions
-              . ~/.local/config/shell/unix/nix_functions
-              . ~/.local/config/shell/unix/de_functions
+              . '${configHome}/shell/unix/tmux_functions'
+              . '${configHome}/shell/unix/nix_functions'
+              . '${configHome}/shell/unix/de_functions'
 
-              export PATH="$PATH:~/scripts"
+              export PATH="$PATH:${configHome}/scripts"
 
               if has-command tmux \
                 && [ -n "$PS1" ] \
@@ -85,7 +89,7 @@ top: {
                 && [ -z "$TMUX" ] \
                 && [[ $XDG_SESSION_TYPE != "tty" ]]
               then
-                tmux -f ~/.local/config/tmux/tmux.conf new-session -A -s main ; exit
+                tmux -f '${configHome}/tmux/tmux.conf' new-session -A -s main ; exit
               fi
 
               # If colors
@@ -96,23 +100,23 @@ top: {
         xdg.configFile."shell/sh/interactive".text =
           # sh
           ''
-            . ~/.local/config/shell/unix/interactive
+            . ${configHome}/shell/unix/interactive
           '';
         xdg.configFile."shell/bash/interactive".text =
           # bash
           ''
             #!/usr/bin/env bash
 
-            . ~/.local/config/shell/interactive
+            . ${configHome}/shell/interactive
 
-            [ -d "$XDG_STATE_HOME/bash" ] || mkdir -p "$XDG_STATE_HOME/bash"
-            [ -f "$XDG_STATE_HOME/bash/history" ] || touch "$XDG_STATE_HOME/bash/history"
+            [ -d "${stateHome}/bash" ] || mkdir -p "${stateHome}/bash"
+            [ -f "${stateHome}/bash/history" ] || touch "${stateHome}/bash/history"
 
-            export HISTFILE="$XDG_STATE_HOME/bash/history"
+            export HISTFILE="${stateHome}/bash/history"
             export HISTSIZE=1000
             export HISTFILESIZE=1000
 
-            [ -f "$HOME/.bash_history" ] && rm "$HOME/.bash_history"
+            [ -f "${homeDirectory}/.bash_history" ] && rm "${homeDirectory}/.bash_history"
 
             if has-command starship; then
               eval "$(starship init bash)"
@@ -127,16 +131,16 @@ top: {
           ''
             #!/usr/bin/env zsh
 
-            source ~/.local/config/shell/unix/interactive
+            source ${configHome}/shell/unix/interactive
 
-            [ -d "$XDG_STATE_HOME/zsh" ] || mkdir -p "$XDG_STATE_HOME/zsh"
-            [ -f "$XDG_STATE_HOME/zsh/history" ] || touch "$XDG_STATE_HOME/zsh/history"
+            [ -d "${stateHome}/zsh" ] || mkdir -p "${stateHome}/zsh"
+            [ -f "${stateHome}/zsh/history" ] || touch "${stateHome}/zsh/history"
 
-            export HISTFILE="$XDG_STATE_HOME/zsh/history"
+            export HISTFILE="${stateHome}/zsh/history"
             export SAVEHIST="2000"
             export HISTSIZE="2000"
 
-            source ~/.local/config/shell/zsh/completion.zsh
+            source ${configHome}/shell/zsh/completion.zsh
 
             if has-command starship; then
               eval "$(starship init zsh)"
@@ -146,7 +150,7 @@ top: {
 
             HYPHEN_INSENSITIVE="true"
 
-            source ~/.local/config/shell/zsh/plugins.zsh
+            source ${configHome}/shell/zsh/plugins.zsh
 
             # For completions to work, this must be added after compinit is called.
             if has-command zoxide; then

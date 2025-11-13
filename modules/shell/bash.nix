@@ -1,11 +1,14 @@
 top: {
   flake.modules.homeManager.shell =
-    { ... }:
+    { config, ... }:
+    let
+      inherit (config.xdg) configHome;
+    in
     {
       home.file.".bash_logout".text =
         # bash
         ''
-          . ~/.local/config/shell/unix/logout
+          . ${configHome}/shell/unix/logout
         '';
       home.file.".bashrc".text =
         # bash
@@ -22,8 +25,8 @@ top: {
           # however, we assume that #2 is a recovery mode, so we don't want to do much.
           # (also, my google-fu didn't find a way to distinguish them)
 
-          . ~/.local/config/shell/bash/env
-          . ~/.local/config/shell/bash/interactive
+          . ${configHome}/shell/bash/env
+          . ${configHome}/shell/bash/interactive
         '';
       home.file.".bash_profile".text =
         # bash
@@ -34,7 +37,7 @@ top: {
           # We need to do two things here:
 
           # 1. Ensure ~/.local/config/bash/env gets run first
-          . ~/.local/config/shell/bash/env
+          . ${configHome}/shell/bash/env
 
           # 2. Prevent it from being run later, since we need to use $BASH_ENV for
           # non-login non-interactive shells.
@@ -46,11 +49,11 @@ top: {
           # so much for only two things...
 
           # 4. Run ~/.local/config/bash/login
-          . ~/.local/config/shell/bash/login
+          . ${configHome}/shell/bash/login
 
           # 5. Run ~/.local/config/bash/interactive if this is an interactive shell.
           if [ "$PS1" ]; then
-            . ~/.local/config/shell/bash/interactive
+            . ${configHome}/shell/bash/interactive
           fi
         '';
     };

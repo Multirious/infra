@@ -1,6 +1,9 @@
 top: {
   flake.modules.homeManager.shell =
-    { ... }:
+    { config, ... }:
+    let
+      inherit (config.xdg) configHome stateHome cacheHome;
+    in
     {
       home.file.".zshenv".text =
         # zsh
@@ -8,7 +11,7 @@ top: {
           # This script is part of an attempt to
           # standardize shell configurations
 
-          . ~/.local/config/shell/zsh/env
+          . ${configHome}/shell/zsh/env
         '';
 
       home.file.".zshrc".text =
@@ -17,7 +20,7 @@ top: {
           # This script is part of an attempt to
           # standardize shell configurations
 
-          source ~/.local/config/shell/zsh/interactive
+          source ${configHome}/shell/zsh/interactive
         '';
 
       home.file.".zprofile".text =
@@ -26,20 +29,20 @@ top: {
           # This script is part of an attempt to
           # standardize shell configurations
 
-          . ~/.local/config/shell/zsh/login
+          . ${configHome}/shell/zsh/login
         '';
 
       xdg.configFile."shell/zsh/completion.zsh".text =
         # zsh
         ''
           autoload -U compinit
-          compinit -d "$XDG_STATE_HOME/zsh/compdump"
+          compinit -d "${stateHome}/zsh/compdump"
 
           _comp_options+=(globdots) # With hidden files
 
           zstyle ':completion:*' completer _extensions _complete _approximate
           zstyle ':completion:*' use-cache on
-          zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+          zstyle ':completion:*' cache-path "${cacheHome}/zsh/zcompcache"
           zstyle ':completion:*' menu select
         '';
 
