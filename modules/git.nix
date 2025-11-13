@@ -19,7 +19,7 @@ top: {
         home.packages = [
           pkgs.git
         ];
-        home.file.".local/config/git/config".text = cfg.config;
+        xdg.configFile."git/config".text = cfg.config;
 
         me.git.config =
           # git-config

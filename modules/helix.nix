@@ -26,8 +26,8 @@ top: {
             }
           ))
         ];
-        home.file.".local/config/helix/config.toml".text = cfg.config;
-        home.file.".local/config/helix/languages.toml".text = cfg.languages;
+        xdg.configFile."helix/config.toml".text = cfg.config;
+        xdg.configFile."helix/languages.toml".text = cfg.languages;
 
         xdg.desktopEntries.Helix = {
           name = "Helix";

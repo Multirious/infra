@@ -16,7 +16,7 @@ top: {
   flake.modules.homeManager.sway =
     { ... }:
     {
-      home.file.".local/config/sway/config".text =
+      xdg.configFile."sway/config".text =
         # sway
         ''
           # IO ================================================================
@@ -185,7 +185,7 @@ top: {
           client.unfocused #00000000 #ddddddbb #222222ff #ffa500bb 
 
           # titlebar_separator disable
- 
+
           bar swaybar_command waybar
 
           # Startups ==========================================================

@@ -19,15 +19,15 @@ top: {
         };
       };
       config = {
-        home.file.".local/config/shell/unix/logout".text =
+        xdg.configFile."shell/unix/logout".text =
           # sh
           '''';
-        home.file.".local/config/shell/bash/logout".text =
+        xdg.configFile."shell/bash/logout".text =
           # bash
           ''
             . ~/.local/config/shell/unix/logout
           '';
-        home.file.".local/config/shell/zsh/logout".text =
+        xdg.configFile."shell/zsh/logout".text =
           # zsh
           ''
             . ~/.local/config/shell/unix/logout

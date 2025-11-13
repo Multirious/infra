@@ -23,7 +23,7 @@ top: {
         };
       };
       config = {
-        home.file.".local/config/shell/unix/login".text =
+        xdg.configFile."shell/unix/login".text =
           # sh
           ''
             export HOME="${config.home.homeDirectory}"
@@ -71,17 +71,17 @@ top: {
 
             export PATH="$HOME/.local/bin:$PATH"
           '';
-        home.file.".local/config/shell/sh/login".text =
+        xdg.configFile."shell/sh/login".text =
           # sh
           ''
             . ~/.local/config/shell/unix/login
           '';
-        home.file.".local/config/shell/bash/login".text =
+        xdg.configFile."shell/bash/login".text =
           # bash
           ''
             . ~/.local/config/shell/unix/login
           '';
-        home.file.".local/config/shell/zsh/login".text =
+        xdg.configFile."shell/zsh/login".text =
           # zsh
           ''
             . ~/.local/config/shell/unix/login

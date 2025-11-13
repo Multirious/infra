@@ -14,7 +14,7 @@ top: {
         pkgs.mako
       ];
 
-      home.file.".local/config/mako/config".text =
+      xdg.configFile."mako/config".text =
         # ini
         ''
           max-history=20

@@ -29,7 +29,7 @@ top: {
           . ~/.local/config/shell/zsh/login
         '';
 
-      home.file.".local/config/shell/zsh/completion.zsh".text =
+      xdg.configFile."shell/zsh/completion.zsh".text =
         # zsh
         ''
           autoload -U compinit
@@ -43,7 +43,7 @@ top: {
           zstyle ':completion:*' menu select
         '';
 
-      home.file.".local/config/shell/zsh/plugins.zsh".text =
+      xdg.configFile."shell/zsh/plugins.zsh".text =
         # zsh
         ''
           source <(fzf --zsh)

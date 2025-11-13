@@ -12,7 +12,7 @@ top: {
         pkgs.hyprpolkitagent
       ];
 
-      home.file.".local/config/hypr/hyprland.conf".source =./hyprland/hyprland.conf;
+      xdg.configFile."hypr/hyprland.conf".source = ./hyprland/hyprland.conf;
     };
 
   flake.modules.nixos.hyprland =

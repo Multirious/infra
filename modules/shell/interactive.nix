@@ -19,11 +19,11 @@ top: {
         };
       };
       config = {
-        home.file.".local/config/shell/unix/tmux_functions".source = ./tmux_functions;
-        home.file.".local/config/shell/unix/nix_functions".source = ./nix_functions;
-        home.file.".local/config/shell/unix/de_functions".source = ./de_functions;
+        xdg.configFile."shell/unix/tmux_functions".source = ./tmux_functions;
+        xdg.configFile."shell/unix/nix_functions".source = ./nix_functions;
+        xdg.configFile."shell/unix/de_functions".source = ./de_functions;
 
-        home.file.".local/config/shell/unix/interactive".text =
+        xdg.configFile."shell/unix/interactive".text =
           # sh
           ''
             # If in a terminal
@@ -93,12 +93,12 @@ top: {
               # fi
             fi
           '';
-        home.file.".local/config/shell/sh/interactive".text =
+        xdg.configFile."shell/sh/interactive".text =
           # sh
           ''
             . ~/.local/config/shell/unix/interactive
           '';
-        home.file.".local/config/shell/bash/interactive".text =
+        xdg.configFile."shell/bash/interactive".text =
           # bash
           ''
             #!/usr/bin/env bash
@@ -122,7 +122,7 @@ top: {
               eval "$(zoxide init bash)"
             fi
           '';
-        home.file.".local/config/shell/zsh/interactive".text =
+        xdg.configFile."shell/zsh/interactive".text =
           # zsh
           ''
             #!/usr/bin/env zsh

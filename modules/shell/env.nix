@@ -19,7 +19,7 @@ top: {
         };
       };
       config = {
-        home.file.".local/config/shell/unix/env".text =
+        xdg.configFile."shell/unix/env".text =
           # sh
           ''
             # We need to set $ENV so that if you use shell X as your login shell,
@@ -35,7 +35,7 @@ top: {
 
             umask 0077
           '';
-        home.file.".local/config/shell/unix/env_functions".text =
+        xdg.configFile."shell/unix/env_functions".text =
           # sh
           ''
             # Usage: try-source filename
@@ -51,7 +51,7 @@ top: {
                 return $?
             }
           '';
-        home.file.".local/config/shell/sh/env".text =
+        xdg.configFile."shell/sh/env".text =
           # sh
           ''
             # WARNING: this will not be run for non-login, non-interactive shells.
@@ -59,13 +59,13 @@ top: {
             # Also, you must run ~/.shell/env, to get $ENV.
             . ~/.local/config/shell/unix/env
           '';
-        home.file.".local/config/shell/bash/env".text =
+        xdg.configFile."shell/bash/env".text =
           # bash
           ''
             # WARNING: this will $BASH_ENV to get a correct startup sequence
             . ~/.local/config/shell/unix/env
           '';
-        home.file.".local/config/shell/zsh/env".text =
+        xdg.configFile."shell/zsh/env".text =
           # zsh
           ''
             . ~/.local/config/shell/unix/env
