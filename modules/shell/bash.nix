@@ -36,7 +36,7 @@ top: {
 
           # We need to do two things here:
 
-          # 1. Ensure ~/.local/config/bash/env gets run first
+          # 1. Ensure $XDG_CONFIG_HOME/shell/bash/env gets run first
           . ${configHome}/shell/bash/env
 
           # 2. Prevent it from being run later, since we need to use $BASH_ENV for
@@ -48,10 +48,10 @@ top: {
           # 3. Join the spanish inquisition. ;)
           # so much for only two things...
 
-          # 4. Run ~/.local/config/bash/login
+          # 4. Run $XDG_CONFIG_HOME/shell/bash/login
           . ${configHome}/shell/bash/login
 
-          # 5. Run ~/.local/config/bash/interactive if this is an interactive shell.
+          # 5. Run $XDG_CONFIG_HOME/shell/bash/interactive if this is an interactive shell.
           if [ "$PS1" ]; then
             . ${configHome}/shell/bash/interactive
           fi
