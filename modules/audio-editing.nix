@@ -29,17 +29,10 @@ top: {
           me.audio.vst3File = lib.mkOption { type = filesOption; };
         };
       config = {
-        home.packages =
-          let
-            wine = pkgs.wineWowPackages.stableFull;
-          in
-          [
-            top.config.flake.packages."${pkgs.stdenv.hostPlatform.system}".openutau
-            pkgs.reaper
-            (pkgs.yabridge.override { inherit wine; })
-            (pkgs.yabridgectl.override { inherit wine; })
-            wine
-          ];
+        home.packages = [
+          top.config.flake.packages."${pkgs.stdenv.hostPlatform.system}".openutau
+          pkgs.reaper
+        ];
 
         xdg.dataFile =
           (lib.mapAttrs' (path: value: {
