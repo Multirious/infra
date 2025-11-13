@@ -9,6 +9,7 @@ top: {
           nerd-fonts.roboto-mono
           noto-fonts
           newcomputermodern
+          google-fonts
         ];
 
         fontconfig = {
