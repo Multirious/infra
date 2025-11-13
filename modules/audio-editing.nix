@@ -15,7 +15,10 @@ top: {
             lib.types.submodule {
               options = {
                 source = lib.mkOption {
-                  type = lib.types.package;
+                  type = lib.types.oneOf [
+                    lib.types.package
+                    lib.types.path
+                  ];
                 };
               };
             }
