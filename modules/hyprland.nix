@@ -11,8 +11,6 @@ top: {
         pkgs.swaylock-effects
         pkgs.hyprpolkitagent
       ];
-
-      xdg.configFile."hypr/hyprland.conf".source = ./hyprland/hyprland.conf;
     };
 
   flake.modules.nixos.hyprland =
