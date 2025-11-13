@@ -55,7 +55,7 @@ top: {
             export XDG_DOWNLOAD_DIR="${userDirs.download}"
             export XDG_MUSIC_DIR="${userDirs.music}"
             export XDG_PICTURES_DIR="${userDirs.pictures}"
-            export XDG_PUBLICSHARE_DIR="${userDirs.publicshare}"
+            export XDG_PUBLICSHARE_DIR="${userDirs.publicShare}"
             export XDG_TEMPLATES_DIR="${userDirs.templates}"
             export XDG_VIDEOS_DIR="${userDirs.videos}"
 
