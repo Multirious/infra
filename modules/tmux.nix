@@ -272,7 +272,6 @@ top: {
         };
     in
     {
-      xdg.configFile."tmux/tmux.conf".source = ./tmux/tmux.conf;
       xdg.configFile."tmux/helix.conf".text = ''
         ${keyMapper modalKeyMappings}
       '';
