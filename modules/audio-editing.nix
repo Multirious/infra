@@ -28,22 +28,40 @@ top: {
           me.audio.vstFile = lib.mkOption { type = filesOption; };
           me.audio.vst3File = lib.mkOption { type = filesOption; };
         };
-      config = {
-        home.packages = [
-          top.config.flake.packages."${pkgs.stdenv.hostPlatform.system}".openutau
-          pkgs.reaper
-        ];
+      config =
+        let
+          inherit (pkgs.stdenv.hostPlatform) system;
+        in
+        {
+          home.packages =
+            let
+              nixpkgsWithReaper = pkgs.fetchFromGitHub {
+                owner = "r-ryantm";
+                repo = "nixpkgs";
+                rev = "aefc6bae9e00e46b805ff36c50612199d64f38e8";
+                hash = "sha256-zXwHmaEHAbwgibPDHspOOH96ULj+DjZ3kliQV3biGnU=";
+              };
+              reaper =
+                (import nixpkgsWithReaper {
+                  config.allowUnfree = true;
+                  inherit system;
+                }).reaper;
+            in
+            [
+              top.config.flake.packages."${system}".openutau
+              reaper
+            ];
 
-        xdg.dataFile =
-          (lib.mapAttrs' (path: value: {
-            name = "vst/" + path;
-            value = value;
-          }) config.me.audio.vstFile)
-          // (lib.mapAttrs' (path: value: {
-            name = "vst3/" + path;
-            value = value;
-          }) config.me.audio.vst3File);
-      };
+          xdg.dataFile =
+            (lib.mapAttrs' (path: value: {
+              name = "vst/" + path;
+              value = value;
+            }) config.me.audio.vstFile)
+            // (lib.mapAttrs' (path: value: {
+              name = "vst3/" + path;
+              value = value;
+            }) config.me.audio.vst3File);
+        };
     };
 
   flake.modules.nixos.audioEditing =
