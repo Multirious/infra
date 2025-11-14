@@ -18,6 +18,7 @@ top: {
         pkgs.wget
         pkgs.btop
         pkgs.scooter
+        pkgs.zbar
       ];
     };
 }
