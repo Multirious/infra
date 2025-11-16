@@ -25,8 +25,6 @@ top: {
           discord
 
           pkgs.xclicker
-
-          (pkgs.flameshot.override { enableWlrSupport = true; })
         ];
       services.syncthing.enable = true;
       xdg.mimeApps = {
