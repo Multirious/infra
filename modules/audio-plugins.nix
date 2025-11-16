@@ -2,24 +2,62 @@ top: {
   configurations.homeManager.peach.use = m: [ m.audioPlugins ];
 
   flake.modules.homeManager.audioPlugins =
-    { pkgs, ... }:
     {
-      home.packages =
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
+    {
+      options =
         let
-          wine = pkgs.wineWowPackages.stableFull;
+          filesOption = lib.types.lazyAttrsOf (
+            lib.types.submodule {
+              options = {
+                source = lib.mkOption {
+                  type = lib.types.oneOf [
+                    lib.types.package
+                    lib.types.path
+                  ];
+                };
+              };
+            }
+          );
         in
-        [
-          (pkgs.yabridge.override { inherit wine; })
-          (pkgs.yabridgectl.override { inherit wine; })
-          wine
-        ];
+        {
+          me.audio.vstFile = lib.mkOption { type = filesOption; };
+          me.audio.vst3File = lib.mkOption { type = filesOption; };
+        };
 
-      me.audio.vstFile."Vital.so".source = "${pkgs.vital}/lib/vst/Vital.so";
-      me.audio.vst3File."Vital.vst3".source = "${pkgs.vital}/lib/vst3/Vital.vst3";
-      # me.audio.vstFile."libsitala.so".source =
-      #   let
-      #     sitala = top.config.flake.packages."${pkgs.system}".sitala;
-      #   in
-      #   "${sitala}/lib/vst/libsitala.so";
+      config = {
+        home.packages =
+          let
+            wine = pkgs.wineWowPackages.stableFull;
+          in
+          [
+            (pkgs.yabridge.override { inherit wine; })
+            (pkgs.yabridgectl.override { inherit wine; })
+            wine
+          ];
+
+        me.audio.vstFile."Vital.so".source = "${pkgs.vital}/lib/vst/Vital.so";
+        me.audio.vst3File."Vital.vst3".source = "${pkgs.vital}/lib/vst3/Vital.vst3";
+
+        # me.audio.vstFile."libsitala.so".source =
+        #   let
+        #     sitala = top.config.flake.packages."${pkgs.system}".sitala;
+        #   in
+        #   "${sitala}/lib/vst/libsitala.so";
+
+        xdg.dataFile =
+          (lib.mapAttrs' (path: value: {
+            name = "vst/" + path;
+            value = value;
+          }) config.me.audio.vstFile)
+          // (lib.mapAttrs' (path: value: {
+            name = "vst3/" + path;
+            value = value;
+          }) config.me.audio.vst3File);
+      };
     };
 }
