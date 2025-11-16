@@ -8,6 +8,9 @@ top: {
       lib,
       ...
     }:
+    let
+      inherit (pkgs.stdenv.hostPlatform) system;
+    in
     {
       options =
         let
@@ -42,12 +45,11 @@ top: {
 
         me.audio.vstFile."Vital.so".source = "${pkgs.vital}/lib/vst/Vital.so";
         me.audio.vst3File."Vital.vst3".source = "${pkgs.vital}/lib/vst3/Vital.vst3";
-
-        # me.audio.vstFile."libsitala.so".source =
-        #   let
-        #     sitala = top.config.flake.packages."${pkgs.system}".sitala;
-        #   in
-        #   "${sitala}/lib/vst/libsitala.so";
+        me.audio.vstFile."libsitala.so".source =
+          let
+            sitala = top.config.flake.packages."${system}".sitala;
+          in
+          "${sitala}/lib/vst/libsitala.so";
 
         xdg.dataFile =
           (lib.mapAttrs' (path: value: {
