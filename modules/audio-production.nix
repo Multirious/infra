@@ -1,7 +1,7 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.audioEditing ];
+  configurations.homeManager.peach.use = m: [ m.audioProduction ];
 
-  flake.modules.homeManager.audioEditing =
+  flake.modules.homeManager.audioProduction =
     {
       config,
       pkgs,
@@ -64,7 +64,7 @@ top: {
         };
     };
 
-  flake.modules.nixos.audioEditing =
+  flake.modules.nixos.audioProduction =
     { ... }:
     {
       security.pam.loginLimits = [
