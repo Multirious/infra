@@ -8,31 +8,26 @@ let
       alsa-lib,
       xorg,
       freetype,
-      curl,
+      curlWithGnuTls,
       glibc,
       zenity,
       makeBinaryWrapper,
     }:
     let
-      curlGnu =
-        (curl.overrideAttrs (
-          final: prev: {
-            postPatch = ''
-              ${prev.postPatch}
+      curlGnu = curlWithGnuTls.overrideAttrs (
+        final: prev: {
+          postPatch = ''
+            ${prev.postPatch}
 
-              # The package requires curl with the version symbol `CURL_GNUTLS_3` because 
-              # of a curl in debian for whatever reason.
-              substituteInPlace ./lib/libcurl.vers.in \
-                --replace \
-                  "CURL_@CURL_LIBCURL_VERSIONED_SYMBOLS_PREFIX@@CURL_LIBCURL_VERSIONED_SYMBOLS_SONAME@" \
-                  "CURL_@CURL_LIBCURL_VERSIONED_SYMBOLS_PREFIX@3"
-            '';
-          }
-        )).override
-          {
-            gnutlsSupport = true;
-            opensslSupport = false;
-          };
+            # The package requires curl with the version symbol `CURL_GNUTLS_3` because 
+            # of a curl in debian for whatever reason.
+            substituteInPlace ./lib/libcurl.vers.in \
+              --replace \
+                "CURL_@CURL_LIBCURL_VERSIONED_SYMBOLS_PREFIX@@CURL_LIBCURL_VERSIONED_SYMBOLS_SONAME@" \
+                "CURL_@CURL_LIBCURL_VERSIONED_SYMBOLS_PREFIX@3"
+          '';
+        }
+      );
       rpath = lib.makeLibraryPath [
         alsa-lib
         xorg.libX11
@@ -62,16 +57,14 @@ let
         makeBinaryWrapper
       ];
       unpackPhase = ''
-        mkdir -p $out/package
-        dpkg -x $src $out/package
+        dpkg -x $src .
       '';
       installPhase = ''
         mkdir -p $out/{bin,lib/vst,share}
-        cp $out/package/usr/bin/sitala $out/bin/sitala
-        cp $out/package/usr/lib/lxvst/libsitala.so $out/lib/vst/libsitala.so
+        cp usr/bin/sitala $out/bin/sitala
+        cp usr/lib/lxvst/libsitala.so $out/lib/vst/libsitala.so
         chmod +x $out/lib/vst/libsitala.so
-        cp -r $out/package/usr/share/ $out
-        rm -r $out/package
+        cp -r usr/share/ $out
       '';
       postFixup = ''
         patchelf --set-interpreter ${glibc}/lib/ld-linux-x86-64.so.2 "$out/bin/sitala"
