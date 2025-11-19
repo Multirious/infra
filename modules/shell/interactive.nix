@@ -72,8 +72,8 @@ top: {
               alias switchaud='${homeDirectory}/system-scripts/switch-audio-device'
 
               if [ -f '/etc/NIXOS' ]; then
-                alias switch='sudo nixos-rebuild switch'
-                alias rswitch='sudo nixos-rebuild boot && reboot'
+                alias switch='sudo nixos-rebuild switch --flake ~/infra'
+                alias rswitch='sudo nixos-rebuild boot --flake ~/infra && reboot'
               fi
 
               . '${configHome}/shell/unix/tmux_functions'
