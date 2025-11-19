@@ -9,7 +9,6 @@ top: {
           nerd-fonts.roboto-mono
           noto-fonts
           newcomputermodern
-          google-fonts
         ];
 
         fontconfig = {
@@ -22,6 +21,11 @@ top: {
             monospace = [ "RobotoMono" ];
           };
         };
+      };
+      console = {
+        earlySetup = true;
+        font = "${pkgs.terminus_font}/share/consolefonts/ter-v24b.psf.gz";
+        packages = [ pkgs.terminus_font ];
       };
     };
 }
