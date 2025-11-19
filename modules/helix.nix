@@ -123,6 +123,12 @@ top: {
             [keys.normal."C-w"]
             h = "hsplit"
 
+            [keys.normal]
+            "C-h" = "jump_view_left"
+            "C-l" = "jump_view_right"
+            "C-k" = "jump_view_up"
+            "C-j" = "jump_view_down"
+
             [keys.normal."+"]
             l = ":lsp-restart"
 
