@@ -126,7 +126,7 @@ top: {
 
           bind = ,Print, exec, flameshot gui
 
-          bind = $mainMod, w, exec, ${scriptsDir}/hypr/scripts/rename-workspace-menu
+          bind = $mainMod, w, exec, ${scriptsDir}/rename-workspace-menu
 
           plugin:dynamic-cursors {
           	enabled = true
