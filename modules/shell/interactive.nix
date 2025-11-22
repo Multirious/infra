@@ -94,6 +94,15 @@ top: {
                 tmux -f '${configHome}/tmux/tmux.conf' new-session -A -s main ; exit
               fi
 
+              if has-command starship; then
+                export STARSHIP_CACHE="${cacheHome}/starship"
+                if [[ $XDG_SESSION_TYPE != "tty" ]]; then
+                  export STARSHIP_CONFIG="${configHome}/starship-default.toml"
+                else
+                  export STARSHIP_CONFIG="${configHome}/starship-tty.toml"
+                fi
+              fi
+
               # If colors
               # if [ `tput colors` -ge 8 ]; then
               # fi

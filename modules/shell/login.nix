@@ -59,9 +59,6 @@ top: {
             export XDG_TEMPLATES_DIR="${userDirs.templates}"
             export XDG_VIDEOS_DIR="${userDirs.videos}"
 
-            export STARSHIP_CONFIG="${configHome}/starship-default.toml"
-            export STARSHIP_CACHE="${cacheHome}/starship"
-
             if has-command less; then
               [ -d "${stateHome}/less" ] || mkdir -p "${stateHome}/less"
               export LESSHISTFILE="${stateHome}/less/history"

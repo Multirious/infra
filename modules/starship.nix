@@ -3,147 +3,51 @@ top: {
 
   flake.modules.homeManager.starship =
     { pkgs, ... }:
-    {
-      home.packages = [
-        pkgs.starship
-      ];
-
-      xdg.configFile."starship-default.toml".text =
+    let
+      symbolsConfig =
         # toml
         ''
-          # Get editor completions based on the config schema
-          "$schema" = 'https://starship.rs/config-schema.json'
-
-          format = "$all$character"
-
-          palette = "catppuccin_mocha"
-
-          # Starship modules
-          [character]
-          # Note the use of Catppuccin color 'peach'
-          success_symbol = "[[󰄛](green) ❯](peach)"
-          error_symbol = "[[󰄛](red) ❯](peach)"
-          vimcmd_symbol = "[󰄛 ❮](subtext1)" # For use with zsh-vi-mode
-
-          [directory]
-          truncation_length = 4
-          style = "bold lavender"
-          read_only = " 󰌾"
-
-          [palettes.catppuccin_mocha]
-          rosewater = "#f5e0dc"
-          flamingo = "#f2cdcd"
-          pink = "#f5c2e7"
-          mauve = "#cba6f7"
-          red = "#f38ba8"
-          maroon = "#eba0ac"
-          peach = "#fab387"
-          yellow = "#f9e2af"
-          green = "#a6e3a1"
-          teal = "#94e2d5"
-          sky = "#89dceb"
-          sapphire = "#74c7ec"
-          blue = "#89b4fa"
-          lavender = "#b4befe"
-          text = "#cdd6f4"
-          subtext1 = "#bac2de"
-          subtext0 = "#a6adc8"
-          overlay2 = "#9399b2"
-          overlay1 = "#7f849c"
-          overlay0 = "#6c7086"
-          surface2 = "#585b70"
-          surface1 = "#45475a"
-          surface0 = "#313244"
-          base = "#1e1e2e"
-          mantle = "#181825"
-          crust = "#11111b"
-
-          [aws]
-          symbol = "  "
-
-          [buf]
-          symbol = " "
-
-          [c]
-          symbol = " "
-
-          [conda]
-          symbol = " "
-
-          [crystal]
-          symbol = " "
-
-          [dart]
-          symbol = " "
-
-          [docker_context]
-          symbol = " "
-
-          [elixir]
-          symbol = " "
-
-          [elm]
-          symbol = " "
-
-          [fennel]
-          symbol = " "
-
-          [fossil_branch]
-          symbol = " "
-
-          [git_branch]
-          symbol = " "
-
-          [git_commit]
-          tag_symbol = '  '
-
-          [golang]
-          symbol = " "
-
-          [guix_shell]
-          symbol = " "
-
-          [haskell]
-          symbol = " "
-
-          [haxe]
-          symbol = " "
-
-          [hg_branch]
-          symbol = " "
-
-          [hostname]
-          ssh_symbol = " "
-
-          [java]
-          symbol = " "
-
-          [julia]
-          symbol = " "
-
-          [kotlin]
-          symbol = " "
-
-          [lua]
-          symbol = " "
-
-          [memory_usage]
-          symbol = "󰍛 "
-
-          [meson]
-          symbol = "󰔷 "
-
-          [nim]
-          symbol = "󰆥 "
-
-          [nix_shell]
-          symbol = " "
-
-          [nodejs]
-          symbol = " "
-
-          [ocaml]
-          symbol = " "
+          aws.symbol = "  "
+          buf.symbol = " "
+          c.symbol = " "
+          conda.symbol = " "
+          crystal.symbol = " "
+          dart.symbol = " "
+          docker_context.symbol = " "
+          elixir.symbol = " "
+          elm.symbol = " "
+          fennel.symbol = " "
+          fossil_branch.symbol = " "
+          git_branch.symbol = " "
+          git_commit.tag_symbol = '  '
+          golang.symbol = " "
+          guix_shell.symbol = " "
+          haskell.symbol = " "
+          haxe.symbol = " "
+          hg_branch.symbol = " "
+          hostname.ssh_symbol = " "
+          java.symbol = " "
+          julia.symbol = " "
+          kotlin.symbol = " "
+          lua.symbol = " "
+          memory_usage.symbol = "󰍛 "
+          meson.symbol = "󰔷 "
+          nim.symbol = "󰆥 "
+          nix_shell.symbol = " "
+          nodejs.symbol = " "
+          ocaml.symbol = " "
+          package.symbol = "󰏗 "
+          perl.symbol = " "
+          php.symbol = " "
+          pijul_channel.symbol = " "
+          python.symbol = " "
+          rlang.symbol = "󰟔 "
+          ruby.symbol = " "
+          rust.symbol = "󱘗 "
+          scala.symbol = " "
+          swift.symbol = " "
+          zig.symbol = " "
+          gradle.symbol = " "
 
           [os.symbols]
           Alpaquita = " "
@@ -189,42 +93,245 @@ top: {
           Unknown = " "
           Void = " "
           Windows = "󰍲 "
+        '';
+      pureTextSymbolsConfig =
+        # toml
+        ''
+          aws.symbol                      = "aws "
+          azure.symbol                    = "az "
+          buf.symbol                      = "buf "
+          bun.symbol                      = "bun "
+          c.symbol                        = "C "
+          cpp.symbol                      = "C++ "
+          cobol.symbol                    = "cobol "
+          conda.symbol                    = "conda "
+          container.symbol                = "container "
+          crystal.symbol                  = "cr "
+          cmake.symbol                    = "cmake "
+          daml.symbol                     = "daml "
+          dart.symbol                     = "dart "
+          deno.symbol                     = "deno "
+          dotnet.format                   = "via [$symbol($version )(target $tfm )]($style)"
+          dotnet.symbol                   = ".NET "
+          docker_context.symbol           = "docker "
+          elixir.symbol                   = "exs "
+          elm.symbol                      = "elm "
+          erlang.symbol                   = "erl "
+          fennel.symbol                   = "fnl "
+          fortran.symbol                  = "fortran "
+          fossil_branch.symbol            = "fossil "
+          fossil_branch.truncation_symbol = "..."
+          gcloud.symbol                   = "gcp "
+          git_branch.symbol               = "git "
+          git_branch.truncation_symbol    = "..."
+          gleam.symbol                    = "gleam "
+          golang.symbol                   = "go "
+          gradle.symbol                   = "gradle "
+          guix_shell.symbol               = "guix "
+          haskell.symbol                  = "haskell "
+          haxe.symbol                     = "hx "
+          helm.symbol                     = "helm "
+          hg_branch.symbol                = "hg "
+          hg_branch.truncation_symbol     = "..."
+          hostname.ssh_symbol             = "ssh "
+          java.symbol                     = "java "
+          jobs.symbol                     = "*"
+          julia.symbol                    = "jl "
+          kotlin.symbol                   = "kt "
+          kubernetes.symbol               = "kubernetes "
+          lua.symbol                      = "lua "
+          nodejs.symbol                   = "nodejs "
+          memory_usage.symbol             = "memory "
+          meson.symbol                    = "meson "
+          meson.truncation_symbol         = "..."
+          mojo.symbol                     = "mojo "
+          nats.symbol                     = "nats "
+          netns.symbol                    = "netns "
+          nim.symbol                      = "nim "
+          nix_shell.symbol                = "nix "
+          ocaml.symbol                    = "ml "
+          odin.symbol                     = "odin "
+          opa.symbol                      = "opa "
+          openstack.symbol                = "openstack "
+          package.symbol                  = "pkg "
+          perl.symbol                     = "pl "
+          php.symbol                      = "php "
+          pijul_channel.symbol            = "pijul "
+          pijul_channel.truncation_symbol = "..."
+          pixi.symbol                     = "pixi "
+          pulumi.symbol                   = "pulumi "
+          purescript.symbol               = "purs "
+          python.symbol                   = "py "
+          quarto.symbol                   = "quarto "
+          raku.symbol                     = "raku "
+          red.symbol                      = "red "
+          rlang.symbol                    = "r "
+          ruby.symbol                     = "rb "
+          rust.symbol                     = "rs "
+          scala.symbol                    = "scala "
+          shlvl.symbol                    = "shlvl "
+          spack.symbol                    = "spack "
+          solidity.symbol                 = "solidity "
+          sudo.symbol                     = "sudo "
+          swift.symbol                    = "swift "
+          typst.symbol                    = "typst "
+          vagrant.symbol                  = "vagrant "
+          terraform.symbol                = "terraform "
+          xmake.symbol                    = "xmake "
+          zig.symbol                      = "zig "
 
-          [package]
-          symbol = "󰏗 "
+          [os.symbols]
+          AIX                             = "aix "
+          Alpaquita                       = "alq "
+          AlmaLinux                       = "alma "
+          Alpine                          = "alp "
+          Amazon                          = "amz "
+          Android                         = "andr "
+          AOSC                            = "aosc "
+          Arch                            = "rch "
+          Artix                           = "atx "
+          Bluefin                         = "blfn "
+          CachyOS                         = "cach "
+          CentOS                          = "cent "
+          Debian                          = "deb "
+          DragonFly                       = "dfbsd "
+          Emscripten                      = "emsc "
+          EndeavourOS                     = "ndev "
+          Fedora                          = "fed "
+          FreeBSD                         = "fbsd "
+          Garuda                          = "garu "
+          Gentoo                          = "gent "
+          HardenedBSD                     = "hbsd "
+          Illumos                         = "lum "
+          Kali                            = "kali "
+          Linux                           = "lnx "
+          Mabox                           = "mbox "
+          Macos                           = "mac "
+          Manjaro                         = "mjo "
+          Mariner                         = "mrn "
+          MidnightBSD                     = "mid "
+          Mint                            = "mint "
+          NetBSD                          = "nbsd "
+          NixOS                           = "nix "
+          Nobara                          = "nbra "
+          OpenBSD                         = "obsd "
+          OpenCloudOS                     = "ocos "
+          openEuler                       = "oeul "
+          openSUSE                        = "osuse "
+          OracleLinux                     = "orac "
+          Pop                             = "pop "
+          Raspbian                        = "rasp "
+          Redhat                          = "rhl "
+          RedHatEnterprise                = "rhel "
+          RockyLinux                      = "rky "
+          Redox                           = "redox "
+          Solus                           = "sol "
+          SUSE                            = "suse "
+          Ubuntu                          = "ubnt "
+          Ultramarine                     = "ultm "
+          Unknown                         = "unk "
+          Uos                             = "uos "
+          Void                            = "void "
+          Windows                         = "win "
+        '';
+    in
+    {
+      home.packages = [
+        pkgs.starship
+      ];
 
-          [perl]
-          symbol = " "
+      xdg.configFile."starship-default.toml".text =
+        # toml
+        ''
+          "$schema" = 'https://starship.rs/config-schema.json'
+          format = "$all$character"
+          palette = "catppuccin_mocha"
 
-          [php]
-          symbol = " "
+          ${symbolsConfig}
 
-          [pijul_channel]
-          symbol = " "
+          [character]
+          success_symbol = "[[󰄛](green) ❯](peach)"
+          error_symbol = "[[󰄛](red) ❯](peach)"
+          vimcmd_symbol = "[󰄛 ❮](subtext1)"
 
-          [python]
-          symbol = " "
+          [directory]
+          truncation_length = 4
+          style = "bold lavender"
+          read_only = " 󰌾"
 
-          [rlang]
-          symbol = "󰟔 "
+          [palettes.catppuccin_mocha]
+          rosewater = "#f5e0dc"
+          flamingo = "#f2cdcd"
+          pink = "#f5c2e7"
+          mauve = "#cba6f7"
+          red = "#f38ba8"
+          maroon = "#eba0ac"
+          peach = "#fab387"
+          yellow = "#f9e2af"
+          green = "#a6e3a1"
+          teal = "#94e2d5"
+          sky = "#89dceb"
+          sapphire = "#74c7ec"
+          blue = "#89b4fa"
+          lavender = "#b4befe"
+          text = "#cdd6f4"
+          subtext1 = "#bac2de"
+          subtext0 = "#a6adc8"
+          overlay2 = "#9399b2"
+          overlay1 = "#7f849c"
+          overlay0 = "#6c7086"
+          surface2 = "#585b70"
+          surface1 = "#45475a"
+          surface0 = "#313244"
+          base = "#1e1e2e"
+          mantle = "#181825"
+          crust = "#11111b"
+        '';
 
-          [ruby]
-          symbol = " "
+      xdg.configFile."starship-tty.toml".text =
+        # toml
+        ''
+          # Get editor completions based on the config schema
+          "$schema" = 'https://starship.rs/config-schema.json'
+          format = "$all$character"
 
-          [rust]
-          symbol = "󱘗 "
+          ${pureTextSymbolsConfig}
 
-          [scala]
-          symbol = " "
+          [character]
+          success_symbol = "[>](bold green)"
+          error_symbol = "[x](bold red)"
+          vimcmd_symbol = "[<](bold green)"
+          vimcmd_visual_symbol = "[<](bold yellow)"
+          vimcmd_replace_symbol = "[<](bold purple)"
+          vimcmd_replace_one_symbol = "[<](bold purple)"
 
-          [swift]
-          symbol = " "
+          [git_commit]
+          tag_symbol = " tag "
 
-          [zig]
-          symbol = " "
+          [git_status]
+          ahead = ">"
+          behind = "<"
+          diverged = "<>"
+          renamed = "r"
+          deleted = "x"
 
-          [gradle]
-          symbol = " "
+          [battery]
+          full_symbol = "full "
+          charging_symbol = "charging "
+          discharging_symbol = "discharging "
+          unknown_symbol = "unknown "
+          empty_symbol = "empty "
+
+          [status]
+          symbol = "[x](bold red) "
+          not_executable_symbol = "noexec"
+          not_found_symbol = "notfound"
+          sigint_symbol = "sigint"
+          signal_symbol = "sig"
+
+          [directory]
+          truncation_length = 4
+          read_only = " ro"
         '';
     };
 }
