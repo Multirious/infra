@@ -8,7 +8,7 @@ top: {
         pkgs.starship
       ];
 
-      xdg.configFile."starship.toml".text =
+      xdg.configFile."starship-default.toml".text =
         # toml
         ''
           # Get editor completions based on the config schema
