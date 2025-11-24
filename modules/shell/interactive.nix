@@ -35,10 +35,6 @@ top: {
               # Disable messsages from other users
               mesg n
 
-              if has-command zoxide; then
-                alias cd='z'
-              fi
-
               alias ls='eza'
               alias ll='eza -lg'
               alias lla='eza -lga'
