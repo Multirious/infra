@@ -19,6 +19,7 @@ top: {
         pkgs.btop
         pkgs.scooter
         pkgs.zbar
+        pkgs.fd
       ];
     };
 }
