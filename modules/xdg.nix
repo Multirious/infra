@@ -3,16 +3,19 @@ top: {
 
   flake.modules.homeManager.xdg =
     { config, ... }:
+    let
+      homeDir = config.home.homeDirectory;
+    in
     {
       xdg = {
         enable = true;
         mime.enable = true;
         mimeApps.enable = true;
 
-        cacheHome = "${config.home.homeDirectory}/.local/cache";
-        configHome = "${config.home.homeDirectory}/.local/config";
-        dataHome = "${config.home.homeDirectory}/.local/share";
-        stateHome = "${config.home.homeDirectory}/.local/state";
+        cacheHome = "${homeDir}/.local/cache";
+        configHome = "${homeDir}/.local/config";
+        dataHome = "${homeDir}/.local/share";
+        stateHome = "${homeDir}/.local/state";
 
         userDirs = {
           enable = true;
