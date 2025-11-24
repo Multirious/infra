@@ -8,18 +8,10 @@
   options = {
     configurations.nixos =
       let
-        useModules = lib.types.mkOptionType {
-          name = "Use";
-          description = ''
-            A function that accepts a set of homeManager modules and returns a list of them.
-            Acts as a shortcut instead of writing `imports = [ top.config.flake.modules.<class>.<aspect> ]`.
-          '';
-          merge = loc: defs: builtins.map (def: def.value) defs;
-        };
         configurationModule = lib.types.submodule {
           options = {
             module = lib.mkOption { type = lib.types.deferredModule; };
-            use = lib.mkOption { type = useModules; };
+            use = lib.mkOption { type = lib.types.listOf lib.types.str; };
           };
         };
       in
@@ -41,7 +33,7 @@
           name: configuration:
           let
             inherit (configuration) module use;
-            listOfImports = builtins.map (eachUse: eachUse config.flake.modules.nixos) use;
+            listOfImports = builtins.map (eachUse: config.flake.modules.nixos."${eachUse}") use;
             imports = lib.flatten listOfImports;
           in
           inputs.nixpkgs.lib.nixosSystem {

@@ -1,6 +1,6 @@
 top: {
-  configurations.nixos.peach-asus.use = m: [ m.hyprland ];
-  configurations.homeManager.peach.use = m: [ m.hyprland ];
+  configurations.nixos.peach-asus.use = [ "hyprland" ];
+  configurations.homeManager.peach.use = [ "hyprland" ];
 
   flake.modules.homeManager.hyprland =
     { pkgs, ... }:

@@ -1,5 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.use = m: [ m.sudoers ];
+  configurations.nixos.peach-asus.use = [ "sudoers" ];
 
   flake.modules.nixos.sudoers =
     { ... }:

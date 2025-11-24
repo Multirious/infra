@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.tmux ];
+  configurations.homeManager.peach.use = [ "tmux" ];
 
   flake.modules.homeManager.tmux =
     {

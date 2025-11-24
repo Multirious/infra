@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.modelEditing ];
+  configurations.homeManager.peach.use = [ "modelEditing" ];
 
   flake.modules.homeManager.modelEditing =
     { pkgs, ... }:

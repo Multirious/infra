@@ -1,5 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.use = m: [ m.docker ];
+  configurations.nixos.peach-asus.use = [ "docker" ];
   configurations.nixos.peach-asus.module =
     { ... }:
     {

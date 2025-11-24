@@ -1,6 +1,6 @@
 top: {
-  configurations.nixos.peach-asus.use = m: [ m.sway ];
-  configurations.homeManager.peach.use = m: [ m.sway ];
+  configurations.nixos.peach-asus.use = [ "sway" ];
+  configurations.homeManager.peach.use = [ "sway" ];
 
   flake.modules.nixos.sway =
     { pkgs, ... }:

@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.theme ];
+  configurations.homeManager.peach.use = [ "theme" ];
 
   flake.modules.homeManager.theme =
     { pkgs, ... }:

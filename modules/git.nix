@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.git ];
+  configurations.homeManager.peach.use = [ "git" ];
 
   flake.modules.homeManager.git =
     {

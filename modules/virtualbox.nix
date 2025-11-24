@@ -1,6 +1,6 @@
 top: {
-  # configurations.nixos.peach-asus.use = m: [ m.virtualbox ];
-  
+  # configurations.nixos.peach-asus.use = [ "virtualbox" ];
+
   flake.modules.nixos.virtualbox =
     { ... }:
     {

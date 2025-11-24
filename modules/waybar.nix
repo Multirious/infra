@@ -1,5 +1,5 @@
 top: {
-  flake.modules.homeManager.hyuse = m: [ m.waybar ];
+  flake.modules.homeManager.hyuse = [ "waybar" ];
 
   flake.modules.homeManager.sway.imports = [
     top.config.flake.modules.homeManager.waybar

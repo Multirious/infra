@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.xdg ];
+  configurations.homeManager.peach.use = [ "xdg" ];
 
   flake.modules.homeManager.xdg =
     { config, ... }:

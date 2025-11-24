@@ -1,5 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.use = m: [ m.automounter ];
+  configurations.nixos.peach-asus.use = [ "automounter" ];
 
   flake.modules.nixos.automounter =
     { pkgs, ... }:

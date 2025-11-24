@@ -1,6 +1,6 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.nix ];
-  configurations.nixos.peach-asus.use = m: [ m.nix ];
+  configurations.homeManager.peach.use = [ "nix" ];
+  configurations.nixos.peach-asus.use = [ "nix" ];
 
   flake.modules.homeManager.nix =
     { ... }:

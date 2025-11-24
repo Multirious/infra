@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.scripts ];
+  configurations.homeManager.peach.use = [ "scripts" ];
 
   flake.modules.homeManager.scripts =
     { ... }:

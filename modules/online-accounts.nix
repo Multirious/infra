@@ -1,6 +1,6 @@
 top: {
-  configurations.nixos.peach-asus.use = m: [ m.online-accounts ];
-  configurations.homeManager.peach.use = m: [ m.online-accounts ];
+  configurations.nixos.peach-asus.use = [ "online-accounts" ];
+  configurations.homeManager.peach.use = [ "online-accounts" ];
 
   flake.modules.nixos.online-accounts =
     { ... }:

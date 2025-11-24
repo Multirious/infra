@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.helix ];
+  configurations.homeManager.peach.use = [ "helix" ];
 
   flake.modules.homeManager.helix =
     {

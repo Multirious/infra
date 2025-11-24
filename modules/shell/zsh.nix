@@ -1,5 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.use = m: [ m.zsh ];
+  configurations.nixos.peach-asus.use = [ "zsh" ];
   flake.modules.nixos.zsh =
     { config, pkgs, ... }:
     {

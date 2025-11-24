@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.archive ];
+  configurations.homeManager.peach.use = [ "archive" ];
 
   flake.modules.homeManager.archive =
     { pkgs, ... }:

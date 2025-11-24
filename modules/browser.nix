@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.browser ];
+  configurations.homeManager.peach.use = [ "browser" ];
 
   flake.modules.homeManager.browser =
     { config, pkgs, ... }:

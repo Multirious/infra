@@ -1,3 +1,3 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.shell ];
+  configurations.homeManager.peach.use = [ "shell" ];
 }

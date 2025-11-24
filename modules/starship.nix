@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.starship ];
+  configurations.homeManager.peach.use = [ "starship" ];
 
   flake.modules.homeManager.starship =
     { pkgs, ... }:

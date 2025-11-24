@@ -1,5 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.use = m: [ m.picoDev ];
+  configurations.nixos.peach-asus.use = [ "picoDev" ];
 
   flake.modules.nixos.picoDev =
     { pkgs, ... }:

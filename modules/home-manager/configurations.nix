@@ -8,19 +8,11 @@
   options = {
     configurations.homeManager =
       let
-        useModules = lib.types.mkOptionType {
-          name = "Use";
-          description = ''
-            A function that accepts a set of homeManager modules and returns a list of them.
-            Acts as a shortcut instead of writing `imports = [ top.config.flake.modules.<class>.<aspect> ]`.
-          '';
-          merge = loc: defs: builtins.map (def: def.value) defs;
-        };
         configurationModule = lib.types.submodule {
           options = {
             system = lib.mkOption { type = lib.types.str; };
             module = lib.mkOption { type = lib.types.deferredModule; };
-            use = lib.mkOption { type = useModules; };
+            use = lib.mkOption { type = lib.types.listOf lib.types.str; };
           };
         };
       in
@@ -42,7 +34,7 @@
           name: configuration:
           let
             inherit (configuration) system module use;
-            listOfImports = builtins.map (eachUse: eachUse config.flake.modules.homeManager) use;
+            listOfImports = builtins.map (eachUse: config.flake.modules.homeManager."${eachUse}") use;
             imports = lib.flatten listOfImports;
           in
           inputs.home-manager.lib.homeManagerConfiguration {

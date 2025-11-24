@@ -1,6 +1,6 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.audioProduction ];
-  configurations.nixos.peach-asus.use = m: [ m.audioProduction ];
+  configurations.homeManager.peach.use = [ "audioProduction" ];
+  configurations.nixos.peach-asus.use = [ "audioProduction" ];
 
   flake.modules.homeManager.audioProduction =
     { pkgs, ... }:

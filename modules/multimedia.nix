@@ -1,6 +1,6 @@
 top: {
-  configurations.nixos.peach-asus.use = m: [ m.multimedia ];
-  configurations.homeManager.peach.use = m: [ m.multimedia ];
+  configurations.nixos.peach-asus.use = [ "multimedia" ];
+  configurations.homeManager.peach.use = [ "multimedia" ];
 
   flake.modules.homeManager.multimedia =
     { pkgs, ... }:
@@ -14,13 +14,13 @@ top: {
       ];
       xdg.mimeApps = {
         defaultApplications = {
-          "audio/mpeg"      = [ "vlc.desktop"       ];
-          "audio/ogg"       = [ "vlc.desktop"       ];
-          "audio/wav"       = [ "vlc.desktop"       ];
-          "audio/webm"      = [ "vlc.desktop"       ];
-          "video/mpeg"      = [ "vlc.desktop"       ];
-          "video/ogg"       = [ "vlc.desktop"       ];
-          "video/webm"      = [ "vlc.desktop"       ];
+          "audio/mpeg" = [ "vlc.desktop" ];
+          "audio/ogg" = [ "vlc.desktop" ];
+          "audio/wav" = [ "vlc.desktop" ];
+          "audio/webm" = [ "vlc.desktop" ];
+          "video/mpeg" = [ "vlc.desktop" ];
+          "video/ogg" = [ "vlc.desktop" ];
+          "video/webm" = [ "vlc.desktop" ];
         };
       };
     };

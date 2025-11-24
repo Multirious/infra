@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.university ];
+  configurations.homeManager.peach.use = [ "university" ];
   flake.modules.homeManager.git =
     { pkgs, lib, ... }:
     {

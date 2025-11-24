@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.document ];
+  configurations.homeManager.peach.use = [ "document" ];
 
   flake.modules.homeManager.document =
     { pkgs, ... }:

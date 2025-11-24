@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = m: [ m.audioPlugins ];
+  configurations.homeManager.peach.use = [ "audioPlugins" ];
 
   flake.modules.homeManager.audioPlugins =
     {
