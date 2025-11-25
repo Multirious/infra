@@ -20,6 +20,7 @@ top: {
         pkgs.scooter
         pkgs.zbar
         pkgs.fd
+        pkgs.ncdu
       ];
     };
 }
