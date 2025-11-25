@@ -8,24 +8,10 @@ top: {
       inherit (pkgs.stdenv.hostPlatform) system;
     in
     {
-      home.packages =
-        let
-          nixpkgsWithReaper = pkgs.fetchFromGitHub {
-            owner = "r-ryantm";
-            repo = "nixpkgs";
-            rev = "aefc6bae9e00e46b805ff36c50612199d64f38e8";
-            hash = "sha256-zXwHmaEHAbwgibPDHspOOH96ULj+DjZ3kliQV3biGnU=";
-          };
-          reaper =
-            (import nixpkgsWithReaper {
-              config.allowUnfree = true;
-              inherit system;
-            }).reaper;
-        in
-        [
-          top.config.flake.packages."${system}".openutau
-          reaper
-        ];
+      home.packages = [
+        top.config.flake.packages."${system}".openutau
+        pkgs.reaper
+      ];
     };
 
   flake.modules.nixos.audioProduction =
