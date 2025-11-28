@@ -1,12 +1,14 @@
 top: {
+  configurations.nixos.peach-asus.use = [
+    "global"
+    "laptop"
+  ];
   configurations.nixos.peach-asus.module =
     { pkgs, lib, ... }:
     {
-      imports = with top.config.flake.modules.nixos; [
+      imports = [
         top.inputs.nixos-hardware.nixosModules.asus-fa506ic
         ./_hardware-configuration.nix
-        global
-        laptop
       ];
 
       me.battery.label = "BAT1";
