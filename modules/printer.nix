@@ -1,7 +1,7 @@
 top: {
   configurations.nixos.peach-asus.use = [ "printer" ];
 
-  flake.modules.nixos.printer =
+  nixos.printer.module =
     { pkgs, ... }:
     {
       hardware.sane.extraBackends = with pkgs; [ epsonscan2 ];

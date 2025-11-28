@@ -1,5 +1,5 @@
 top: {
-  flake.modules.nixos.global =
+  nixos.global.module =
     { lib, ... }:
     {
       system.stateVersion = "24.11"; # Do not change this

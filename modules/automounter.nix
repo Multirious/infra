@@ -1,7 +1,7 @@
 top: {
   configurations.nixos.peach-asus.use = [ "automounter" ];
 
-  flake.modules.nixos.automounter =
+  nixos.automounter.module =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [ udiskie ];

@@ -25,7 +25,7 @@ top: {
       };
     };
 
-  flake.modules.nixos.multimedia =
+  nixos.multimedia.module =
     { ... }:
     {
       services.pipewire.enable = true;

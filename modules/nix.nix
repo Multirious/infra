@@ -10,7 +10,7 @@ top: {
       programs.nix-index.enableZshIntegration = false;
     };
 
-  flake.modules.nixos.nix =
+  nixos.nix.module =
     { ... }:
     {
       programs.nix-ld.enable = true;

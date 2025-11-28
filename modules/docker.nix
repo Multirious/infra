@@ -6,7 +6,7 @@ top: {
       users.users.peach.extraGroups = [ "docker" ];
     };
 
-  flake.modules.nixos.docker =
+  nixos.docker.module =
     { ... }:
     {
       virtualisation.docker.enable = true;

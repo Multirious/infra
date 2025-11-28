@@ -1,9 +1,7 @@
 top: {
-  flake.modules.nixos.laptop.imports = [
-    top.config.flake.modules.nixos.battery
-  ];
+  nixos.laptop.use = [ "battery" ];
 
-  flake.modules.nixos.battery =
+  nixos.battery.module =
     { config, lib, ... }:
     let
       cfg = config.me.battery;

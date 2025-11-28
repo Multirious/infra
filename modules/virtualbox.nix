@@ -1,7 +1,7 @@
 top: {
   # configurations.nixos.peach-asus.use = [ "virtualbox" ];
 
-  flake.modules.nixos.virtualbox =
+  nixos.virtualbox.module =
     { ... }:
     {
       virtualisation.virtualbox.host.enable = true;

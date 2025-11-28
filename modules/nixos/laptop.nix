@@ -1,5 +1,5 @@
 top: {
-  flake.modules.nixos.laptop =
+  nixos.laptop.module =
     { ... }:
     {
       me.battery = {

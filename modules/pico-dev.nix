@@ -1,7 +1,7 @@
 top: {
   configurations.nixos.peach-asus.use = [ "picoDev" ];
 
-  flake.modules.nixos.picoDev =
+  nixos.picoDev.module =
     { pkgs, ... }:
     {
       services.udev.packages = [

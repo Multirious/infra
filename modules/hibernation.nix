@@ -1,6 +1,6 @@
 top: {
   configurations.nixos.peach-asus.use = [ "hibernation" ];
-  flake.modules.nixos.hibernation = {
+  nixos.hibernation.module = {
     systemd.services."restart-network" = {
       description = "Restart network after hibernation to fix some issues";
       wantedBy = [

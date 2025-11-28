@@ -2,7 +2,7 @@ top: {
   configurations.nixos.peach-asus.use = [ "online-accounts" ];
   configurations.homeManager.peach.use = [ "online-accounts" ];
 
-  flake.modules.nixos.online-accounts =
+  nixos.online-accounts.module =
     { ... }:
     {
       services.gnome.gnome-keyring.enable = true;

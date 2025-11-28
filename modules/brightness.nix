@@ -1,9 +1,9 @@
 top: {
-  flake.modules.nixos.laptop.imports = [
-    top.config.flake.modules.nixos.brightness
+  nixos.laptop.module.imports = [
+    top.config.nixos.brightness.module
   ];
 
-  flake.modules.nixos.brightness =
+  nixos.brightness.module =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [ brightnessctl ];

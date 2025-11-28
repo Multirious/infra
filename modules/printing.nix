@@ -1,7 +1,7 @@
 top: {
   configurations.nixos.peach-asus.use = [ "printing" ];
 
-  flake.modules.nixos.printing =
+  nixos.printing.module =
     { ... }:
     {
       services.printing.enable = true;

@@ -2,7 +2,7 @@ top: {
   configurations.nixos.peach-asus.use = [ "sway" ];
   configurations.homeManager.peach.use = [ "sway" ];
 
-  flake.modules.nixos.sway =
+  nixos.sway.module =
     { pkgs, ... }:
     {
       programs.sway.enable = true;

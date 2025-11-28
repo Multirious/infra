@@ -1,7 +1,7 @@
 top: {
   configurations.nixos.peach-asus.use = [ "bluetooth" ];
 
-  flake.modules.nixos.bluetooth =
+  nixos.bluetooth.module =
     { ... }:
     {
       hardware.bluetooth.enable = true;

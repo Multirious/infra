@@ -13,7 +13,7 @@ top: {
       ];
     };
 
-  flake.modules.nixos.hyprland =
+  nixos.hyprland.module =
     { pkgs, ... }:
     {
       programs.hyprland = {

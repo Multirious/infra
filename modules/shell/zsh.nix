@@ -1,6 +1,6 @@
 top: {
   configurations.nixos.peach-asus.use = [ "zsh" ];
-  flake.modules.nixos.zsh =
+  nixos.zsh.module =
     { config, pkgs, ... }:
     {
       environment.systemPackages = [ pkgs.zsh ];

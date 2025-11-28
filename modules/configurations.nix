@@ -21,10 +21,10 @@ in
 {
   options = {
     homeManager = lib.mkOption { type = classAspects; };
-    # nixos = lib.mkOption { type = classModules "nixos"; };
+    nixos = lib.mkOption { type = classAspects; };
   };
   config = {
     flake.modules.homeManager = toFlakeModules config.homeManager;
-    # flake.modules.nixos = flakeModule "nixos";
+    flake.modules.nixos = toFlakeModules config.nixos;
   };
 }

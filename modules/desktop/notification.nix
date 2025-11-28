@@ -1,5 +1,5 @@
 top: {
-  flake.modules.nixos.battery =
+  nixos.battery.module =
     { config, pkgs, ... }:
     {
       systemd.user.timers."battery-alert" = {

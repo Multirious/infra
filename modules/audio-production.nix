@@ -14,7 +14,7 @@ top: {
       ];
     };
 
-  flake.modules.nixos.audioProduction =
+  nixos.audioProduction.module =
     { ... }:
     {
       security.pam.loginLimits = [

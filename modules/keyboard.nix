@@ -1,7 +1,7 @@
 top: {
   configurations.nixos.peach-asus.use = [ "keyboard" ];
 
-  flake.modules.nixos.keyboard =
+  nixos.keyboard.module =
     { ... }:
     {
       i18n.defaultLocale = "en_US.UTF-8";
