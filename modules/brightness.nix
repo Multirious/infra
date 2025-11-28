@@ -1,7 +1,5 @@
 top: {
-  nixos.laptop.module.imports = [
-    top.config.nixos.brightness.module
-  ];
+  nixos.laptop.use = [ "brightness" ];
 
   nixos.brightness.module =
     { pkgs, ... }:
