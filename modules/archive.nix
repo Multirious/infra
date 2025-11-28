@@ -1,5 +1,5 @@
 top: {
-  # configurations.homeManager.peach.use = [ "archive" ];
+  configurations.homeManager.peach.use = [ "archive" ];
 
   homeManager.archive.module =
     { pkgs, ... }:
