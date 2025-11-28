@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "imageEditing" ];
 
-  flake.modules.homeManager.imageEditing =
+  homeManager.imageEditing.module =
     { pkgs, ... }:
     {
       home.packages = [

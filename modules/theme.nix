@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "theme" ];
 
-  flake.modules.homeManager.theme =
+  homeManager.theme.module =
     { pkgs, ... }:
     {
       gtk.enable = true;

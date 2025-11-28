@@ -8,7 +8,7 @@ top: {
       services.gnome.gnome-keyring.enable = true;
     };
 
-  flake.modules.homeManager.online-accounts =
+  homeManager.online-accounts.module =
     { pkgs, ... }:
     {
       home.packages = [

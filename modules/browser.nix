@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "browser" ];
 
-  flake.modules.homeManager.browser =
+  homeManager.browser.module =
     { config, pkgs, ... }:
     {
       home.packages =

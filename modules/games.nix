@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "games" ];
 
-  flake.modules.homeManager.games =
+  homeManager.games.module =
     { config, pkgs, ... }:
     {
       home.packages = [

@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "bottles" ];
 
-  flake.modules.homeManager.bottles =
+  homeManager.bottles.module =
     { pkgs, ... }:
     {
       home.packages = [

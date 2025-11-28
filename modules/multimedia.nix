@@ -2,7 +2,7 @@ top: {
   configurations.nixos.peach-asus.use = [ "multimedia" ];
   configurations.homeManager.peach.use = [ "multimedia" ];
 
-  flake.modules.homeManager.multimedia =
+  homeManager.multimedia.module =
     { pkgs, ... }:
     {
       home.packages = [

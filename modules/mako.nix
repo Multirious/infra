@@ -1,13 +1,8 @@
 top: {
-  flake.modules.homeManager.hyprland.imports = [
-    top.config.flake.modules.homeManager.mako
-  ];
+  homeManager.hyprland.use = [ "mako" ];
+  homeManager.sway.use = [ "mako" ];
 
-  flake.modules.homeManager.sway.imports = [
-    top.config.flake.modules.homeManager.mako
-  ];
-
-  flake.modules.homeManager.mako =
+  homeManager.mako.module =
     { pkgs, ... }:
     {
       home.packages = [

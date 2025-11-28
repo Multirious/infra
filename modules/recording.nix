@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "recording" ];
 
-  flake.modules.homeManager.recording =
+  homeManager.recording.module =
     { pkgs, ... }:
     {
       home.packages = [

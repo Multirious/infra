@@ -13,7 +13,7 @@ top: {
       ];
     };
 
-  flake.modules.homeManager.sway =
+  homeManager.sway.module =
     { ... }:
     {
       xdg.configFile."sway/config".text =

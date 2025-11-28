@@ -1,13 +1,8 @@
 top: {
-  flake.modules.homeManager.hyprland.imports = [
-    top.config.flake.modules.homeManager.wofi
-  ];
+  homeManager.hyprland.use = [ "wofi" ];
+  homeManager.sway.use = [ "wofi" ];
 
-  flake.modules.homeManager.sway.imports = [
-    top.config.flake.modules.homeManager.wofi
-  ];
-
-  flake.modules.homeManager.wofi =
+  homeManager.wofi.module =
     { pkgs, ... }:
     {
       home.packages = [

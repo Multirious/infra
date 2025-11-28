@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.university =
+  homeManager.university.module =
     { pkgs, ... }:
     {
       home.packages = [

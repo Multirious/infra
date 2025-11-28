@@ -1,11 +1,8 @@
 top: {
-  flake.modules.homeManager.hyuse = [ "waybar" ];
+  homeManager.hyprland.use = [ "waybar" ];
+  homeManager.sway.use = [ "waybar" ];
 
-  flake.modules.homeManager.sway.imports = [
-    top.config.flake.modules.homeManager.waybar
-  ];
-
-  flake.modules.homeManager.waybar =
+  homeManager.waybar.module =
     { pkgs, ... }:
     {
       home.packages = [

@@ -1,5 +1,5 @@
 top: {
-  flake.modules.homeManager.hyprland =
+  homeManager.hyprland.module =
     { config, ... }:
     let
       inherit (config.xdg) configHome;

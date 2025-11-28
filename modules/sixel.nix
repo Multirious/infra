@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "sixel" ];
 
-  flake.modules.homeManager.sixel =
+  homeManager.sixel.module =
     { pkgs, ... }:
     {
       home.packages = [

@@ -2,7 +2,7 @@ top: {
   configurations.homeManager.peach.use = [ "nix" ];
   configurations.nixos.peach-asus.use = [ "nix" ];
 
-  flake.modules.homeManager.nix =
+  homeManager.nix.module =
     { ... }:
     {
       programs.nix-index.enable = true;

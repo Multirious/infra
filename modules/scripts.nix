@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "scripts" ];
 
-  flake.modules.homeManager.scripts =
+  homeManager.scripts.module =
     { ... }:
     {
       home.file."scripts/debug-derivative" = {

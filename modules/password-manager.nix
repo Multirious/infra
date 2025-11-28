@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "passwordManager" ];
 
-  flake.modules.homeManager.passwordManager =
+  homeManager.passwordManager.module =
     { pkgs, ... }:
     {
       home.packages = [

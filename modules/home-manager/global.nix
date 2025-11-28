@@ -1,5 +1,5 @@
 top: {
-  flake.modules.homeManager.global =
+  homeManager.global.module =
     { pkgs, ... }:
     {
       home.packages = [ pkgs.home-manager ];

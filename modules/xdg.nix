@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "xdg" ];
 
-  flake.modules.homeManager.xdg =
+  homeManager.xdg.module =
     { config, ... }:
     let
       homeDir = config.home.homeDirectory;

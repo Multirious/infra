@@ -2,7 +2,7 @@ top: {
   configurations.homeManager.peach.use = [ "audioProduction" ];
   configurations.nixos.peach-asus.use = [ "audioProduction" ];
 
-  flake.modules.homeManager.audioProduction =
+  homeManager.audioProduction.module =
     { pkgs, ... }:
     let
       inherit (pkgs.stdenv.hostPlatform) system;

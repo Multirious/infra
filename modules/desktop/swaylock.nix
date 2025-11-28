@@ -1,12 +1,8 @@
 top: {
-  flake.modules.homeManager.hyprland.imports = [
-    top.config.flake.modules.homeManager.swaylock
-  ];
-  flake.modules.homeManager.sway.imports = [
-    top.config.flake.modules.homeManager.swaylock
-  ];
+  homeManager.hyprland.use = [ "swaylock" ];
+  homeManager.sway.use = [ "swaylock" ];
 
-  flake.modules.homeManager.swaylock =
+  homeManager.swaylock.module =
     { ... }:
     {
       xdg.configFile."swaylock/config".text = ''

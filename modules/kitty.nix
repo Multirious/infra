@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "kitty" ];
 
-  flake.modules.homeManager.kitty =
+  homeManager.kitty.module =
     { ... }:
     {
       xdg.configFile."kitty/kitty.conf".text = ''

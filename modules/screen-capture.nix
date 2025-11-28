@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "screenCapture" ];
 
-  flake.modules.homeManager.screenCapture =
+  homeManager.screenCapture.module =
     { pkgs, ... }:
     {
       home.packages = [

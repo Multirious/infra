@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "document" ];
 
-  flake.modules.homeManager.document =
+  homeManager.document.module =
     { pkgs, ... }:
     {
       home.packages = [

@@ -34,7 +34,7 @@
           name: configuration:
           let
             inherit (configuration) system module use;
-            listOfImports = builtins.map (eachUse: config.flake.modules.homeManager."${eachUse}") use;
+            listOfImports = builtins.map (aspectName: config.flake.modules.homeManager."${aspectName}") use;
             imports = lib.flatten listOfImports;
           in
           inputs.home-manager.lib.homeManagerConfiguration {

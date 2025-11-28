@@ -1,5 +1,5 @@
 top: {
-  flake.modules.homeManager.helix =
+  homeManager.helix.module =
     { ... }:
     {
       me.helix.languages =

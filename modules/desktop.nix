@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "desktop" ];
 
-  flake.modules.homeManager.desktop =
+  homeManager.desktop.module =
     { pkgs, ... }:
     {
       home.packages =

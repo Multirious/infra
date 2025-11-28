@@ -29,7 +29,7 @@ top: {
         };
       };
     };
-  flake.modules.homeManager.desktop =
+  homeManager.desktop.module =
     { pkgs, ... }:
     {
       home.packages = [

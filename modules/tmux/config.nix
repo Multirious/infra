@@ -1,5 +1,5 @@
 top: {
-  flake.modules.homeManager.tmux =
+  homeManager.tmux.module =
     { config, ... }:
     let
       inherit (config.xdg) configHome;

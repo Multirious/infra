@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "mailClient" ];
 
-  flake.modules.homeManager.mailClient =
+  homeManager.mailClient.module =
     { pkgs, ... }:
     {
       home.packages = [

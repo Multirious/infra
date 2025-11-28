@@ -1,5 +1,5 @@
 top: {
-  flake.modules.homeManager.shell =
+  homeManager.shell.module =
     {
       config,
       lib,

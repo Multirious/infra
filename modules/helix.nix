@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "helix" ];
 
-  flake.modules.homeManager.helix =
+  homeManager.helix.module =
     {
       config,
       pkgs,

@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "terminal" ];
 
-  flake.modules.homeManager.terminal =
+  homeManager.terminal.module =
     { pkgs, ... }:
     {
       home.packages =

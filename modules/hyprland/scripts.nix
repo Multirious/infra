@@ -1,5 +1,5 @@
 top: {
-  flake.modules.homeManager.hyprland =
+  homeManager.hyprland.module =
     { ... }:
     {
       xdg.configFile."hypr/scripts/rename-workspace-menu" = {

@@ -1,7 +1,7 @@
 top: {
   configurations.homeManager.peach.use = [ "starship" ];
 
-  flake.modules.homeManager.starship =
+  homeManager.starship.module =
     { pkgs, ... }:
     let
       symbolsConfig =
