@@ -1,8 +1,5 @@
 top: {
-  homeManager.hyprland.use = [ "wofi" ];
-  homeManager.sway.use = [ "wofi" ];
-
-  homeManager.wofi.module =
+  homeManager.desktop.module =
     { pkgs, ... }:
     {
       home.packages = [
