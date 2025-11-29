@@ -1,14 +1,14 @@
 top: {
-  configurations.nixos.peach-asus.use = [ "online-accounts" ];
-  configurations.homeManager.peach.use = [ "online-accounts" ];
+  configurations.nixos.peach-asus.use = [ "onlineAccounts" ];
+  configurations.homeManager.peach.use = [ "onlineAccounts" ];
 
-  nixos.online-accounts.module =
+  nixos.onlineAccounts.module =
     { ... }:
     {
       services.gnome.gnome-keyring.enable = true;
     };
 
-  homeManager.online-accounts.module =
+  homeManager.onlineAccounts.module =
     { pkgs, ... }:
     {
       home.packages = [
