@@ -35,6 +35,24 @@ top: {
       home.packages = [
         pkgs.fyi
         pkgs.libnotify
+        pkgs.mako
       ];
+
+      xdg.configFile."mako/config".text =
+        # ini
+        ''
+          default-timeout=30000
+          max-history=20
+          sort=+time
+
+          anchor=bottom-right
+          font=monospace 11
+          text-color=#222222
+          background-color=#EEEEEE
+          border-size=0
+          border-radius=10
+          outer-margin=0,0,5
+        '';
+
     };
 }
