@@ -11,6 +11,8 @@ top: {
         ./_hardware-configuration.nix
       ];
 
+      nix.settings.trusted-users = [ "peach" ];
+
       me.battery.label = "BAT1";
 
       time.timeZone = "Asia/Bangkok";
