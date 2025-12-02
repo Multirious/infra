@@ -6,15 +6,12 @@ top: {
     { config, pkgs, ... }:
     let
       inherit (pkgs.stdenv.hostPlatform) system;
-      # minimeters = pkgs.callPackage ../packages/MiniMeters.nix {
-      #   apiKeyPath = config.sops.secrets.itchio_api_key.path;
-      # };
     in
     {
       home.packages = [
         top.config.flake.packages."${system}".openutau
+        # top.config.flake.packages."${system}".MiniMeters
         pkgs.reaper
-        # minimeters
       ];
     };
 
