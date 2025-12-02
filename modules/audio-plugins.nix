@@ -10,28 +10,31 @@ top: {
     }:
     let
       inherit (pkgs.stdenv.hostPlatform) system;
+      fileType =
+        (pkgs.callPackage "${top.inputs.home-manager}/modules/lib/file-type.nix" {
+          homeDirectory = config.home.homeDirectory;
+        }).fileType;
       myPackages = top.config.flake.packages."${system}";
     in
     {
-      options =
-        let
-          filesOption = lib.types.lazyAttrsOf (
-            lib.types.submodule {
-              options = {
-                source = lib.mkOption {
-                  type = lib.types.oneOf [
-                    lib.types.package
-                    lib.types.path
-                  ];
-                };
-              };
-            }
-          );
-        in
-        {
-          me.audio.vstFile = lib.mkOption { type = filesOption; };
-          me.audio.vst3File = lib.mkOption { type = filesOption; };
+      options = {
+        me.audio.vstHome = lib.mkOption {
+          type = lib.types.path;
+          default = "${config.xdg.dataHome}/vst";
         };
+        me.audio.vst3Home = lib.mkOption {
+          type = lib.types.path;
+          default = "${config.xdg.dataHome}/vst3";
+        };
+        me.audio.vstFile = lib.mkOption {
+          type = fileType "me.audio.vstFile" "{var}`me.audio.vstHome`" config.me.audio.vstHome;
+          default = { };
+        };
+        me.audio.vst3File = lib.mkOption {
+          type = fileType "me.audio.vst3File" "{var}`me.audio.vst3Home`" config.me.audio.vst3Home;
+          default = { };
+        };
+      };
 
       config = {
         home.packages =
@@ -48,15 +51,14 @@ top: {
         me.audio.vst3File."Vital.vst3".source = "${pkgs.vital}/lib/vst3/Vital.vst3";
         me.audio.vstFile."libsitala.so".source = "${myPackages.sitala}/lib/vst/libsitala.so";
 
-        xdg.dataFile =
-          (lib.mapAttrs' (path: value: {
-            name = "vst/" + path;
-            value = value;
-          }) config.me.audio.vstFile)
-          // (lib.mapAttrs' (path: value: {
-            name = "vst3/" + path;
-            value = value;
-          }) config.me.audio.vst3File);
+        home.file = lib.mkMerge [
+          (lib.mapAttrs' (
+            name: file: lib.nameValuePair "${config.me.audio.vstHome}/${name}" file
+          ) config.me.audio.vstFile)
+          (lib.mapAttrs' (
+            name: file: lib.nameValuePair "${config.me.audio.vst3Home}/${name}" file
+          ) config.me.audio.vst3File)
+        ];
       };
     };
 }
