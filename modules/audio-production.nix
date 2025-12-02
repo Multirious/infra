@@ -18,6 +18,14 @@ top: {
         ])
         pkgs.reaper
       ];
+
+      xdg.desktopEntries.MiniMeters = {
+        name = "MiniMeters";
+        genericName = "Audio Visualizer";
+        exec = "MiniMeters";
+        comment = "Visualize audios";
+        type = "Application";
+      };
     };
 
   nixos.audioProduction.module =
