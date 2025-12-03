@@ -26,12 +26,20 @@ top: {
           type = lib.types.path;
           default = "${config.xdg.dataHome}/vst3";
         };
+        me.audio.clapHome = lib.mkOption {
+          type = lib.types.path;
+          default = "${config.xdg.dataHome}/clap";
+        };
         me.audio.vstFile = lib.mkOption {
           type = fileType "me.audio.vstFile" "{var}`me.audio.vstHome`" config.me.audio.vstHome;
           default = { };
         };
         me.audio.vst3File = lib.mkOption {
           type = fileType "me.audio.vst3File" "{var}`me.audio.vst3Home`" config.me.audio.vst3Home;
+          default = { };
+        };
+        me.audio.clapFile = lib.mkOption {
+          type = fileType "me.audio.clapFile" "{var}`me.audio.clapHome`" config.me.audio.clapHome;
           default = { };
         };
       };
