@@ -11,6 +11,8 @@ top: {
         ./_hardware-configuration.nix
       ];
 
+      system.stateVersion = "24.11"; # Do not change this
+
       nix.settings.trusted-users = [ "peach" ];
 
       me.battery.label = "BAT1";

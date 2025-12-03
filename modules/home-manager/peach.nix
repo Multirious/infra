@@ -7,6 +7,7 @@ top: {
       {
         home.username = "peach";
         home.homeDirectory = "/home/peach";
+        home.stateVersion = "24.05";
       };
   };
 }
