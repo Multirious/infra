@@ -1,15 +1,45 @@
 #!/usr/bin/env bash
 
-case "$1" in
-  "-f" | "--flake")
-    nix_mode="flake"
-    attribute="${2:-default}"
-    ;;
-  *)
-    nix_mode="auto"
-    attribute="${1:-default}"
-    ;;
-esac
+nix_mode="auto"
+pure="false"
+
+phases=
+default_phases="false"
+
+positional_args=()
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -f|--flake)
+      nix_mode="flake"
+      shift
+      ;;
+    -p|--pure)
+      pure="true"
+      shift
+      ;;
+    --phases)
+      phases="$2"
+      shift
+      shift
+      ;;
+    --default-phases)
+      default_phases="true"
+      shift
+      ;;
+    -*|--*)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+    *)
+      positional_args+=("$1") # save positional arg
+      shift
+      ;;
+  esac
+done
+
+set -- "${positional_args[@]}" # restore positional parameters
+
+attribute="${1:-default}"
 
 if [ "$nix_mode" = "auto" ]; then
   if [ -f "$(pwd)/default.nix" ]; then
@@ -22,20 +52,43 @@ if [ "$nix_mode" = "auto" ]; then
   fi
 fi
 
-if [ "$nix_mode" = "flake" ]; then
-  temp_out_dir=$(mktemp -d)
-  temp_dir=$(mktemp -d)
-  nix-shell \
-    --expr "
-      let
-        flake = builtins.getFlake \"$(pwd)\";
-      in
-      flake.packages.\${builtins.currentSystem}.$attribute
-    " \
-    --command "export out=$temp_out_dir; cd $temp_dir; return"
-  rm -rf $temp_dir 2>/dev/null || sudo rm -rf $temp_dir
-  rm -rf $temp_out_dir 2>/dev/null || sudo rm -rf $temp_out_dir
+if [ "$nix_mode" == "flake" ]; then
+  expr="
+    let
+      flake = builtins.getFlake \"$(pwd)\";
+    in
+    flake.packages.\${builtins.currentSystem}.$attribute
+  "
+elif [ "$nix_mode" == "default" ]; then
+  expr="
+    (import ./default.nix {}).$attribute
+  "
 else
   echo "Unimplemented" 1>&2
   exit 1
 fi
+
+temp_out_dir=$(mktemp -d)
+temp_dir=$(mktemp -d)
+
+if [ -n "$phases" ]; then
+  command="export out=$temp_out_dir; cd $temp_dir; phases="$phases" genericBuild; return"
+elif [ "$default_phases" = "true" ]; then
+  command="export out=$temp_out_dir; cd $temp_dir; phases= genericBuild; return"
+else
+  command="export out=$temp_out_dir; cd $temp_dir; return"
+fi
+
+if [ "$pure" = "false" ]; then
+  nix-shell \
+    --expr "$expr" \
+    --command "$command"
+elif [ "$pure" = "true" ]; then
+  nix-shell \
+    --expr "$expr" \
+    --pure \
+    --command "$command"
+fi
+
+rm -rf $temp_dir 2>/dev/null || sudo rm -rf $temp_dir
+rm -rf $temp_out_dir 2>/dev/null || sudo rm -rf $temp_out_dir
