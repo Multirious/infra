@@ -49,6 +49,8 @@ top: {
           bind = $mainMod, f, fullscreen, 0
           bind = $mainMod, a, exec, $files_browser
           # bind = $mainMod, TAB, overview:toggle
+          bind = $mainMod, F10, pass, ^(com\.obsproject\.Studio)$
+          bind = $mainMod, F11, pass, ^(com\.obsproject\.Studio)$
 
           bind = $mainMod, $left  , movefocus, l
           bind = $mainMod, $down  , movefocus, d
