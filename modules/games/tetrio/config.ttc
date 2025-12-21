@@ -31,7 +31,8 @@
         "SPACE"
       ],
       "exit": [
-        "BACKSPACE"
+        "BACKSPACE",
+        "ESCAPE"
       ],
       "retry": [
         "ENTER"
@@ -54,7 +55,8 @@
         "ARROWRIGHT"
       ],
       "menuBack": [
-        "ESCAPE"
+        "ESCAPE",
+        "BACKSPACE"
       ],
       "menuConfirm": [
         "ENTER"
