@@ -12,6 +12,12 @@ top: {
                 --set 'HOME' '${config.home.homeDirectory}/.local/share/librewolf'
             '';
           });
+          firefox = pkgs.firefox.overrideAttrs (a: {
+            buildCommand = a.buildCommand + ''
+              wrapProgram "$executablePath" \
+                --set 'HOME' '${config.home.homeDirectory}/.local/share/firefox'
+            '';
+          });
           tor-browser =
             (import
               (builtins.fetchGit {
@@ -28,6 +34,7 @@ top: {
         [
           tor-browser
           librewolf
+          firefox
           pkgs.google-chrome
         ];
       xdg.mimeApps = {
