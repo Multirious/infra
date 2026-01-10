@@ -203,44 +203,60 @@ top: {
           animation = layers, 1, 2, cubicInout, fade
           animation = fadeLayers, 1, 2, cubicInout
 
-          windowrulev2 = float, title:Picture-in-Picture
-          windowrulev2 = float, class:discord, title:Discord Popout
-          windowrulev2 = float, class:org.kde.dolphin
-          windowrulev2 = float, class:de.feschber.LanMouse
-          windowrulev2 = float, class:blender
-          windowrulev2 = float, class:org.gnome.Nautilus
-          windowrulev2 = float, class:Tor Browser
-          windowrulev2 = float, class:zenity
+          windowrule = match:class discord, match:title Discord Popout, float true
+          windowrule = match:title Picture-in-Picture,            float true
+          windowrule = match:class org.kde.dolphin,               float true
+          windowrule = match:class de.feschber.LanMouse,          float true
+          windowrule = match:class blender,                       float true
+          windowrule = match:class org.gnome.Nautilus,            float true
+          windowrule = match:class Tor Browser,                   float true
+          windowrule = match:class zenity,                        float true
 
-          windowrulev2 = float, class:steam, title:Friends List
-          windowrulev2 = size 400 700, class:steam, title:Friends List
+          windowrule {
+            name = Steam Friends List
+            match:class = steam
+            match:title = Friends List
 
-          windowrulev2 = float, class:nz.co.mega.
-          windowrulev2 = pin, class:nz.co.mega.
-          windowrulev2 = size 400 560, class:nz.co.mega.
-          windowrulev2 = move onscreen cursor 50% 50%, class:nz.co.mega.
+            float = true
+            size = 400 700
+          }
 
-          # windowrulev2 = noscreenshare on, class:org.keepassxc.KeePassXC
+          windowrule {
+            name = Mega
+            match:class = nz.co.mega.
 
-          windowrulev2 = stayfocused, class:flameshot
-          windowrulev2 = noanim, class:flameshot
-          windowrulev2 = workspace special:flameshot, class:flameshot
+            float = true
+            pin = true
+            size = 400 560
+            move = cursor_x cursor_y
+            # windowrulev2 = move onscreen cursor 50% 50%, class:nz.co.mega.
+          }
 
-          windowrulev2 = workspace special:discord silent  , class:discord
-          windowrulev2 = workspace special:keepassxc silent, class:org.keepassxc.KeePassXC
-          windowrulev2 = workspace special:lanmouse silent , class:de.feschber.LanMouse
-          windowrulev2 = workspace special:geary silent    , class:geary 
+          windowrulev2 = match:class org.keepassxc.KeePassXC, no_screen_share
 
-          layerrule = animation slide, notifications
+          windowrule {
+            name = flameshot
+
+            stay_focused = true
+            no_anim = true
+            workspace = special:flameshot
+          }
+
+          windowrulev2 = match:class discord,                 workspace special:discord   silent
+          windowrulev2 = match:class org.keepassxc.KeePassXC, workspace special:keepassxc silent
+          windowrulev2 = match:class de.feschber.LanMouse,    workspace special:lanmouse  silent
+          windowrulev2 = match:class geary,                   workspace special:geary     silent
+
+          layerrule = match:namespace notifications, animation slide
 
           workspace = s[true], gapsout:70
 
           workspace = 1, defaultName:terminal
           workspace = name:obsidian, gapsin:0, gapsout:20, rounding:false
 
-          workspace = special:discord  , on-created-empty:discord
+          workspace = special:discord,   on-created-empty:discord
           workspace = special:keepassxc, on-created-empty:keepassxc
-          workspace = special:geary    , on-created-empty:geary
+          workspace = special:geary,     on-created-empty:geary
 
           env = GBM_BACKEND,nvidia-drm
           env = LIBVA_DRIVER_NAME,nvidia
