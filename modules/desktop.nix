@@ -8,10 +8,10 @@ top: {
 
         let
           discord = pkgs.discord.overrideAttrs (prev: {
-            version = "0.0.93";
+            version = "0.0.119";
             src = pkgs.fetchurl {
-              url = "https://stable.dl2.discordapp.net/apps/linux/0.0.93/discord-0.0.93.tar.gz";
-              hash = "sha256-/CTgRWMi7RnsIrzWrXHE5D9zFte7GgqimxnvJTj3hFY=";
+              url = "https://stable.dl2.discordapp.net/apps/linux/0.0.119/discord-0.0.119.tar.gz";
+              hash = "sha256-/NfgHBXsUWYoDEVGz13GBU1ISpSdB5OmrjhSN25SBMg=";
             };
           });
         in
