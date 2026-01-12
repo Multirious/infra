@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = [ "winboat" ];
+  # configurations.homeManager.peach.use = [ "winboat" ];
 
   homeManager.winboat.module =
     { pkgs, ... }:
