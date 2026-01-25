@@ -232,7 +232,7 @@ top: {
             # windowrulev2 = move onscreen cursor 50% 50%, class:nz.co.mega.
           }
 
-          windowrulev2 = match:class org.keepassxc.KeePassXC, no_screen_share
+          windowrule = match:class org.keepassxc.KeePassXC, no_screen_share true
 
           windowrule {
             name = flameshot
@@ -242,10 +242,10 @@ top: {
             workspace = special:flameshot
           }
 
-          windowrulev2 = match:class discord,                 workspace special:discord   silent
-          windowrulev2 = match:class org.keepassxc.KeePassXC, workspace special:keepassxc silent
-          windowrulev2 = match:class de.feschber.LanMouse,    workspace special:lanmouse  silent
-          windowrulev2 = match:class geary,                   workspace special:geary     silent
+          windowrule = match:class discord,                 workspace special:discord   silent
+          windowrule = match:class org.keepassxc.KeePassXC, workspace special:keepassxc silent
+          windowrule = match:class de.feschber.LanMouse,    workspace special:lanmouse  silent
+          windowrule = match:class geary,                   workspace special:geary     silent
 
           layerrule = match:namespace notifications, animation slide
 
