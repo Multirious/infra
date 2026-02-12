@@ -5,7 +5,9 @@ top: {
     { pkgs, ... }:
     {
       home.packages = [
-        pkgs.bottles
+        (pkgs.bottles.override {
+          removeWarningPopup = true;
+        })
       ];
     };
 }
