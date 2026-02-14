@@ -205,13 +205,13 @@ top: {
           animation = fadeLayers, 1, 2, cubicInout
 
           windowrule = match:class discord, match:title Discord Popout, float true
-          windowrule = match:title Picture-in-Picture,            float true
-          windowrule = match:class org.kde.dolphin,               float true
-          windowrule = match:class de.feschber.LanMouse,          float true
-          windowrule = match:class blender,                       float true
-          windowrule = match:class org.gnome.Nautilus,            float true
-          windowrule = match:class Tor Browser,                   float true
-          windowrule = match:class zenity,                        float true
+          windowrule = match:title Picture-in-Picture,                  float true
+          windowrule = match:class org.kde.dolphin,                     float true
+          windowrule = match:class de.feschber.LanMouse,                float true
+          windowrule = match:class blender,                             float true
+          windowrule = match:class org.gnome.Nautilus,                  float true
+          windowrule = match:class Tor Browser,                         float true
+          windowrule = match:class zenity,                              float true
 
           windowrule {
             name = Steam Friends List
@@ -243,10 +243,10 @@ top: {
             workspace = special:flameshot
           }
 
-          windowrule = match:class discord,                 workspace special:discord   silent
+          windowrule = match:class discord,                 workspace special:discord silent
           windowrule = match:class org.keepassxc.KeePassXC, workspace special:keepassxc silent
-          windowrule = match:class de.feschber.LanMouse,    workspace special:lanmouse  silent
-          windowrule = match:class geary,                   workspace special:geary     silent
+          windowrule = match:class de.feschber.LanMouse,    workspace special:lanmouse silent
+          windowrule = match:class geary,                   workspace special:geary silent
 
           layerrule = match:namespace notifications, animation slide
 
