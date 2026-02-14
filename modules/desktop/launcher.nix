@@ -13,7 +13,7 @@ top: {
           allow_images=true
           allow_markup=true
           hide_scroll=true
-          matching=fuzzy
+          matching=multi-contains
           insensitive=true
           prompt=search
 
