@@ -37,6 +37,7 @@ top: {
           bind = $mainMod, return, exec, $terminal
           bind = $mainMod, q, killactive,
           bind = $mainMod + SHIFT, e, exit,
+          bind = $mainMod, space, exec, wlr-which-key
           bind = $mainMod + SHIFT, space, togglefloating
           bindo = $mainMod + SHIFT, space, centerwindow
           bind = $mainMod, r, exec, pkill wofi || wofi
@@ -95,19 +96,21 @@ top: {
           bind = $mainMod, minus, togglespecialworkspace, hidden
           bind = $mainMod + SHIFT, minus, movetoworkspace, special:hidden
 
-          binds = Super_L        , S&D, togglespecialworkspace, discord
-          binds = Super_L&Shift_L, S&D, movetoworkspace       , special:discord
+          bind = $mainMod, s, exec, wlr-which-key --initial-keys s
 
-          binds = Super_L        , S&k, togglespecialworkspace, keepassxc
-          binds = Super_L&Shift_L, S&K, movetoworkspace       , special:keepassxc
+          # binds = Super_L        , S&D, togglespecialworkspace, discord
+          # binds = Super_L&Shift_L, S&D, movetoworkspace       , special:discord
 
-          binds = Super_L        , S&L, togglespecialworkspace, lanmouse
-          binds = Super_L&Shift_L, S&L, movetoworkspace       , special:lanmouse
+          # binds = Super_L        , S&k, togglespecialworkspace, keepassxc
+          # binds = Super_L&Shift_L, S&K, movetoworkspace       , special:keepassxc
 
-          binds = Super_L        , S&M, togglespecialworkspace, geary
-          binds = Super_L&Shift_L, S&M, movetoworkspace       , special:geary
+          # binds = Super_L        , S&L, togglespecialworkspace, lanmouse
+          # binds = Super_L&Shift_L, S&L, movetoworkspace       , special:lanmouse
 
-          binds = Super_L, s, exec, ${scriptsDir}/close-current-special-workspace
+          # binds = Super_L        , S&M, togglespecialworkspace, geary
+          # binds = Super_L&Shift_L, S&M, movetoworkspace       , special:geary
+
+          # binds = Super_L, s, exec, ${scriptsDir}/close-current-special-workspace
 
           bindm = $mainMod, mouse:272, movewindow
           bindm = $mainMod + CONTROL, mouse:272, resizewindow
@@ -282,5 +285,51 @@ top: {
           	disable_logs = false
           }
         '';
+
+      me.desktop.which-key.config = {
+        menu = [
+          {
+            key = "s";
+            desc = "Special Workspaces";
+            submenu = [
+              {
+                key = "s";
+                desc = "Close current workspace";
+                cmd = "${scriptsDir}/close-current-special-workspace";
+              }
+              {
+                key = "d";
+                desc = "Discord";
+                cmd = "hyprctl dispatch togglespecialworkspace discord";
+              }
+              {
+                key = "D";
+                desc = "Move to Discord";
+                cmd = "hyprctl dispatch movetoworkspace special:discord";
+              }
+              {
+                key = "m";
+                desc = "Geary";
+                cmd = "hyprctl dispatch togglespecialworkspace geary";
+              }
+              {
+                key = "M";
+                desc = "Move to Geary";
+                cmd = "hyprctl dispatch movetoworkspace special:geary";
+              }
+              {
+                key = "k";
+                desc = "KeepassXC";
+                cmd = "hyprctl dispatch togglespecialworkspace keepassxc";
+              }
+              {
+                key = "k";
+                desc = "Move to KeepassXC";
+                cmd = "hyprctl dispatch movetoworkspace special:keepassxc";
+              }
+            ];
+          }
+        ];
+      };
     };
 }
