@@ -35,7 +35,6 @@ top: {
           tor-browser
           librewolf
           firefox
-          pkgs.google-chrome
         ];
       xdg.mimeApps = {
         defaultApplications = {
