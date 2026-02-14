@@ -10,13 +10,13 @@ top: {
     {
       home.packages = [
         top.config.flake.packages."${system}".openutau
+        top.config.flake.packages."${system}".reaper
         (pkgs.linkFarm "MiniMetersBin" [
           {
             name = "bin/MiniMeters";
             path = "${top.config.flake.packages."${system}".MiniMeters}/bin/MiniMeters";
           }
         ])
-        pkgs.reaper
       ];
 
       xdg.desktopEntries.MiniMeters = {
