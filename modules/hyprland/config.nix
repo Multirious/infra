@@ -50,8 +50,6 @@ top: {
           bind = $mainMod, f, fullscreen, 0
           bind = $mainMod, a, exec, $files_browser
           # bind = $mainMod, TAB, overview:toggle
-          bind = $mainMod, F10, pass, ^(com\.obsproject\.Studio)$
-          bind = $mainMod, F11, pass, ^(com\.obsproject\.Studio)$
 
           bind = $mainMod, $left  , movefocus, l
           bind = $mainMod, $down  , movefocus, d
@@ -116,11 +114,11 @@ top: {
           bindm = $mainMod + CONTROL, mouse:272, resizewindow
           bindm = $mainMod + CONTROL + ALT, mouse:272, resizewindow 1
 
+          bind = $mainMod, bracketleft, pass, class:^(com\.obsproject\.Studio)$
+          bind = $mainMod, bracketright, pass, class:^(com\.obsproject\.Studio)$
+
           bind = $mainMod, mouse_down  , workspace, e-1
           bind = $mainMod, mouse_up    , workspace, e+1
-
-          bind = $mainMod, bracketleft , workspace, e-1
-          bind = $mainMod, bracketright, workspace, e+1
 
           bindel = ,XF86AudioRaiseVolume , exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
           bindel = ,XF86AudioLowerVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
