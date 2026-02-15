@@ -21,6 +21,9 @@ top: {
           "video/mpeg" = [ "vlc.desktop" ];
           "video/ogg" = [ "vlc.desktop" ];
           "video/webm" = [ "vlc.desktop" ];
+
+          "image/jpeg" = [ "org.nomacs.ImageLounge.desktop" ];
+          "image/png" = [ "org.nomacs.ImageLounge.desktop" ];
         };
       };
     };
