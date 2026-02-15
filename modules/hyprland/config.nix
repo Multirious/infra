@@ -218,6 +218,16 @@ top: {
           windowrule = match:class zenity,                              float true
 
           windowrule {
+            name = Kitty Helix Prompt
+            match:class = kitty-helix-prompt
+
+            float = true
+            rounding = 0
+            move = monitor_w/2-window_w/2 monitor_h/2-window_h/2
+            size = 1000 480
+          }
+
+          windowrule {
             name = Steam Friends List
             match:class = steam
             match:title = Friends List

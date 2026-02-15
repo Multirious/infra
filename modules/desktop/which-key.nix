@@ -123,6 +123,17 @@ top: {
                 }
               ];
             }
+            {
+              key = "u";
+              desc = "Utilities";
+              submenu = [
+                {
+                  key = "p";
+                  desc = "Python";
+                  cmd = "/home/peach/kitty-helix-prompt/kitty-helix-prompt python /home/peach/kitty-helix-prompt/python-prompt \"print()\" \"6li\"";
+                }
+              ];
+            }
           ];
         };
       };
