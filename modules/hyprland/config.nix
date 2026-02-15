@@ -192,6 +192,10 @@ top: {
           	kb_options=grp:alt_space_toggle
           }
 
+          dwindle {
+            smart_split = true
+          }
+
           bezier = expoOut, 0.16, 0.1, 0.3, 1
           bezier = cubicInout, 0.65, 0, 0.35, 1
 
