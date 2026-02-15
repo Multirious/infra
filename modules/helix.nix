@@ -92,6 +92,10 @@ top: {
             [editor.search]
             smart-case = false
 
+            [editor.auto-save]
+            after-delay.enable = true
+            after-delay.timeout = 3000 # millis
+
             [editor.cursor-shape]
             insert = "bar"
             normal = "block"
@@ -118,7 +122,7 @@ top: {
             cursor-line = "error"
 
             [keys.insert]
-            j.k = "normal_mode"
+            j.k = ["normal_mode", ":write"]
             "C-h" = "jump_view_left"
             "C-l" = "jump_view_right"
             "C-k" = "jump_view_up"
