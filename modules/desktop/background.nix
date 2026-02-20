@@ -8,8 +8,10 @@ top: {
       xdg.configFile."hypr/hyprpaper.conf".text =
         # hyprlang
         ''
-          preload = ${./wallpapers/desert_lake.jpg}
-          wallpaper = , ${./wallpapers/desert_lake.jpg}
+          wallpaper {
+            monitor = eDP-1
+            path = ${./wallpapers/desert_lake.jpg}
+          }
         '';
     };
 }
