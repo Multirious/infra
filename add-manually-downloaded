@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+script_dir="$(dirname "$(readlink -f "$0")")"
+
+paths="$(
+  find "$script_dir/manually-downloaded" \
+    -maxdepth 1 \
+    -type f
+)"
+
+for path in "$paths"; do
+  nix-store --add-fixed sha256 "$path"
+  nix-hash --type sha256 --flat --base32 "$path"
+done
