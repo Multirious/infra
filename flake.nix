@@ -6,7 +6,9 @@
     import-tree.url = "github:vic/import-tree";
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # TODO: Use nixos/nixos-hardware/master when
+    # https://github.com/NixOS/nixos-hardware/pull/1778 is merged
+    nixos-hardware.url = "github:avivbintangaringga/nixos-hardware/fa506ic-fix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
