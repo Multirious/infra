@@ -19,14 +19,14 @@ top: {
 
         userDirs = {
           enable = true;
-          desktop = "desktop";
-          documents = "documents";
-          download = "download";
-          music = "music";
-          pictures = "pictures";
-          publicShare = "public";
-          templates = "templates";
-          videos = "videos";
+          desktop = "${homeDir}/desktop";
+          documents = "${homeDir}/documents";
+          download = "${homeDir}/download";
+          music = "${homeDir}/music";
+          pictures = "${homeDir}/pictures";
+          publicShare = "${homeDir}/public";
+          templates = "${homeDir}/templates";
+          videos = "${homeDir}/videos";
         };
       };
     };
