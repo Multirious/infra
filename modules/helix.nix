@@ -18,13 +18,11 @@ top: {
       };
       config = {
         home.packages = [
-          (pkgs.helix.overrideAttrs (
-            final: prev: {
-              patches = prev.patches ++ [
-                ./helix/catppuccin_mocha.patch
-              ];
-            }
-          ))
+          (pkgs.helix.overrideAttrs (prev: {
+            patches = (prev.patches or [ ]) ++ [
+              ./helix/catppuccin_mocha.patch
+            ];
+          }))
         ];
         xdg.configFile."helix/config.toml".text = cfg.config;
         xdg.configFile."helix/languages.toml".text = cfg.languages;
