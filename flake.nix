@@ -51,6 +51,11 @@
       url = "github:zsh-users/zsh-syntax-highlighting";
       flake = false;
     };
+
+    # noita_entangled_worlds = {
+    #   url = "github:IntQuant/noita_entangled_worlds";
+    #   # inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =
