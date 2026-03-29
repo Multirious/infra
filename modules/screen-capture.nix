@@ -6,6 +6,8 @@ top: {
     {
       home.packages = [
         (pkgs.flameshot.override { enableWlrSupport = true; })
+        pkgs.grim
+        pkgs.slurp
       ];
       xdg.configFile."flameshot/flameshot.conf".text =
         # ini
