@@ -12,6 +12,10 @@ top: {
             monitor = eDP-1
             path = ${./wallpapers/desert_lake.jpg}
           }
+          wallpaper {
+            monitor = HDMI-A-1
+            path = ${./wallpapers/desert_lake.jpg}
+          }
         '';
     };
 }
