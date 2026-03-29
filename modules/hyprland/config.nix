@@ -252,8 +252,7 @@ top: {
             float = true
             pin = true
             size = 400 560
-            move = cursor_x cursor_y
-            # windowrulev2 = move onscreen cursor 50% 50%, class:nz.co.mega.
+            move = cursor_x cursor_y-560
           }
 
           windowrule = match:class org.keepassxc.KeePassXC, no_screen_share true
