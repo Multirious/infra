@@ -8,6 +8,7 @@ top: {
       xdg.configFile."hypr/hyprpaper.conf".text =
         # hyprlang
         ''
+          splash = false
           wallpaper {
             monitor = eDP-1
             path = ${./wallpapers/desert_lake.jpg}
