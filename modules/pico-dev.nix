@@ -1,5 +1,5 @@
 top: {
-  configurations.nixos.peach-asus.use = [ "picoDev" ];
+  # configurations.nixos.peach-asus.use = [ "picoDev" ];
 
   nixos.picoDev.module =
     { pkgs, ... }:
