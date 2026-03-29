@@ -2,8 +2,19 @@ top: {
   configurations.homeManager.peach.use = [ "kitty" ];
 
   homeManager.kitty.module =
-    { ... }:
+    { config, pkgs, ... }:
+    let
+      inherit (config.xdg) configHome;
+      kittyt = pkgs.writeShellScriptBin "kittyt" ''
+        kitty tmux -f '${configHome}/tmux/tmux.conf' new-session -A -s main
+      '';
+    in
     {
+      home.packages = [
+        pkgs.kitty
+        kittyt
+      ];
+
       xdg.configFile."kitty/kitty.conf".text = ''
         map alt+c send_text all \x1bc
 

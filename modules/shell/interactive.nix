@@ -80,15 +80,15 @@ top: {
 
               export PATH="$PATH:${configHome}/scripts"
 
-              if has-command tmux \
-                && [ -n "$PS1" ] \
-                && [[ ! "$TERM" =~ screen ]] \
-                && [[ ! "$TERM" =~ tmux ]] \
-                && [ -z "$TMUX" ] \
-                && [[ $XDG_SESSION_TYPE != "tty" ]]
-              then
-                tmux -f '${configHome}/tmux/tmux.conf' new-session -A -s main ; exit
-              fi
+              # if has-command tmux \
+              #   && [ -n "$PS1" ] \
+              #   && [[ ! "$TERM" =~ screen ]] \
+              #   && [[ ! "$TERM" =~ tmux ]] \
+              #   && [ -z "$TMUX" ] \
+              #   && [[ $XDG_SESSION_TYPE != "tty" ]]
+              # then
+              #   tmux -f '${configHome}/tmux/tmux.conf' new-session -A -s main ; exit
+              # fi
 
               if has-command starship; then
                 export STARSHIP_CACHE="${cacheHome}/starship"
