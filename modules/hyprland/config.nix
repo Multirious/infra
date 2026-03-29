@@ -1,9 +1,17 @@
 top: {
   homeManager.hyprland.module =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
-      inherit (config.xdg) configHome;
+      inherit (config.xdg) configHome userDirs;
       scriptsDir = "${configHome}/hypr/scripts";
+      screencapturetofile = pkgs.writeScript "screencapturetofile" ''
+        filename="${userDirs.pictures}/captures/$(date +'%Y-%m-%d_%H-%M-%S.png')"
+        grim -g "$(slurp -d)" "$filename"
+        echo "$filename" | wl-copy
+      '';
+      screencapture = pkgs.writeScript "screencapture" ''
+        grim -g "$(slurp -d)" - | wl-copy
+      '';
     in
     {
       xdg.configFile."hypr/hyprland.conf".text =
@@ -127,7 +135,8 @@ top: {
           bindel = ,XF86MonBrightnessUp  , exec, brightnessctl s 10%+
           bindel = ,XF86MonBrightnessDown, exec, brightnessctl s 10%-
 
-          bind = ,Print, exec, flameshot gui
+          bind = ,Print, exec, ${screencapture}
+          bind = CONTROL, Print, exec, ${screencapturetofile}
 
           bind = $mainMod, w, exec, ${scriptsDir}/rename-workspace-menu
 
@@ -249,13 +258,14 @@ top: {
 
           windowrule = match:class org.keepassxc.KeePassXC, no_screen_share true
 
-          windowrule {
-            name = flameshot
+          # windowrule {
+          #   name = flameshot
 
-            stay_focused = true
-            no_anim = true
-            workspace = special:flameshot
-          }
+          #   stay_focused = true
+          #   no_anim = true
+          #   # workspace = special:flameshot
+          #   float = true
+          # }
 
           windowrule = match:class discord,                 workspace special:discord silent
           windowrule = match:class org.keepassxc.KeePassXC, workspace special:keepassxc silent
