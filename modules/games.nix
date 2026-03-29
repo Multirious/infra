@@ -2,12 +2,22 @@ top: {
   configurations.homeManager.peach.use = [ "games" ];
 
   homeManager.games.module =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      ...
+    }:
+    let
+      steam = (
+        pkgs.steam.override {
+          extraEnv.HOME = "${config.xdg.dataHome}/steam";
+          extraPkgs = pkgs: config.fonts.packages;
+        }
+      );
+    in
     {
       home.packages = [
-        (pkgs.steam.override {
-          extraEnv.HOME = "${config.xdg.dataHome}/steam";
-        })
+        steam
         pkgs.protontricks
         # pkgs.prismlauncher
       ];
