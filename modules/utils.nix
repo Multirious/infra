@@ -13,7 +13,6 @@ top: {
         pkgs.eza
         pkgs.tldr
         pkgs.file
-        pkgs.direnv
         pkgs.jq
         pkgs.wget
         pkgs.btop
