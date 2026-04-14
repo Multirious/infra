@@ -7,6 +7,7 @@ top: {
       home.packages = [
         pkgs.gimp
         pkgs.inkscape
+        pkgs.kdePackages.kolourpaint
       ];
       xdg.mimeApps.defaultApplications = {
         "image/svg+xml" = "org.inkscape.Inkscape.desktop";
