@@ -8,16 +8,15 @@ top: {
       ...
     }:
     let
-      steam = (
-        pkgs.steam.override {
-          extraEnv.HOME = "${config.xdg.dataHome}/steam";
-          extraPkgs = pkgs: config.fonts.packages;
-        }
-      );
+      steam = pkgs.steam.override {
+        extraEnv.HOME = "${config.xdg.dataHome}/steam";
+        extraPkgs = pkgs: config.fonts.packages;
+      };
     in
     {
       home.packages = [
         steam
+        steam.run
         pkgs.protontricks
         pkgs.prismlauncher
         # top.inputs.noita_entangled_worlds.packages.${pkgs.stdenv.system}.noita-proxy
