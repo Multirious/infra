@@ -18,3 +18,9 @@ nix-full-update () {
   sudo nix-collect-garbage
   reboot
 }
+
+nix-shell-temp () {
+  temp_dir="$(mktemp -d)"
+  nix-shell "$@" --command "cd $temp_dir; return"
+  rm -rf "$temp_dir"
+}
