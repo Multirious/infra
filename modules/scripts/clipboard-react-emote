@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+input_path=$(mktemp)
+output_path=$(mktemp --suffix=.png)
+wl-paste > $input_path
+ffmpeg -i $input_path -vf scale=32:32 -y $output_path
+wl-copy < $output_path
+rm $input_path $output_path
+
