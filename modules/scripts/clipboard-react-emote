@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eo pipefail
+
 input_path=$(mktemp)
 output_path=$(mktemp --suffix=.png)
 wl-paste > $input_path
