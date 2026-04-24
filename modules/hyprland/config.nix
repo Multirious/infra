@@ -169,7 +169,7 @@ top: {
           }
 
           general {
-          	border_size = 0
+          	border_size = 5
           	resize_on_border = true
           }
 
