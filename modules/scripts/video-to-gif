@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+print_usage() {
+  echo "Usage: $0 [OPTIONS] <INPUT> <OUTPUT>"
+  echo "Options:"
+  echo "  -f, --fps   <FPS>   The gif's fps"
+  echo "  -s, --scale <SCALE> The gif's scale"
+}
+
+print_error() {
+  echo "$1" 1>&2
+}
+
+positional_args=()
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -f|--fps) fps="$2"; shift; shift;;
+    -s|--scale) scale="$2"; shift; shift;;
+    -*|--*) print_error "Error: Unknown option $1"; print_usage; exit 1;;
+    *) positional_args+=("$1"); shift;; # save positional parameters
+  esac
+done
+set -- "${positional_args[@]}" # restore positional parameters
+
+fps="${fps:-10}"
+scale="${scale:-100}"
+
+[[ -z "$1" ]] && print_usage && exit 1
+input="$1"
+
+[[ -z "$2" ]] && print_usage && exit 1
+output="$2"
+
+ffmpeg -i "$input"
+	-filter_complex
+	"fps=$fps,scale=$scale:-1:flags=lanczos,split [o1] [o2]; \
+	[o1] palettegen [p]; \
+	[o2] [p] paletteuse" \
+	"$output"
