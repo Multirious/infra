@@ -1,89 +1,121 @@
 #!/usr/bin/env bash
 
-nix_mode="auto"
-pure="false"
+set -eo pipefail
 
-phases=
-default_phases="false"
+print_usage() {
+  echo ""
+  echo "Evaluate a Nix derivation and initialize temporary directory including \$out then put user in nix-shell"
+  echo ""
+  echo "If --flake or --expr is not provided, searches for"
+  echo "  1. default.nix"
+  echo "  2. flake.nix"
+  echo ""
+  echo "Usage: $0 [OPTIONS] [<ATTR>]"
+  echo "Options:"
+  echo "  -f, --flake       Use flake"
+  echo "  -p, --pure        Run nix-shell in pure evaluation"
+  echo "  --expr <EXPR>     Nix expression that evaluates to a derivation, ignores <ATTR>"
+  echo "  --phases <PHASES> Phases to run"
+  echo "  --default-phases  Run default phases. Overriden by --phases"
+  echo "  --print-phases    Just print phases that is defined and don't do anything else."
+  echo "                    Phases that are disabled will still be returned"
+}
+
+print_error() {
+  echo "$1" 1>&2
+}
 
 positional_args=()
 while [[ $# -gt 0 ]]; do
-  case $1 in
-    -f|--flake)
-      nix_mode="flake"
-      shift
-      ;;
-    -p|--pure)
-      pure="true"
-      shift
-      ;;
-    --phases)
-      phases="$2"
-      shift
-      shift
-      ;;
-    --default-phases)
-      default_phases="true"
-      shift
-      ;;
-    -*|--*)
-      echo "Unknown option $1"
-      exit 1
-      ;;
-    *)
-      positional_args+=("$1") # save positional arg
-      shift
-      ;;
+  case "$1" in
+    -f|--flake) nix_mode="flake"; shift;;
+    -p|--pure) pure="true"; shift;;
+    --expr) expr="$2"; shift; shift;;
+    --phases) phases="$2"; shift; shift;;
+    --default-phases) default_phases="true"; shift;;
+    --print-phases) print_phases="true"; shift;;
+    --expr) expr="$2"; shift; shift;;
+    -*|--*) print_error "Error: Unknown option $1"; print_usage; exit 1;;
+    *) positional_args+=("$1"); shift;; # save positional parameters
   esac
 done
-
 set -- "${positional_args[@]}" # restore positional parameters
 
-attribute="${1:-default}"
+nix_mode="${nix_mode:-auto}"
+pure="${pure:-false}"
+phases="${phases:-}"
+default_phases="${default_phases:-false}"
+print_phases="${print_phases:-false}"
 
-if [ "$nix_mode" = "auto" ]; then
-  if [ -f "$(pwd)/default.nix" ]; then
+if [[ "$nix_mode" = "auto" ]]; then
+  if [[ -f "$(pwd)/default.nix" ]]; then
     nix_mode="default"
-  elif [ -f "$(pwd)/flake.nix" ]; then
+  elif [[ -f "$(pwd)/flake.nix" ]]; then
     nix_mode="flake"
+  elif [[ -n "$expr" ]]; then
+    nix_mode="expr"
   else
-    echo "Neither flake.nix nor default.nix found" 1>&2
+    print_error "Error: Neither flake.nix, default.nix found nor --expr provided"
+    print_usage
     exit 1
   fi
 fi
 
-if [ "$nix_mode" == "flake" ]; then
+if [[ "$nix_mode" == "flake" ]]; then
+  attribute="${attribute:-default}"
   expr="
     let
       flake = builtins.getFlake \"$(pwd)\";
     in
-    flake.packages.\${builtins.currentSystem}.$attribute
+    flake.packages.\${builtins.currentSystem}.\"$attribute\"
   "
-elif [ "$nix_mode" == "default" ]; then
+elif [[ "$nix_mode" == "default" ]]; then
+  attribute="${attribute:-default}"
   expr="
-    (import ./default.nix {}).$attribute
+    (import ./default.nix {}).\"$attribute\"
   "
+elif [[ "$nix_mode" == "expr" ]]; then
+  :
 else
-  echo "Unimplemented" 1>&2
+  print_error "Error: Unknown nix mode: $nix_mode"
   exit 1
 fi
 
 temp_out_dir=$(mktemp -d)
 temp_dir=$(mktemp -d)
 
-if [ -n "$phases" ]; then
-  command="export out=$temp_out_dir; cd $temp_dir; phases="$phases" genericBuild; return"
-elif [ "$default_phases" = "true" ]; then
-  command="export out=$temp_out_dir; cd $temp_dir; phases= genericBuild; return"
+if [[ "$print_phases" == "true" ]]; then
+  command="\
+    definePhases;
+    echo \$phases;
+  "
+elif [[ -n "$phases" ]]; then
+  command="\
+    export out=$temp_out_dir;
+    cd $temp_dir;
+    phases="$phases" genericBuild;
+    return
+  "
+elif [[ "$default_phases" == "true" ]]; then
+  command="
+    export out=$temp_out_dir;
+    cd $temp_dir;
+    phases= genericBuild;
+    return
+  "
 else
-  command="export out=$temp_out_dir; cd $temp_dir; return"
+  command="
+    export out=$temp_out_dir;
+    cd $temp_dir;
+    return
+  "
 fi
 
-if [ "$pure" = "false" ]; then
+if [[ "$pure" = "false" ]]; then
   nix-shell \
     --expr "$expr" \
     --command "$command"
-elif [ "$pure" = "true" ]; then
+elif [[ "$pure" = "true" ]]; then
   nix-shell \
     --expr "$expr" \
     --pure \
