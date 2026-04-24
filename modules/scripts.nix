@@ -13,6 +13,10 @@ top: {
           executable = true;
           source = ./scripts/clipboard-react-emote;
         };
+        "scripts/video-to-gif" = {
+          executable = true;
+          source = ./scripts/video-to-gif;
+        };
       };
     };
 }
