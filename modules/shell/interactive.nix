@@ -40,6 +40,7 @@ top: {
               alias lla='eza -lga'
               alias la='eza -a'
               alias l='lla'
+              alias lnew='l --sort=newest'
 
               alias grep='grep --color=auto'
 
