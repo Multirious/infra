@@ -141,6 +141,8 @@ top: {
             [keys.normal.space]
             f = "file_picker_in_current_directory"
             "S-f" = "file_picker"
+            # git blame
+            B = ":sh git log -n 5 --format='format:%%h (%%an: %%ar) %%s' --no-patch -L%{cursor_line},+1:%{buffer_name}"
           '';
       };
     };
