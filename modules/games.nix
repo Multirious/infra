@@ -19,6 +19,7 @@ top: {
         steam.run
         pkgs.protontricks
         pkgs.prismlauncher
+        pkgs.mindustry
         # top.inputs.noita_entangled_worlds.packages.${pkgs.stdenv.system}.noita-proxy
       ];
       xdg.dataFile."Steam/compatibilitytools.d/GE-Proton10-25".source = fetchTarball {
