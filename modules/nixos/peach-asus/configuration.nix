@@ -124,6 +124,10 @@ top: {
         hosts = { };
       };
 
+      # Debloat
+      systemd.network.wait-online.enable = false;
+      boot.initrd.systemd.network.wait-online.enable = false;
+
       # services.samba = {
       #   enable = true;
       #   securityType = "user";
