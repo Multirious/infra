@@ -103,6 +103,8 @@ top: {
             10999 # dont starve together
 
             443 # ssl
+
+            7790 # casualty unknown coop mod
           ];
           allowedUDPPorts = [
             80 # web
@@ -114,6 +116,8 @@ top: {
             10999 # dont starve together
 
             17771 # logmein hamachi relay
+
+            7790 # casualty unknown coop mod
           ];
           allowPing = true;
         };
