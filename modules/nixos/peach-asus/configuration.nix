@@ -28,7 +28,7 @@ top: {
       programs.gnupg.agent.enableSSHSupport = true;
 
       services.openssh.enable = true;
-      services.logmein-hamachi.enable = true;
+      # services.logmein-hamachi.enable = true;
       services.flatpak.enable = true;
 
       users.groups = {
