@@ -1,5 +1,14 @@
 top: {
   configurations.nixos.peach-asus.use = [ "keyboard" ];
+  configurations.homeManager.peach.use = [ "keyboard" ];
+
+  homeManager.keyboard.module =
+    { pkgs, ... }:
+    {
+      home.packages = [
+        pkgs.zmk-studio
+      ];
+    };
 
   nixos.keyboard.module =
     { ... }:
