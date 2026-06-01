@@ -20,6 +20,7 @@ top: {
         pkgs.zbar
         pkgs.fd
         pkgs.ncdu
+        pkgs.ranger
       ];
     };
 }
