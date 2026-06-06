@@ -84,6 +84,21 @@ top: {
           bind -n M-[ previous-window
           bind -n M-] next-window
 
+          bind -n M-Left select-pane -L
+          bind -n M-Right select-pane -R
+          bind -n M-Up select-pane -U
+          bind -n M-Down select-pane -D
+
+          bind -n M-S-Left run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -L; tmux swap-pane -t $old'
+          bind -n M-S-Right run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -R; tmux swap-pane -t $old'
+          bind -n M-S-Up run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -U; tmux swap-pane -t $old'
+          bind -n M-S-Down run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -D; tmux swap-pane -t $old'
+
+          bind -n M-C-Left resize-pane -L 1
+          bind -n M-C-Right resize-pane -R 1
+          bind -n M-C-Up resize-pane -U 1
+          bind -n M-C-Down resize-pane -D 1
+
           bind -n M-C-h resize-pane -L 1
           bind -n M-C-j resize-pane -D 1
           bind -n M-C-k resize-pane -U 1
