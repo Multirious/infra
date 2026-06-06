@@ -10,6 +10,15 @@ top: {
     }:
     let
       cfg = config.me.helix;
+      catppuccin_mocha_fix = pkgs.applyPatches {
+        src = pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "helix";
+          rev = "91e071bf9b9b2b8ae176a5581fcb61c789c55cab";
+          hash = "sha256-F05ohJp7c9Pdnjq8+srfhAt1ogHjjBz50k1ftHOHGVg=";
+        };
+        patches = [ ./helix/catppuccin_mocha.patch ];
+      };
     in
     {
       options = {
@@ -18,14 +27,12 @@ top: {
       };
       config = {
         home.packages = [
-          (pkgs.helix.overrideAttrs (prev: {
-            patches = (prev.patches or [ ]) ++ [
-              ./helix/catppuccin_mocha.patch
-            ];
-          }))
+          pkgs.helix
         ];
         xdg.configFile."helix/config.toml".text = cfg.config;
         xdg.configFile."helix/languages.toml".text = cfg.languages;
+        xdg.configFile."helix/themes/catppuccin_mocha_fix.toml".source =
+          "${catppuccin_mocha_fix}/themes/default/catppuccin_mocha.toml";
 
         xdg.desktopEntries.Helix = {
           name = "Helix";
@@ -71,7 +78,7 @@ top: {
         me.helix.config =
           # toml
           ''
-            theme = "catppuccin_mocha"
+            theme = "catppuccin_mocha_fix"
 
             [editor]
             line-number = "relative"
