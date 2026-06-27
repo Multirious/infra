@@ -83,6 +83,8 @@ top: {
 
           bind -n M-[ previous-window
           bind -n M-] next-window
+          bind -n M-PgUp next-window
+          bind -n M-PgDn previous-window
 
           bind -n M-Left select-pane -L
           bind -n M-Right select-pane -R
