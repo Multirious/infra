@@ -19,8 +19,18 @@ top: {
         ''
           # source = ~/.local/state/hyprland/plugins.conf
 
-          monitor=eDP-1, 1920x1080@144, 0x0, 1
-          monitor=HDMI-A-1, preferred, auto, 1
+          monitorv2 {
+            output = eDP-1
+            mode = 1920x1080@144
+            position = 0x0
+            scale = 1
+          }
+          monitorv2 {
+            output = HDMI-A-1
+            mode = preferred
+            position = auto
+            scale = 1
+          }
 
           $terminal = kittyt
           $web_browser = librewolf
@@ -347,6 +357,22 @@ top: {
                 key = "k";
                 desc = "Move to KeepassXC";
                 cmd = "hyprctl dispatch movetoworkspace special:keepassxc";
+              }
+            ];
+          }
+          {
+            key = "m";
+            desc = "Monitor";
+            submenu = [
+              {
+                key = "m";
+                desc = "Make HDMI Mirror main monitor";
+                cmd = "hyprctl keyword monitor HDMI-A-1, preferred, auto, 1, mirror, eDP-1";
+              }
+              {
+                key = "s";
+                desc = "Make HDMI Second Monitor";
+                cmd = "hyprctl keyword monitor HDMI-A-1, preferred, auto, 1";
               }
             ];
           }
