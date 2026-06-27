@@ -60,6 +60,9 @@ top: {
               alias gpu='git pull'
               alias gd='git diff'
               alias gdc='git diff --cached'
+              alias gsw='git switch'
+              alias gswc='git switch --create'
+              alias gb='git branch'
 
               alias dev='tmux_develop'
 
