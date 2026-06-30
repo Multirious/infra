@@ -48,12 +48,12 @@ default_phases="${default_phases:-false}"
 print_phases="${print_phases:-false}"
 
 if [[ "$nix_mode" = "auto" ]]; then
-  if [[ -f "$(pwd)/default.nix" ]]; then
+  if [[ -n "$expr" ]]; then
+    nix_mode="expr"
+  elif [[ -f "$(pwd)/default.nix" ]]; then
     nix_mode="default"
   elif [[ -f "$(pwd)/flake.nix" ]]; then
     nix_mode="flake"
-  elif [[ -n "$expr" ]]; then
-    nix_mode="expr"
   else
     print_error "Error: Neither flake.nix, default.nix found nor --expr provided"
     print_usage
