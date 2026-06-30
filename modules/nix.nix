@@ -3,11 +3,17 @@ top: {
   configurations.nixos.peach-asus.use = [ "nix" ];
 
   homeManager.nix.module =
-    { ... }:
+    { pkgs, ... }:
     {
-      programs.nix-index.enable = true;
-      programs.nix-index.enableBashIntegration = false;
-      programs.nix-index.enableZshIntegration = false;
+      home.packages = [
+        pkgs.patchelf
+        top.inputs.nix-alien.packages.${pkgs.stdenv.system}.nix-alien
+      ];
+      programs.nix-index = {
+        enable = true;
+        enableBashIntegration = false;
+        enableZshIntegration = false;
+      };
     };
 
   nixos.nix.module =
