@@ -113,6 +113,8 @@ top: {
 
           bind-key -n "M-{" "swap-window -t -1 ; previous-window"
           bind-key -n "M-}" "swap-window -t +1 ; next-window"
+          bind-key -n M-S-PgDn "swap-window -t -1 ; previous-window"
+          bind-key -n M-S-PgUp "swap-window -t +1 ; next-window"
 
           bind h split-window -v -c "#{pane_current_path}" 
           bind v split-window -h -c "#{pane_current_path}"
