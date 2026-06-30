@@ -132,6 +132,10 @@ top: {
             "C-l" = "jump_view_right"
             "C-k" = "jump_view_up"
             "C-j" = "jump_view_down"
+            "C-left" = "jump_view_left"
+            "C-right" = "jump_view_right"
+            "C-up" = "jump_view_up"
+            "C-down" = "jump_view_down"
 
             [keys.normal."C-w"]
             h = "hsplit"
@@ -141,6 +145,10 @@ top: {
             "C-l" = "jump_view_right"
             "C-k" = "jump_view_up"
             "C-j" = "jump_view_down"
+            "C-left" = "jump_view_left"
+            "C-right" = "jump_view_right"
+            "C-up" = "jump_view_up"
+            "C-down" = "jump_view_down"
 
             [keys.normal."+"]
             l = ":lsp-restart"
