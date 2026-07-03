@@ -67,6 +67,7 @@ top: {
             hl.dispatch(hl.dsp.alter_zorder({ mode = "top" }))
           end)
           hl.bind(mainMod .. " + f", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+          hl.bind(mainMod .. " + z", hl.dsp.window.fullscreen({ mode = "maximized" }))
           hl.bind(mainMod .. " + a", hl.dsp.exec_cmd(files_browser))
 
           local directions = { "right", "left", "up", "down" }
@@ -181,12 +182,22 @@ top: {
             no_screen_share = true,
           })
 
+          hl.window_rule({
+            name = "Thunderbird notifications"
+            match = {
+              class = "thunderbird",
+              initial_title = "Calendar Reminders",
+            },
+            float = true,
+            pin = true,
+          })
+
           hl.window_rule({ match = { title = "Noita Entangled Worlds Proxy" }, float = true })
 
           hl.window_rule({ match = { class = "discord" },                 workspace = "special:discord silent" })
           hl.window_rule({ match = { class = "org.keepassxc.KeePassXC" }, workspace = "special:keepassxc silent" })
           hl.window_rule({ match = { class = "de.feschber.LanMouse" },    workspace = "special:lanmouse silent" })
-          hl.window_rule({ match = { class = "geary" },                   workspace = "special:geary silent" })
+          hl.window_rule({ match = { class = "thunderbird" },             workspace = "special:thunderbird silent" })
 
           hl.layer_rule({ match = { namespace = "notifications" }, animation = "slide" })
 
@@ -194,7 +205,7 @@ top: {
 
           hl.workspace_rule({ workspace = "special:discord", on_created_empty = "discord"})
           hl.workspace_rule({ workspace = "special:keepassxc", on_created_empty = "keepassxc"})
-          hl.workspace_rule({ workspace = "special:geary", on_created_empty = "geary"})
+          hl.workspace_rule({ workspace = "special:thunderbird", on_created_empty = "thunderbird"})
 
           hl.env("GBM_BACKEND", "nvidia-drm")
           hl.env("LIBVA_DRIVER_NAME", "nvidia")
@@ -242,13 +253,13 @@ top: {
               }
               {
                 key = "m";
-                desc = "Geary";
-                cmd = "hyprctl dispatch 'hl.dsp.workspace.toggle_special(\"geary\")'";
+                desc = "Thunderbird";
+                cmd = "hyprctl dispatch 'hl.dsp.workspace.toggle_special(\"thunderbird\")'";
               }
               {
                 key = "M";
-                desc = "Move to Geary";
-                cmd = "hyprctl dispatch 'hl.dsp.move({ workspace = \"special:geary\"})'";
+                desc = "Move to Thunderbird";
+                cmd = "hyprctl dispatch 'hl.dsp.move({ workspace = \"special:thunderbird\"})'";
               }
               {
                 key = "k";

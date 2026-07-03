@@ -5,7 +5,7 @@ top: {
     { pkgs, ... }:
     {
       home.packages = [
-        pkgs.geary
+        pkgs.thunderbird
       ];
     };
 }
