@@ -45,7 +45,7 @@ top: {
 
           hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal)) 
           hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("wlr-which-key"))
-          hl.bind(mainMod .. " + s", hl.dsp.exec_cmd("wlr-which-key --initial-key s"))
+          hl.bind(mainMod .. " + s", hl.dsp.exec_cmd("wlr-which-key --initial-keys s"))
           hl.bind(mainMod .. " + r", hl.dsp.exec_cmd("pkill wofi || wofi"))
           hl.bind(mainMod .. " + bracketleft", hl.dsp.pass({ window = "class:^(com\\.obsproject\\.Studio)$" }))
           hl.bind(mainMod .. " + bracketright", hl.dsp.pass({ window = "class:^(com\\.obsproject\\.Studio)$" }))
@@ -94,6 +94,7 @@ top: {
             general = {
             	border_size = 5,
             	resize_on_border = true,
+            	layout = "scrolling",
             },
             decoration = {
             	rounding = 20,
@@ -125,7 +126,7 @@ top: {
           hl.animation({ leaf = "windowsIn"       , enabled = true, speed = 4, bezier = "cubicInout" })
           hl.animation({ leaf = "windowsOut"      , enabled = true, speed = 4, bezier = "cubicInout" })
           hl.animation({ leaf = "windowsMove"     , enabled = true, speed = 4, bezier = "expoOut" })
-          hl.animation({ leaf = "workspaces"      , enabled = true, speed = 4, bezier = "expoOut"   , style = "slide" })
+          hl.animation({ leaf = "workspaces"      , enabled = true, speed = 4, bezier = "expoOut"   , style = "slidevert" })
           hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 4, bezier = "cubicInout", style = "slidefadevert 30%" })
 
           hl.animation({ leaf = "layers"          , enabled = true, speed = 2, bezier = "cubicInout", style = "fade" })
@@ -191,9 +192,9 @@ top: {
 
           hl.workspace_rule({ workspace = "s[true]", gaps_out = 70 })
 
-          hl.workspace_rule({ workspace = "special:discord", on_created_empty = "discord "})
-          hl.workspace_rule({ workspace = "special:keepassxc", on_created_empty = "keepassxc "})
-          hl.workspace_rule({ workspace = "special:geary", on_created_empty = "geary "})
+          hl.workspace_rule({ workspace = "special:discord", on_created_empty = "discord"})
+          hl.workspace_rule({ workspace = "special:keepassxc", on_created_empty = "keepassxc"})
+          hl.workspace_rule({ workspace = "special:geary", on_created_empty = "geary"})
 
           hl.env("GBM_BACKEND", "nvidia-drm")
           hl.env("LIBVA_DRIVER_NAME", "nvidia")
@@ -232,32 +233,32 @@ top: {
               {
                 key = "d";
                 desc = "Discord";
-                cmd = "hyprctl dispatch togglespecialworkspace discord";
+                cmd = "hyprctl dispatch 'hl.dsp.workspace.toggle_special(\"discord\")'";
               }
               {
                 key = "D";
                 desc = "Move to Discord";
-                cmd = "hyprctl dispatch movetoworkspace special:discord";
+                cmd = "hyprctl dispatch 'hl.dsp.move({ workspace = \"special:discord\"})'";
               }
               {
                 key = "m";
                 desc = "Geary";
-                cmd = "hyprctl dispatch togglespecialworkspace geary";
+                cmd = "hyprctl dispatch 'hl.dsp.workspace.toggle_special(\"geary\")'";
               }
               {
                 key = "M";
                 desc = "Move to Geary";
-                cmd = "hyprctl dispatch movetoworkspace special:geary";
+                cmd = "hyprctl dispatch 'hl.dsp.move({ workspace = \"special:geary\"})'";
               }
               {
                 key = "k";
                 desc = "KeepassXC";
-                cmd = "hyprctl dispatch togglespecialworkspace keepassxc";
+                cmd = "hyprctl dispatch 'hl.dsp.workspace.toggle_special(\"keepassxc\")'";
               }
               {
                 key = "k";
                 desc = "Move to KeepassXC";
-                cmd = "hyprctl dispatch movetoworkspace special:keepassxc";
+                cmd = "hyprctl dispatch 'hl.dsp.move({ workspace = \"special:keepassxc\"})'";
               }
             ];
           }
@@ -268,12 +269,32 @@ top: {
               {
                 key = "m";
                 desc = "Make HDMI Mirror main monitor";
-                cmd = "hyprctl keyword monitor HDMI-A-1, preferred, auto, 1, mirror, eDP-1";
+                cmd = ''
+                  hyprctl eval '
+                    hl.monitor({
+                      output = "HDMI-A-1",
+                      mode = "preferred",
+                      position = "auto",
+                      scale = 1,
+                      mirror = "eDP-1",
+                    })
+                  '
+                '';
               }
               {
                 key = "s";
                 desc = "Make HDMI Second Monitor";
-                cmd = "hyprctl keyword monitor HDMI-A-1, preferred, auto, 1";
+                cmd = ''
+                  hyprctl eval '
+                    hl.monitor({
+                      output = "HDMI-A-1",
+                      mode = "preferred",
+                      position = "auto",
+                      scale = 1,
+                      mirror = "",
+                    })
+                  '
+                '';
               }
             ];
           }
