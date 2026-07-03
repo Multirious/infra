@@ -30,7 +30,7 @@ top: {
             current_special_workspace="$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .specialWorkspace.name')"
             [ -z $current_special_workspace ] && exit
             name="$(printf '%s' "$current_special_workspace" | sed 's/special://')"
-            hyprctl dispatch togglespecialworkspace "$name"
+            hyprctl dispatch "hl.dsp.workspace.toggle_special(\"$name\")"
           '';
       };
     };
