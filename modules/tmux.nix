@@ -78,6 +78,26 @@ top: {
               send -X cursor-right
               if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
             '';
+          Left = # bash
+            ''
+              send -X cursor-left
+              if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
+            '';
+          Down = # bash
+            ''
+              send -X cursor-down
+              if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
+            '';
+          Up = # bash
+            ''
+              send -X cursor-up
+              if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
+            '';
+          Right = # bash
+            ''
+              send -X cursor-right
+              if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
+            '';
           w = # bash
             ''
               if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
