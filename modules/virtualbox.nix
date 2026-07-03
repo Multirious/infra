@@ -1,5 +1,5 @@
 top: {
-  # configurations.nixos.peach-asus.use = [ "virtualbox" ];
+  configurations.nixos.peach-asus.use = [ "virtualbox" ];
 
   nixos.virtualbox.module =
     { ... }:
