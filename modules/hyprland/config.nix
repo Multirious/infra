@@ -183,7 +183,7 @@ top: {
           })
 
           hl.window_rule({
-            name = "Thunderbird notifications"
+            name = "Thunderbird notifications",
             match = {
               class = "thunderbird",
               initial_title = "Calendar Reminders",
