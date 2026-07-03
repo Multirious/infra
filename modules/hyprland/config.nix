@@ -14,8 +14,8 @@ top: {
       '';
     in
     {
-      # xdg.configFile."hypr/hyprland.conf".enable = false;
       xdg.configFile."hypr/hyprland.conf".force = true;
+      xdg.configFile."hypr/hyprland.conf".enable = false;
       xdg.configFile."hypr/hyprland.conf".text =
         # (hyprlang doesnt work, better than nothing) bash
         ''
@@ -322,7 +322,7 @@ top: {
           }
         '';
 
-      xdg.configFile."hypr/hyprland.lua".enable = false;
+      xdg.configFile."hypr/hyprland.lua".enable = true;
       xdg.configFile."hypr/hyprland.lua".text =
         # lua
         ''
@@ -341,8 +341,7 @@ top: {
 
           local mainMod = "SUPER"
 
-          local teminal = "kittyt"
-          local web_browser = "librewolf"
+          local terminal = "kittyt"
           local files_browser = "nautilus"
           local left = "left"
           local right = "right"
@@ -351,7 +350,7 @@ top: {
           local left2 = "h"
           local down2 = "j"
           local up2 = "k"
-          local right = "l"
+          local right2 = "l"
 
           hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal)) 
           hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("wlr-which-key"))
@@ -360,7 +359,7 @@ top: {
           hl.bind(mainMod .. " + bracketleft", hl.dsp.pass({ window = "class:^(com\\.obsproject\\.Studio)$" }))
           hl.bind(mainMod .. " + bracketright", hl.dsp.pass({ window = "class:^(com\\.obsproject\\.Studio)$" }))
           hl.bind("Print", hl.dsp.exec_cmd("${screencapture}"))
-          hl.bind("control + Print", hl.dsp.exec_cmd("${screencapturetofile}"))
+          hl.bind("CONTROL + Print", hl.dsp.exec_cmd("${screencapturetofile}"))
 
           hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
           hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
@@ -370,7 +369,7 @@ top: {
           hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
           hl.bind(mainMod .. " + q", hl.dsp.window.close())
-          hl.bind(mainMod .. " + shift + space", hl.dsp.window.float())
+          hl.bind(mainMod .. " + SHIFT + space", hl.dsp.window.float())
           hl.bind(mainMod .. " + p", hl.dsp.window.pin())
           hl.bind(mainMod .. " + n", function()
             hl.dispatch(hl.dsp.cycle_next())
@@ -386,19 +385,19 @@ top: {
           do
             hl.bind(mainMod .. " + " .. directions_keys_1[i], hl.dsp.focus({ direction = directions[i] }))
             hl.bind(mainMod .. " + " .. directions_keys_2[i], hl.dsp.focus({ direction = directions[i] }))
-            hl.bind(mainMod .. " + shift + " .. directions_keys_1[i], hl.dsp.swap({ direction = directions[i] }))
-            hl.bind(mainMod .. " + shift + " .. directions_keys_2[i], hl.dsp.swap({ direction = directions[i] }))
+            hl.bind(mainMod .. " + SHIFT + " .. directions_keys_1[i], hl.dsp.window.swap({ direction = directions[i] }))
+            hl.bind(mainMod .. " + SHIFT + " .. directions_keys_2[i], hl.dsp.window.swap({ direction = directions[i] }))
           end
 
           for i = 1,10
           do
             local key = i % 10
-            hl.bind(mainMod .. " + " key, hl.dsp.focus({ workspace = i }))
-            hl.bind(mainMod .. " + shift + " key, hl.dsp.window.move({ workspace = i }))
+            hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+            hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
           end
 
-          hl.bind(mainMod .. " + mouse:272", hl.dsp.drag())
-          hl.bind(mainMod .. " + control + mouse:272", hl.dsp.resize())
+          hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag())
+          hl.bind(mainMod .. " + CONTROL + mouse:272", hl.dsp.window.resize())
 
           hl.config({
             general = {
@@ -409,7 +408,7 @@ top: {
             	rounding = 20,
             	rounding_power = 1.0,
             	inactive_opacity = 0.97,
-            	shadow {
+            	shadow = {
             		enabled = false,
             	},
             },
@@ -441,14 +440,14 @@ top: {
           hl.animation({ leaf = "layers"          , enabled = true, speed = 2, bezier = "cubicInout", style = "fade" })
           hl.animation({ leaf = "fadeLayers"      , enabled = true, speed = 2, bezier = "cubicInout" })
 
-          hl.windowrule({ match = { class = "discord", title = "Discord Popout"}, float = true })
-          hl.windowrule({ match = { title = "Picture-in-Picture"},                float = true })
-          hl.windowrule({ match = { class = "org.kde.dolphin"},                   float = true })
-          hl.windowrule({ match = { class = "de.feschber.LanMouse"},              float = true })
-          hl.windowrule({ match = { class = "blender"},                           float = true })
-          hl.windowrule({ match = { class = "org.gnome.Nautilus"},                float = true })
-          hl.windowrule({ match = { class = "Tor Browser"},                       float = true })
-          hl.windowrule({ match = { class = "zenity"},                            float = true })
+          hl.window_rule({ match = { class = "discord", title = "Discord Popout"}, float = true })
+          hl.window_rule({ match = { title = "Picture-in-Picture"},                float = true })
+          hl.window_rule({ match = { class = "org.kde.dolphin"},                   float = true })
+          hl.window_rule({ match = { class = "de.feschber.LanMouse"},              float = true })
+          hl.window_rule({ match = { class = "blender"},                           float = true })
+          hl.window_rule({ match = { class = "org.gnome.Nautilus"},                float = true })
+          hl.window_rule({ match = { class = "Tor Browser"},                       float = true })
+          hl.window_rule({ match = { class = "zenity"},                            float = true })
 
           hl.window_rule({
             name = "Kitty Helix Prompt",
@@ -461,7 +460,7 @@ top: {
           })
 
           hl.window_rule({
-            name = "Steam Friends List"
+            name = "Steam Friends List",
             match = {
               class = "steam",
               title = "Friends List",
@@ -499,7 +498,7 @@ top: {
 
           hl.layer_rule({ match = { namespace = "notifications" }, animation = "slide" })
 
-          hl.workspace_rule({ workspace = "s[true]", gapsout = 70 })
+          hl.workspace_rule({ workspace = "s[true]", gaps_out = 70 })
 
           hl.workspace_rule({ workspace = "special:discord", on_created_empty = "discord "})
           hl.workspace_rule({ workspace = "special:keepassxc", on_created_empty = "keepassxc "})
