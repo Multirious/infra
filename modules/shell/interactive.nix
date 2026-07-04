@@ -24,7 +24,6 @@ top: {
       };
       config = {
         xdg.configFile."shell/unix/tmux_functions".source = ./tmux_functions;
-        xdg.configFile."shell/unix/nix_functions".source = ./nix_functions;
         xdg.configFile."shell/unix/de_functions".source = ./de_functions;
 
         xdg.configFile."shell/unix/interactive".text =
@@ -79,7 +78,6 @@ top: {
               fi
 
               . '${configHome}/shell/unix/tmux_functions'
-              . '${configHome}/shell/unix/nix_functions'
               . '${configHome}/shell/unix/de_functions'
 
               export PATH="$PATH:${configHome}/scripts"
