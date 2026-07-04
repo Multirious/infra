@@ -65,14 +65,8 @@ top: {
               alias shx='sudo --preserve-env=EDITOR,TERM,TERMINFO,TERMINFO_DIRS,XDG_CONFIG_DIRS,XDG_DATA_DIRS,XDG_CONFIG_HOME,XDG_RUNTIME_DIR,WAYLAND_DISPLAY,DISPLAY,DBUS_SESSION_BUS_ADDRESS hx'
 
               alias hxi='hx ${homeDirectory}/infra'
-              alias hswitch='home-manager switch --flake ${homeDirectory}/infra'
 
               alias switchaud='${homeDirectory}/system-scripts/switch-audio-device'
-
-              if [ -f '/etc/NIXOS' ]; then
-                alias switch='sudo nixos-rebuild switch --flake ~/infra'
-                alias rswitch='sudo nixos-rebuild boot --flake ~/infra && reboot'
-              fi
 
               export PATH="$PATH:${configHome}/scripts"
 
