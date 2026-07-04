@@ -12,6 +12,7 @@ print_usage() {
   echo ""
   echo "Usage: $0 [OPTIONS] [<ATTR>]"
   echo "Options:"
+  echo "  -h, --help        Print this help message"
   echo "  -f, --flake       Use flake"
   echo "  -p, --pure        Run nix-shell in pure evaluation"
   echo "  --expr <EXPR>     Nix expression that evaluates to a derivation, ignores <ATTR>"
@@ -28,6 +29,7 @@ print_error() {
 positional_args=()
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    -h|--help) print_usage; exit 1;;
     -f|--flake) nix_mode="flake"; shift;;
     -p|--pure) pure="true"; shift;;
     --expr) expr="$2"; shift; shift;;
