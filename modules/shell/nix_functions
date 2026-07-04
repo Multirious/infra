@@ -10,15 +10,6 @@ nix-view () {
   cd $(nix-build '<nixpkgs>' --attr "$1" --no-out-link)
 }
 
-nix-full-update () {
-  sudo nix-collect-garbage
-  nix flake update --flake ~/infra
-  sudo nixos-rebuild boot
-  home-manager switch --flake ~/infra
-  sudo nix-collect-garbage
-  reboot
-}
-
 nix-shell-temp () {
   temp_dir="$(mktemp -d)"
   nix-shell "$@" --command "cd $temp_dir; return"
