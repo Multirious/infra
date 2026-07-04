@@ -25,6 +25,9 @@ top: {
           };
       };
       config = {
+        me.scripts = lib.mapAttrs (filename: _: { source = "${./scripts}/${filename}"; }) (
+          lib.filterAttrs (filename: filetype: filetype == "regular") (builtins.readDir ./scripts)
+        );
         home.packages = lib.attrValues (
           lib.mapAttrs (
             scriptName: module:
@@ -37,20 +40,5 @@ top: {
           ) config.me.scripts
         );
       };
-
-      # home.file = {
-      #   "scripts/debug-derivative" = {
-      #     executable = true;
-      #     source = ./scripts/debug-derivative;
-      #   };
-      #   "scripts/clipboard-react-emote" = {
-      #     executable = true;
-      #     source = ./scripts/clipboard-react-emote;
-      #   };
-      #   "scripts/video-to-gif" = {
-      #     executable = true;
-      #     source = ./scripts/video-to-gif;
-      #   };
-      # };
     };
 }
