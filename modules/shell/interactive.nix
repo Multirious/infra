@@ -23,7 +23,6 @@ top: {
         };
       };
       config = {
-        xdg.configFile."shell/unix/tmux_functions".source = ./tmux_functions;
         xdg.configFile."shell/unix/de_functions".source = ./de_functions;
 
         xdg.configFile."shell/unix/interactive".text =
@@ -63,7 +62,7 @@ top: {
               alias gswc='git switch --create'
               alias gb='git branch'
 
-              alias dev='tmux_develop'
+              alias dev='tmux-dev'
 
               alias shx='sudo --preserve-env=EDITOR,TERM,TERMINFO,TERMINFO_DIRS,XDG_CONFIG_DIRS,XDG_DATA_DIRS,XDG_CONFIG_HOME,XDG_RUNTIME_DIR,WAYLAND_DISPLAY,DISPLAY,DBUS_SESSION_BUS_ADDRESS hx'
 
@@ -77,7 +76,6 @@ top: {
                 alias rswitch='sudo nixos-rebuild boot --flake ~/infra && reboot'
               fi
 
-              . '${configHome}/shell/unix/tmux_functions'
               . '${configHome}/shell/unix/de_functions'
 
               export PATH="$PATH:${configHome}/scripts"

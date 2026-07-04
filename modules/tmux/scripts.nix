@@ -1,0 +1,56 @@
+top: {
+  configurations.homeManager.peach.use = [ "tmux" ];
+
+  homeManager.tmux.module =
+    { ... }:
+    {
+      me.scripts."tmux-new-dev-session".text = ''
+        #!/usr/bin/env bash
+        if [ ! $# -eq 2 ]; then
+          echo "Expecting a session name and a directory" >> /dev/stderr
+          return 1
+        fi
+
+        name="$1"
+        dir="$2"
+
+        tmux new-session -d -s "$name" -n "Develop" -c "$dir"
+        tmux split-window -t "$name" -h -c "$dir"
+        tmux send-keys -t "$name":1.1 "hx ." Enter
+        tmux new-window -t "$name":2 -n "Other" -c "$dir"
+
+        tmux select-window -t "$name":1
+        tmux select-pane -t "$name":1.1
+      '';
+      me.scripts."tmux-dev".text = ''
+        #!/usr/bin/env bash
+
+        if [ ! $# -eq 1 ]; then
+          echo "Expecting a directory" >> /dev/stderr
+          return 1
+        fi
+
+        dir="$(realpath "$1")"
+
+        if [ ! -d "$dir" ]; then
+          echo "Directory not found" >> /dev/stderr
+          return 1
+        fi
+
+        name="Develop $(basename "$dir")"
+
+        if tmux has-session -t="$name" 2>/dev/null; then
+          echo "Session $name already exists"
+          return 1
+        fi
+
+        tmux-new-dev-session "$name" "$dir"
+
+        if [ -n "$TMUX" ]; then
+          tmux switch -t="$name"
+        else
+          tmux attach-session -t="$name"
+        fi
+      '';
+    };
+}
