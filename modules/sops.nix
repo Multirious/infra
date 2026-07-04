@@ -1,5 +1,5 @@
 top: {
-  configurations.homeManager.peach.use = [ "sops" ];
+  # configurations.homeManager.peach.use = [ "sops" ];
   homeManager.sops.module =
     { config, ... }:
     {
