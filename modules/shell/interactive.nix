@@ -23,8 +23,6 @@ top: {
         };
       };
       config = {
-        xdg.configFile."shell/unix/de_functions".source = ./de_functions;
-
         xdg.configFile."shell/unix/interactive".text =
           # sh
           ''
@@ -75,8 +73,6 @@ top: {
                 alias switch='sudo nixos-rebuild switch --flake ~/infra'
                 alias rswitch='sudo nixos-rebuild boot --flake ~/infra && reboot'
               fi
-
-              . '${configHome}/shell/unix/de_functions'
 
               export PATH="$PATH:${configHome}/scripts"
 

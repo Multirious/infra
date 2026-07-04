@@ -1,5 +1,0 @@
-[[language]]
-name = "bash"
-file-types = [
-  { glob = "modules/shell/de_functions" },
-]
