@@ -5,7 +5,7 @@ top: {
     { pkgs, ... }:
     let
       inherit (pkgs) callPackage;
-      keyMapper = (modalKeyMappings: callPackage ./tmux/_key-mapper.nix { inherit modalKeyMappings; });
+      keyMapper = (modalKeyMappings: callPackage ./_key-mapper.nix { inherit modalKeyMappings; });
       modalKeyMappings =
         let
           extraVar = ''
