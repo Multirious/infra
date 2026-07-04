@@ -25,6 +25,9 @@ top: {
         (pkgs.writeTextFile {
           name = "99-steelseries-rival.rules";
           text = builtins.readFile "${pkgs.rivalcfg}/lib/udev/rules.d/99-rivalcfg.rules";
+          # text = builtins.readFile (
+          #   pkgs.runCommand "rivalcfg-udev" { } "${pkgs.rivalcfg}/bin/rivalcfg --print-udev > $out"
+          # );
           destination = "/etc/udev/rules.d/99-steelseries-rival.rules";
         })
       ];
