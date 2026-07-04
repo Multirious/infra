@@ -1,7 +1,11 @@
 top: {
   homeManager.helix.module =
-    { ... }:
+    { pkgs, ... }:
     {
+      home.packages = [
+        pkgs.lua-language-server
+      ];
+
       me.helix.languages =
         # toml
         ''
@@ -11,5 +15,3 @@ top: {
         '';
     };
 }
-
-
