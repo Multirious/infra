@@ -116,6 +116,8 @@ top: {
             	no_hardware_cursors = true
             },
             input =  {
+            	numlock_by_default = true,
+            	accel_profile = "flat",
             	kb_layout = "us,th",
             	kb_options = "grp:alt_space_toggle",
             },
