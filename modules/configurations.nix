@@ -7,13 +7,16 @@
 let
   classAspectsWith =
     module:
-    lib.types.lazyAttrsOf (
-      lib.types.submodule (
+    let
+      inherit (lib) types mkOption;
+    in
+    types.lazyAttrsOf (
+      types.submodule (
         lib.recursiveUpdate {
           options = {
-            module = lib.mkOption { type = lib.types.deferredModule; };
+            module = mkOption { type = types.deferredModule; };
             use = lib.mkOption {
-              type = lib.types.listOf lib.types.str;
+              type = types.listOf types.str;
               default = [ ];
             };
           };
@@ -22,13 +25,15 @@ let
     );
   classAspects = classAspectsWith { };
   useToImports =
-    className: use:
-    builtins.map (useAspectName: config.flake.modules."${className}"."${useAspectName}") use;
+    className: use: use |> map (useAspectName: config.flake.modules."${className}"."${useAspectName}");
   toFlakeModules =
     className:
-    lib.mapAttrs (aspectName: aspect: {
-      imports = [ aspect.module ] ++ (useToImports className aspect.use);
-    }) config."${className}";
+    config."${className}"
+    |> lib.mapAttrs (
+      aspectName: aspect: {
+        imports = [ aspect.module ] ++ (useToImports className aspect.use);
+      }
+    );
 in
 {
   options = {
