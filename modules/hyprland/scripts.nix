@@ -22,16 +22,13 @@ top: {
       # };
       xdg.configFile."hypr/scripts/close-current-special-workspace" = {
         executable = true;
-        text =
-          # bash
-          ''
-            #!/usr/bin/env bash
-
-            current_special_workspace="$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .specialWorkspace.name')"
-            [ -z $current_special_workspace ] && exit
-            name="$(printf '%s' "$current_special_workspace" | sed 's/special://')"
-            hyprctl dispatch "hl.dsp.workspace.toggle_special(\"$name\")"
-          '';
+        text = ''
+          #!/usr/bin/env bash
+          current_special_workspace="$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .specialWorkspace.name')"
+          [ -z $current_special_workspace ] && exit
+          name="$(printf '%s' "$current_special_workspace" | sed 's/special://')"
+          hyprctl dispatch "hl.dsp.workspace.toggle_special(\"$name\")"
+        '';
       };
     };
 }
