@@ -1,5 +1,4 @@
 top: {
-  homeManager.hyprland.use = [ "swaylock" ];
   homeManager.sway.use = [ "swaylock" ];
 
   homeManager.swaylock.module =
