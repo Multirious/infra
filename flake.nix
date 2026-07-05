@@ -67,6 +67,11 @@
     #   url = "github:IntQuant/noita_entangled_worlds";
     #   # inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+    keypeek = {
+      url = "github:srwi/keypeek";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
