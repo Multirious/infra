@@ -69,15 +69,30 @@ top: {
               if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
               send -X next-word
             '';
+          W = # bash
+            ''
+              if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
+              send -X next-space
+            '';
           e = # bash
             ''
               if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
               send -X next-word-end
             '';
+          E = # bash
+            ''
+              if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
+              send -X next-space-end
+            '';
           b = # bash
             ''
               if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
               send -X previous-word
+            '';
+          B = # bash
+            ''
+              if -F '#{!=:#{@mode},extend}' "send -X begin-selection"
+              send -X previous-space
             '';
           C-u = # bash
             ''
