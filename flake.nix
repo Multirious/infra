@@ -1,6 +1,12 @@
 {
   description = "My personal Linux infrastructure";
 
+  nixConfig = {
+    extra-exiperimental-features = [
+      "pipe-operators"
+    ];
+  };
+
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
