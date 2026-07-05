@@ -54,16 +54,20 @@ top: {
     #   };
     # in
     {
-      options = {
-        me.desktop.which-key.config = lib.mkOption {
-          type = lib.types.attrsOf (
-            lib.types.oneOf [
-              (lib.types.listOf lib.types.anything)
-              lib.types.anything
-            ]
-          );
+      options =
+        let
+          inherit (lib) mkOption types;
+        in
+        {
+          me.desktop.which-key.config = mkOption {
+            type = types.attrsOf (
+              types.oneOf [
+                (types.listOf types.anything)
+                types.anything
+              ]
+            );
+          };
         };
-      };
       config = {
         home.packages = [
           pkgs.wlr-which-key
