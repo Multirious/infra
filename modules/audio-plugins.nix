@@ -9,59 +9,51 @@ top: {
       ...
     }:
     let
-      inherit (pkgs.stdenv.hostPlatform) system;
       fileType =
         (pkgs.callPackage "${top.inputs.home-manager}/modules/lib/file-type.nix" {
           homeDirectory = config.home.homeDirectory;
         }).fileType;
-      myPackages = top.config.flake.packages."${system}";
+      pluginTypes = [
+        "vst"
+        "vst3"
+        "clap"
+        "windowsVst"
+        "windowsVst3"
+      ];
     in
     {
       options = {
-        me.audio.vstHome = lib.mkOption {
-          type = lib.types.path;
-          default = "${config.xdg.dataHome}/vst";
-        };
-        me.audio.vst3Home = lib.mkOption {
-          type = lib.types.path;
-          default = "${config.xdg.dataHome}/vst3";
-        };
-        me.audio.clapHome = lib.mkOption {
-          type = lib.types.path;
-          default = "${config.xdg.dataHome}/clap";
-        };
-        me.audio.vstFile = lib.mkOption {
-          type = fileType "me.audio.vstFile" "{var}`me.audio.vstHome`" config.me.audio.vstHome;
-          default = { };
-        };
-        me.audio.vst3File = lib.mkOption {
-          type = fileType "me.audio.vst3File" "{var}`me.audio.vst3Home`" config.me.audio.vst3Home;
-          default = { };
-        };
-        me.audio.clapFile = lib.mkOption {
-          type = fileType "me.audio.clapFile" "{var}`me.audio.clapHome`" config.me.audio.clapHome;
-          default = { };
-        };
+        me.audio =
+          let
+            genPluginTypes = lib.genAttrs' pluginTypes;
+            homeOptions = genPluginTypes (name: {
+              name = "${name}Home";
+              value = lib.mkOption {
+                type = lib.types.path;
+                default = "${config.xdg.dataHome}/${name}";
+              };
+            });
+            fileOptions = genPluginTypes (name: {
+              name = "${name}File";
+              value = lib.mkOption {
+                type = fileType "me.audio.${name}File" "{var}`me.audio.${name}Home`" config.me.audio."${name}Home";
+                default = { };
+              };
+            });
+          in
+          homeOptions // fileOptions;
       };
 
       config = {
-        home.packages = [
-          pkgs.yabridge
-          pkgs.yabridgectl
-        ];
-
-        me.audio.vstFile."Vital.so".source = "${pkgs.vital}/lib/vst/Vital.so";
-        me.audio.vst3File."Vital.vst3".source = "${pkgs.vital}/lib/vst3/Vital.vst3";
-        me.audio.vstFile."libsitala.so".source = "${myPackages.sitala}/lib/vst/libsitala.so";
-
-        home.file = lib.mkMerge [
-          (lib.mapAttrs' (
-            name: file: lib.nameValuePair "${config.me.audio.vstHome}/${name}" file
-          ) config.me.audio.vstFile)
-          (lib.mapAttrs' (
-            name: file: lib.nameValuePair "${config.me.audio.vst3Home}/${name}" file
-          ) config.me.audio.vst3File)
-        ];
+        home.file = lib.mkMerge (
+          map (
+            pluginType:
+            lib.mapAttrs' (name: file: {
+              name = "${config.me.audio."${pluginType}Home"}/${name}";
+              value = file;
+            }) config.me.audio."${pluginType}File"
+          ) pluginTypes
+        );
       };
     };
 }
