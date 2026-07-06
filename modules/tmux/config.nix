@@ -68,29 +68,48 @@ top: {
           unbind -T copy-mode-vi -a
           unbind -T copy-mode -a
 
-          bind -n M-h if -F '#{!=:#{window_zoomed_flag},1}' {
-            select-pane -L
+          is_hx="ps -o state= -o comm= -t '#{pane_tty}' \
+              | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?hx?x?|fzf)(diff)?$'"
+
+          bind-key -n M-h if "$is_hx" {
+            send-keys M-h
+          } {
+            if -F '#{!=:#{window_zoomed_flag},1}' 'select-pane -L'
           }
-          bind -n M-j if -F '#{!=:#{window_zoomed_flag},1}' {
-            select-pane -D
+          bind-key -n M-j if "$is_hx" {
+            send-keys M-j
+          } {
+            if -F '#{!=:#{window_zoomed_flag},1}' 'select-pane -D'
           }
-          bind -n M-k if -F '#{!=:#{window_zoomed_flag},1}' {
-            select-pane -U
+          bind-key -n M-k if "$is_hx" {
+            send-keys M-k
+          } {
+            if -F '#{!=:#{window_zoomed_flag},1}' 'select-pane -U'
           }
-          bind -n M-l if -F '#{!=:#{window_zoomed_flag},1}' {
-            select-pane -R
+          bind-key -n M-l if "$is_hx" {
+            send-keys M-l
+          } {
+            if -F '#{!=:#{window_zoomed_flag},1}' 'select-pane -R'
           }
-          bind -n M-Left if -F '#{!=:#{window_zoomed_flag},1}' {
-            select-pane -L
+          bind-key -n M-Left if "$is_hx" {
+            send-keys M-Left
+          } {
+            if -F '#{!=:#{window_zoomed_flag},1}' 'select-pane -L'
           }
-          bind -n M-Down if -F '#{!=:#{window_zoomed_flag},1}' {
-            select-pane -D
+          bind-key -n M-Down if "$is_hx" {
+            send-keys M-Down
+          } {
+            if -F '#{!=:#{window_zoomed_flag},1}' 'select-pane -D'
           }
-          bind -n M-Up if -F '#{!=:#{window_zoomed_flag},1}' {
-            select-pane -U
+          bind-key -n M-Up if "$is_hx" {
+            send-keys M-Up
+          } {
+            if -F '#{!=:#{window_zoomed_flag},1}' 'select-pane -U'
           }
-          bind -n M-Right if -F '#{!=:#{window_zoomed_flag},1}' {
-            select-pane -R
+          bind-key -n M-Right if "$is_hx" {
+            send-keys M-Right
+          } {
+            if -F '#{!=:#{window_zoomed_flag},1}' 'select-pane -R'
           }
 
           bind -n M-[ previous-window

@@ -43,7 +43,33 @@ top@{ inputs, ... }:
       xdg.configFile."helix/init.scm".text =
         # scheme
         ''
+          (require (prefix-in helix. "helix/commands.scm"))
+          (require (prefix-in helix.static. "helix/static.scm"))
+          (require (prefix-in helix.keymaps. "helix/keymaps.scm"))
+
           (require "${inputs.scooter-hx}/scooter.scm")
+
+          (require (prefix-in navigator. "${inputs.hx-tmux-navigator}/navigator.scm"))
+
+          (helix.keymaps.keymap (global)
+              (insert
+                (A-h ":navigator.move-left")
+                (A-l ":navigator.move-right")
+                (A-j ":navigator.move-down")
+                (A-k ":navigator.move-up")
+                (A-left ":navigator.move-left")
+                (A-right ":navigator.move-right")
+                (A-down ":navigator.move-down")
+                (A-up ":navigator.move-up"))
+              (normal
+                (A-h ":navigator.move-left")
+                (A-l ":navigator.move-right")
+                (A-j ":navigator.move-down")
+                (A-k ":navigator.move-up")
+                (A-left ":navigator.move-left")
+                (A-right ":navigator.move-right")
+                (A-down ":navigator.move-down")
+                (A-up ":navigator.move-up")))
         '';
     };
 }
