@@ -166,6 +166,14 @@ top: {
           bind -T copy-mode-vi C-c send -X cancel
           bind -T copy-mode-vi Escape set -up @current_keys \; set -up @mode
 
+          bind -T copy-mode-vi MouseDown1Pane    select-pane
+          bind -T copy-mode-vi MouseDrag1Pane    select-pane \; send-keys -X begin-selection
+          bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel
+          bind -T copy-mode-vi WheelDownPane     select-pane \; send-keys -X -N 5 scroll-down
+          bind -T copy-mode-vi WheelUpPane       select-pane \; send-keys -X -N 5 scroll-up
+          bind -T copy-mode-vi DoubleClick1Pane  select-pane \; send-keys -X select-word \; run-shell -d 0.3 \; send-keys -X copy-pipe-and-cancel
+          bind -T copy-mode-vi TripleClick1Pane  select-pane \; send-keys -X select-line \; run-shell -d 0.3 \; send-keys -X copy-pipe-and-cancel
+
           source-file -F "#{d:current_file}/helix.conf"
 
           set -g @a1 'orange'
