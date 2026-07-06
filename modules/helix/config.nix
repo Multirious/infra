@@ -7,7 +7,7 @@ top: {
 
         [editor]
         line-number = "relative"
-        mouse = false
+        mouse = true
         scrolloff = 8
         cursorline = true
         idle-timeout = 0
