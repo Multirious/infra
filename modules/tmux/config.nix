@@ -80,16 +80,23 @@ top: {
           bind -n M-l if -F '#{!=:#{window_zoomed_flag},1}' {
             select-pane -R
           }
+          bind -n M-Left if -F '#{!=:#{window_zoomed_flag},1}' {
+            select-pane -L
+          }
+          bind -n M-Down if -F '#{!=:#{window_zoomed_flag},1}' {
+            select-pane -D
+          }
+          bind -n M-Up if -F '#{!=:#{window_zoomed_flag},1}' {
+            select-pane -U
+          }
+          bind -n M-Right if -F '#{!=:#{window_zoomed_flag},1}' {
+            select-pane -R
+          }
 
           bind -n M-[ previous-window
           bind -n M-] next-window
           bind -n M-PgUp next-window
           bind -n M-PgDn previous-window
-
-          bind -n M-Left select-pane -L
-          bind -n M-Right select-pane -R
-          bind -n M-Up select-pane -U
-          bind -n M-Down select-pane -D
 
           bind -n M-S-Left run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -L; tmux swap-pane -t $old'
           bind -n M-S-Right run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -R; tmux swap-pane -t $old'
