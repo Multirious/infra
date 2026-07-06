@@ -29,20 +29,20 @@ top: {
 
           set -g monitor-activity off
           set -g monitor-bell on
-          set -g monitor-silence 120
+          # set -g monitor-silence 120
           set -g visual-bell off
-          set -g visual-silence on
+          # set -g visual-silence on
           set -g bell-action any
-          set -g silence-action other
+          # set -g silence-action other
           set -g activity-action none
 
           # run-shell -b 'while IFS= read -r line; do; result=$(echo "$line" | cut -d' ' -f1); echo "$result"; done < $(tmux show-hooks -g)'
 
-          set-hook -gu alert-silence
-          set-hook -ga alert-silence {
-            # hide that damn bar
-            display -d 1 '#[#{E:status-style}]#{E:status-format[0]}'
-          }
+          # set-hook -gu alert-silence
+          # set-hook -ga alert-silence {
+          #   # hide that damn bar
+          #   display -d 1 '#[#{E:status-style}]#{E:status-format[0]}'
+          # }
 
           set-hook -gu alert-bell
           set-hook -ga alert-bell {
