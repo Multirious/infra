@@ -72,6 +72,25 @@
       url = "github:srwi/keypeek";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    steel = {
+      url = "github:mattwparas/steel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    helix-with-steel = {
+      url = "github:codebam/helix/steel-event-system";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    scooter-hx = {
+      url = "github:thomasschafer/scooter.hx";
+      flake = false;
+    };
+    hx-tmux-navigator = {
+      url = "github:piotrkwarcinski/hx-tmux-navigator";
+      flake = false;
+    };
   };
 
   outputs =

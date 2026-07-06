@@ -27,7 +27,7 @@ top: {
       };
       config = {
         home.packages = [
-          pkgs.helix
+          top.inputs.helix-with-steel.packages.${pkgs.stdenv.system}.helix
         ];
         xdg.configFile."helix/config.toml".text = cfg.config;
         xdg.configFile."helix/languages.toml".text = cfg.languages;
@@ -74,7 +74,6 @@ top: {
             "text/xml" = [ "Helix.desktop" ];
           };
         };
-
       };
     };
 }
