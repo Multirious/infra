@@ -8,6 +8,7 @@ top: {
       home.packages = [
         pkgs.patchelf
         top.inputs.nix-alien.packages.${pkgs.stdenv.system}.nix-alien
+        pkgs.nix-output-monitor
       ];
       programs.nix-index = {
         enable = true;
