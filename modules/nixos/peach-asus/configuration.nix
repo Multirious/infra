@@ -4,7 +4,12 @@ top: {
     "laptop"
   ];
   configurations.nixos.peach-asus.module =
-    { pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       imports = [
         top.inputs.nixos-hardware.nixosModules.asus-fa506ic
@@ -127,6 +132,18 @@ top: {
       # Debloat
       systemd.network.wait-online.enable = false;
       boot.initrd.systemd.network.wait-online.enable = false;
+
+      security.sudo.extraRules = [
+        {
+          users = [ "peach" ];
+          commands = [
+            {
+              command = "${config.services.tlp.package}/bin/tlp";
+              options = [ "NOPASSWD" ];
+            }
+          ];
+        }
+      ];
 
       # services.samba = {
       #   enable = true;

@@ -138,6 +138,32 @@ top: {
                 }
               ];
             }
+            {
+              key = "c";
+              desc = "Config";
+              submenu = [
+                {
+                  key = "p";
+                  desc = "Power";
+                  submenu =
+                    let
+                      tlp = "$(readlink -f $(whereis tlp | awk '{print $2}'))";
+                    in
+                    [
+                      {
+                        key = "6";
+                        desc = "Set battery maximum charge to 60";
+                        cmd = "sudo -n ${tlp} setcharge 0 60 BAT1";
+                      }
+                      {
+                        key = "8";
+                        desc = "Set battery maximum charge to 80";
+                        cmd = "sudo -n ${tlp} setcharge 0 80 BAT1";
+                      }
+                    ];
+                }
+              ];
+            }
           ];
         };
       };
