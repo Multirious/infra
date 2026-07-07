@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  withSystem,
   ...
 }:
 let
@@ -62,6 +63,9 @@ in
             modules = [
               configuration.module
               { imports = useToImports "nixos" configuration.use; }
+              ({ config, ... }: {
+                nixpkgs.pkgs = withSystem config.nixpkgs.hostPlatform.system ({ pkgs, ... }: pkgs);
+              })
             ];
           };
       in
@@ -71,7 +75,7 @@ in
         toHomeManagerConfigurations =
           configurationName: configuration:
           inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = inputs.nixpkgs.legacyPackages."${configuration.system}";
+            pkgs = withSystem configuration.system ({ pkgs, ... }: pkgs);
             modules = [
               configuration.module
               {
