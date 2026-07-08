@@ -45,15 +45,6 @@ top: {
       };
 
       config = {
-        # home.file = lib.mkMerge (
-        #   map (
-        #     pluginType:
-        #     lib.mapAttrs' (name: file: {
-        #       name = "${config.me.audio."${pluginType}Home"}/${name}";
-        #       value = file;
-        #     }) config.me.audio."${pluginType}File"
-        #   ) pluginTypes
-        # );
         home.file =
           pluginTypes
           |> map (
