@@ -46,6 +46,7 @@ top: {
               alias gaa='git add .'
               alias gap='git add -p'
               alias gcm='git commit -m'
+              alias gcs='tmux-git-commit-split'
               alias gcam='git commit --amend'
               alias gc='git commit'
               alias gs='git status'
