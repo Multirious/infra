@@ -60,7 +60,13 @@ top: {
       ];
       boot.extraModprobeConfig = ''
         options snd_hda_intel power_save=0
+
+        options snd-virmidi midi_devs=1
       '';
+
+      boot.kernelModules = [
+        "snd-virmidi"
+      ];
 
       # Hibernation
       boot.resumeDevice = "/dev/disk/by-uuid/7b8c4bff-a973-4642-9715-caee58886bc2";
