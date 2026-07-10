@@ -19,6 +19,7 @@ top: {
 
         userDirs = {
           enable = true;
+          setSessionVariables = true;
           desktop = "${homeDir}/desktop";
           documents = "${homeDir}/documents";
           download = "${homeDir}/download";
@@ -27,6 +28,7 @@ top: {
           publicShare = "${homeDir}/public";
           templates = "${homeDir}/templates";
           videos = "${homeDir}/videos";
+          projects = "${homeDir}/projects";
         };
       };
     };
