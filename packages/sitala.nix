@@ -3,8 +3,9 @@
   lib,
   stdenv,
   dpkg,
+  libX11,
+  libXext,
   alsa-lib,
-  xorg,
   freetype,
   curlWithGnuTls,
   glibc,
@@ -28,8 +29,8 @@ let
   );
   rpath = lib.makeLibraryPath [
     alsa-lib
-    xorg.libX11
-    xorg.libXext
+    libX11
+    libXext
     freetype
     (lib.getLib curlGnu)
     stdenv.cc.cc.lib
@@ -44,8 +45,8 @@ stdenv.mkDerivation (finalAttrs: {
   };
   buildInputs = [
     alsa-lib
-    xorg.libX11
-    xorg.libXext
+    libX11
+    libXext
     freetype
     curlGnu
     zenity
