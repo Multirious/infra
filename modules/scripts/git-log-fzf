@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+git log --color=always --oneline $* \
+    | fzf --ansi --reverse \
+    --preview="git show --stat --patch --color=always {1}" \
+    --bind='enter:execute(echo {1} | wl-copy)' \
+    --header="[Enter]: Copy Hash & Stay | [Esc/Ctrl-C]: Exit"
