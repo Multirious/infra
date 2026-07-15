@@ -7,4 +7,6 @@
     jackLibrary = pkgs.pipewire.jack;
     ffmpeg = pkgs.ffmpeg_4-headless;
   };
+  buffr = pkgs.callPackage ./buffr.nix { };
+  polaar = pkgs.callPackage ./polaar.nix { };
 }
