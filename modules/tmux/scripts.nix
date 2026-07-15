@@ -53,7 +53,7 @@ top: {
       me.scripts."tmux-git-commit-split".text = ''
         #!/usr/bin/env bash
 
-        pane_id=$(tmux split-window -vbPF "#{pane_id}" "git --paginate diff --cached")
+        pane_id=$(tmux split-window -vbPF "#{pane_id}" "git -c core.pager='less -+F' diff --cached")
         git commit
         tmux kill-pane -t "$pane_id" 2>/dev/null || true
       '';
