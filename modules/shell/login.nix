@@ -58,6 +58,7 @@ top: {
             export XDG_PUBLICSHARE_DIR="${userDirs.publicShare}"
             export XDG_TEMPLATES_DIR="${userDirs.templates}"
             export XDG_VIDEOS_DIR="${userDirs.videos}"
+            export XDG_PROJECTS_DIR="${userDirs.projects}"
 
             if has-command less; then
               [ -d "${stateHome}/less" ] || mkdir -p "${stateHome}/less"
