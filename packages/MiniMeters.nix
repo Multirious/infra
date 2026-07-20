@@ -7,15 +7,16 @@
   libxrandr,
   libxrender,
   libxkbcommon,
+  openssl,
 }:
 let
   name = "MiniMeters";
-  version = "1.0.22";
+  version = "1.0.29";
   minimeters = pkgs.stdenvNoCC.mkDerivation {
     inherit version name;
     src = pkgs.requireFile {
       name = "minimeters-linux.zip";
-      sha256 = "0300n9l2sb3nsg7rbs5hzjxax41pqb7k7s9gnzpdq4x7402vll19";
+      sha256 = "1j62b27rnp9i3qcvakq1jkgi0kb7c0ip0pn6q2q1kql24yc3hx7b";
       message = "This paid tool needed to be downloaded manually through itch.io";
     };
     buildInputs = [
@@ -26,6 +27,7 @@ let
       libxrandr
       libxrender
       libxkbcommon
+      openssl
     ];
     unpackPhase =
       # bash
