@@ -62,6 +62,7 @@ top: {
               alias gb='git branch'
 
               alias dev='tmux-dev'
+              alias cdev='find ~/projects/code/ -maxdepth 1 -type d | fzf | xargs tmux-dev'
 
               alias shx='sudo --preserve-env=EDITOR,TERM,TERMINFO,TERMINFO_DIRS,XDG_CONFIG_DIRS,XDG_DATA_DIRS,XDG_CONFIG_HOME,XDG_RUNTIME_DIR,WAYLAND_DISPLAY,DISPLAY,DBUS_SESSION_BUS_ADDRESS hx'
 
