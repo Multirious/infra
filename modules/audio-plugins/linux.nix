@@ -10,6 +10,7 @@ top: {
         myPkgs.sitala
         myPkgs.buffr
         myPkgs.polaar
+        myPkgs.MiniMeters
       ];
     };
 }
